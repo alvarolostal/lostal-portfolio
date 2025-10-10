@@ -1,0 +1,36 @@
+---
+// src/components/Navigation.astro
+---
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-content">
+      <a href="#" class="logo">AL</a>
+
+      <ul class="nav-links">
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="#about" class="mobile-link">Sobre mí</a></li>
+      <li><a href="#experience" class="mobile-link">Experiencia</a></li>
+      <li><a href="#skills" class="mobile-link">Habilidades</a></li>
+      <li><a href="#contact" class="mobile-link">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
