@@ -95,11 +95,15 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: var(--bg-primary);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] nav {
+      background: rgba(0, 0, 0, 0.7);
     }
 
     nav.scrolled {
@@ -861,44 +865,64 @@
         <h2 class="section-title">Experiencia & Educación</h2>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item fade-in">
-          <div class="timeline-header">
-            <h3 class="timeline-title">Grado en Ingeniería Informática</h3>
-            <span class="timeline-date">Sep 2022 - Jun 2026</span>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto;">
+        <!-- Educación -->
+        <div>
+          <div style="margin-bottom: 40px; text-align: center;">
+            <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Educación</h3>
+            <div style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"></div>
           </div>
-          <div class="timeline-subtitle">Universidad Europea del Atlántico</div>
-          <p class="timeline-description">
-            Formación integral en ingeniería informática con especialización en desarrollo web y seguridad.
-          </p>
-          <ul class="timeline-list">
-            <li>Diseño Web y Experiencia de Usuario</li>
-            <li>Ingeniería del Software</li>
-            <li>Seguridad Informática y Criptografía</li>
-          </ul>
+
+          <div class="timeline" style="max-width: 100%;">
+            <div class="timeline-item fade-in">
+              <div class="timeline-header">
+                <h4 class="timeline-title">Grado en Ingeniería Informática</h4>
+                <span class="timeline-date">Sep 2022 - Jun 2026</span>
+              </div>
+              <div class="timeline-subtitle">Universidad Europea del Atlántico</div>
+              <p class="timeline-description">
+                Formación integral en ingeniería informática con especialización en desarrollo web y seguridad.
+              </p>
+              <ul class="timeline-list">
+                <li>Diseño Web y Experiencia de Usuario</li>
+                <li>Ingeniería del Software</li>
+                <li>Seguridad Informática y Criptografía</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item fade-in">
+              <div class="timeline-header">
+                <h4 class="timeline-title">B2 First Certificate in English</h4>
+                <span class="timeline-date">2021</span>
+              </div>
+              <div class="timeline-subtitle">Cambridge English • Score: 162</div>
+              <p class="timeline-description">
+                Certificación oficial de nivel B2 del Marco Común Europeo de Referencia para las lenguas.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item fade-in">
-          <div class="timeline-header">
-            <h3 class="timeline-title">Prácticas en Desarrollo Web</h3>
-            <span class="timeline-date">1 mes</span>
+        <!-- Experiencia -->
+        <div>
+          <div style="margin-bottom: 40px; text-align: center;">
+            <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Experiencia</h3>
+            <div style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"></div>
           </div>
-          <div class="timeline-subtitle">Eurocastalia</div>
-          <p class="timeline-description">
-            Prácticas curriculares enfocadas en el desarrollo de aplicaciones web modernas, 
-            trabajando con tecnologías frontend y colaborando en proyectos reales.
-          </p>
-        </div>
 
-        <div class="timeline-item fade-in">
-          <div class="timeline-header">
-            <h3 class="timeline-title">B2 First Certificate in English</h3>
-            <span class="timeline-date">2021</span>
+          <div class="timeline" style="max-width: 100%;">
+            <div class="timeline-item fade-in">
+              <div class="timeline-header">
+                <h4 class="timeline-title">Prácticas en Desarrollo Web</h4>
+                <span class="timeline-date">1 mes</span>
+              </div>
+              <div class="timeline-subtitle">Eurocastalia</div>
+              <p class="timeline-description">
+                Prácticas curriculares enfocadas en el desarrollo de aplicaciones web modernas, 
+                trabajando con tecnologías frontend y colaborando en proyectos reales.
+              </p>
+            </div>
           </div>
-          <div class="timeline-subtitle">Cambridge English • Score: 162</div>
-          <p class="timeline-description">
-            Certificación oficial de nivel B2 del Marco Común Europeo de Referencia para las lenguas.
-          </p>
         </div>
       </div>
     </div>
@@ -983,7 +1007,7 @@
 
       <div class="contact-content fade-in">
         <div class="contact-links">
-          <a href="mailto:hola@lostal.dev" class="contact-link" title="Email">
+          <a href="mailto:alvarolostal04@gmail.com" class="contact-link" title="Email">
             <i class="fas fa-envelope"></i>
           </a>
           <a href="https://github.com/alvarolostal" target="_blank" rel="noopener noreferrer" class="contact-link" title="GitHub">
@@ -1025,9 +1049,9 @@
       if (!themeIcon) return;
       if (theme === 'dark') {
         themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+        themeIcon.classList.add('fa-stars');
       } else {
-        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.remove('fa-stars');
         themeIcon.classList.add('fa-moon');
       }
     }
