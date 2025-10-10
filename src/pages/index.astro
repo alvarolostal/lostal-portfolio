@@ -1014,15 +1014,15 @@
 
   <script>
     // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
+    const themeToggle = document.getElementById('themeToggle') as HTMLButtonElement | null;
+    const themeIcon = document.getElementById('themeIcon') as HTMLElement | null;
     const html = document.documentElement;
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = (localStorage.getItem('theme') || 'light') as 'light' | 'dark';
     html.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
-    function updateThemeIcon(theme) {
+    
+    function updateThemeIcon(theme: 'light' | 'dark'): void {
+      if (!themeIcon) return;
       if (theme === 'dark') {
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
@@ -1032,18 +1032,23 @@
       }
     }
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
+    updateThemeIcon(savedTheme);
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme') as 'light' | 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+      });
+    }
 
     // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
+    const navbar = document.getElementById('navbar') as HTMLElement | null;
     window.addEventListener('scroll', () => {
+      if (!navbar) return;
       if (window.pageYOffset > 50) {
         navbar.classList.add('scrolled');
       } else {
@@ -1052,48 +1057,56 @@
     });
 
     // Mobile Menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn') as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById('mobileMenu') as HTMLElement | null;
+    const mobileLinks = document.querySelectorAll('.mobile-link') as NodeListOf<HTMLAnchorElement>;
 
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+    }
 
-    mobileLinks.forEach(link => {
+    mobileLinks.forEach((link: HTMLAnchorElement) => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
+        if (mobileMenu) {
+          mobileMenu.classList.remove('active');
+        }
       });
     });
 
     // Intersection Observer para animaciones
-    const observerOptions = {
+    const observerOptions: IntersectionObserverInit = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach((el: Element) => observer.observe(el));
 
     // Smooth scroll para navegación
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor: Element) => {
+      anchor.addEventListener('click', (e: Event) => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = 60;
-          const targetPosition = target.offsetTop - offset;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
+        const anchorElement = anchor as HTMLAnchorElement;
+        const href = anchorElement.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 60;
+            const targetPosition = (target as HTMLElement).offsetTop - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
         }
       });
     });
