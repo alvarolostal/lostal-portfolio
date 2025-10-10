@@ -20,15 +20,17 @@
         <div class="timeline">
           <div class="timeline-item fade-in">
             <div class="timeline-header">
-              <h4 class="timeline-title">Grado en Ingeniería Informática</h4>
+              <h4 class="timeline-title">
+                Grado en Ingeniería Informática
+              </h4>
               <span class="timeline-date">Sep 2022 - Jun 2026</span>
             </div>
             <div class="timeline-subtitle">
               Universidad Europea del Atlántico
             </div>
             <p class="timeline-description">
-              Formación integral en ingeniería informática con especialización
-              en desarrollo web y seguridad.
+              Formación integral en ingeniería informática con
+              especialización en desarrollo web y seguridad.
             </p>
             <ul class="timeline-list">
               <li>Diseño Web y Experiencia de Usuario</li>
@@ -39,10 +41,14 @@
 
           <div class="timeline-item fade-in">
             <div class="timeline-header">
-              <h4 class="timeline-title">B2 First Certificate in English</h4>
+              <h4 class="timeline-title">
+                B2 First Certificate in English
+              </h4>
               <span class="timeline-date">2021</span>
             </div>
-            <div class="timeline-subtitle">Cambridge English • Score: 162</div>
+            <div class="timeline-subtitle">
+              Cambridge English • Score: 162
+            </div>
             <p class="timeline-description">
               Certificación oficial de nivel B2 del Marco Común Europeo de
               Referencia para las lenguas.
@@ -66,9 +72,9 @@
             </div>
             <div class="timeline-subtitle">Eurocastalia</div>
             <p class="timeline-description">
-              Prácticas curriculares enfocadas en el desarrollo de aplicaciones
-              web modernas, trabajando con tecnologías frontend y colaborando en
-              proyectos reales.
+              Prácticas curriculares enfocadas en el desarrollo de
+              aplicaciones web modernas, trabajando con tecnologías frontend
+              y colaborando en proyectos reales.
             </p>
           </div>
         </div>
@@ -76,166 +82,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .experience-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  @media (min-width: 768px) {
-    .experience-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-    }
-  }
-
-  .experience-column {
-    width: 100%;
-    min-width: 0; /* Importante para evitar overflow */
-  }
-
-  .column-header {
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  @media (min-width: 768px) {
-    .column-header {
-      margin-bottom: 40px;
-    }
-  }
-
-  .column-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-  }
-
-  @media (min-width: 768px) {
-    .column-title {
-      font-size: 20px;
-    }
-  }
-
-  .column-divider {
-    height: 2px;
-    width: 40px;
-    background: var(--accent-primary);
-    margin: 0 auto;
-  }
-
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .timeline-item {
-    background: var(--bg-primary);
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid var(--border-color);
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .timeline-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .timeline-header {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  @media (min-width: 480px) {
-    .timeline-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-  }
-
-  .timeline-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.4;
-    flex: 1;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-title {
-      font-size: 17px;
-    }
-  }
-
-  .timeline-date {
-    font-size: 13px;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-date {
-      font-size: 14px;
-    }
-  }
-
-  .timeline-subtitle {
-    font-size: 14px;
-    color: var(--accent-primary);
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-
-  .timeline-description {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-
-  .timeline-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .timeline-list li {
-    font-size: 13px;
-    color: var(--text-secondary);
-    padding-left: 20px;
-    position: relative;
-    line-height: 1.5;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-list li {
-      font-size: 14px;
-    }
-  }
-
-  .timeline-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--accent-primary);
-    font-weight: 600;
-  }
-</style>
