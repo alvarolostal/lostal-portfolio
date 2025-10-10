@@ -1,1139 +1,1248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Álvaro Lostal | Ingeniero Informático & Desarrollador Frontend</title>
-  <meta name="description" content="Portfolio de Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend. Santander, España.">
-  
-  <!-- SEO Meta Tags -->
-  <meta name="author" content="Álvaro Lostal">
-  <meta name="keywords" content="Álvaro Lostal, Ingeniero Informático, Desarrollo Web, Frontend Developer, React, JavaScript, Santander">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Álvaro Lostal | Ingeniero Informático & Desarrollador Frontend">
-  <meta property="og:description" content="Portfolio de Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lostal.dev">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Heroicons via CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    /* Reset y Variables CSS */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Álvaro Lostal | Ingeniero Informático & Desarrollador Frontend
+    </title>
+    <meta
+      name="description"
+      content="Portfolio de Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend. Santander, España."
+    />
 
-    :root {
-      --accent-primary: #d5bd37;
-      --accent-dark: #c4ab2f;
-      --bg-primary: #ffffff;
-      --bg-secondary: #f5f5f7;
-      --bg-tertiary: #fafafa;
-      --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
-      --text-tertiary: #86868b;
-      --border: #d2d2d7;
-      --shadow: rgba(0, 0, 0, 0.08);
-      --shadow-lg: rgba(0, 0, 0, 0.12);
-    }
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Álvaro Lostal" />
+    <meta
+      name="keywords"
+      content="Álvaro Lostal, Ingeniero Informático, Desarrollo Web, Frontend Developer, React, JavaScript, Santander"
+    />
 
-    [data-theme="dark"] {
-      --accent-primary: #e8d159;
-      --accent-dark: #d5bd37;
-      --bg-primary: #000000;
-      --bg-secondary: #1d1d1f;
-      --bg-tertiary: #2d2d2f;
-      --text-primary: #f5f5f7;
-      --text-secondary: #a1a1a6;
-      --text-tertiary: #86868b;
-      --border: #424245;
-      --shadow: rgba(0, 0, 0, 0.3);
-      --shadow-lg: rgba(0, 0, 0, 0.5);
-    }
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Álvaro Lostal | Ingeniero Informático & Desarrollador Frontend"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio de Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lostal.dev" />
 
-    html {
-      scroll-behavior: smooth;
-    }
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      overflow-x: hidden;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    <!-- Heroicons via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-    @media (min-width: 768px) {
+    <style>
+      /* Reset y Variables CSS */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --accent-primary: #d5bd37;
+        --accent-dark: #c4ab2f;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f7;
+        --bg-tertiary: #fafafa;
+        --text-primary: #1d1d1f;
+        --text-secondary: #6e6e73;
+        --text-tertiary: #86868b;
+        --border: #d2d2d7;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --shadow-lg: rgba(0, 0, 0, 0.12);
+      }
+
+      [data-theme="dark"] {
+        --accent-primary: #e8d159;
+        --accent-dark: #d5bd37;
+        --bg-primary: #000000;
+        --bg-secondary: #1d1d1f;
+        --bg-tertiary: #2d2d2f;
+        --text-primary: #f5f5f7;
+        --text-secondary: #a1a1a6;
+        --text-tertiary: #86868b;
+        --border: #424245;
+        --shadow: rgba(0, 0, 0, 0.3);
+        --shadow-lg: rgba(0, 0, 0, 0.5);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+        overflow-x: hidden;
+      }
+
       .container {
-        padding: 0 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
       }
-    }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 48px;
+        }
+      }
 
-    [data-theme="dark"] nav {
-      background: rgba(0, 0, 0, 0.7);
-    }
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
 
-    nav.scrolled {
-      box-shadow: 0 2px 12px var(--shadow);
-    }
+      [data-theme="dark"] nav {
+        background: rgba(0, 0, 0, 0.7);
+      }
 
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 60px;
-    }
+      nav.scrolled {
+        box-shadow: 0 2px 12px var(--shadow);
+      }
 
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent-primary);
-      text-decoration: none;
-      transition: opacity 0.3s ease;
-      letter-spacing: -0.5px;
-    }
-
-    .logo:hover {
-      opacity: 0.7;
-    }
-
-    .nav-links {
-      display: none;
-      gap: 32px;
-      list-style: none;
-    }
-
-    @media (min-width: 768px) {
-      .nav-links {
+      .nav-content {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
       }
-    }
 
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 400;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-primary);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-primary);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      color: var(--text-secondary);
-      font-size: 18px;
-      transition: all 0.3s ease;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-    }
-
-    .theme-toggle:hover {
-      background: var(--bg-secondary);
-      color: var(--accent-primary);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-      opacity: 0.03;
-      animation: pulse 8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.03; }
-      50% { transform: translateX(-50%) scale(1.1); opacity: 0.05; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+      .logo {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--accent-primary);
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+        letter-spacing: -0.5px;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .logo:hover {
+        opacity: 0.7;
       }
-    }
 
-    .hero-image-wrapper {
-      margin-bottom: 32px;
-      animation: fadeInUp 0.8s ease-out 0.1s both;
-    }
-
-    .hero-image {
-      width: 180px;
-      height: 180px;
-      border-radius: 24px;
-      object-fit: cover;
-      margin: 0 auto;
-      border: 3px solid var(--accent-primary);
-      box-shadow: 0 20px 60px rgba(213, 189, 55, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .hero-image:hover {
-      transform: scale(1.02);
-    }
-
-    .hero-subtitle {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--accent-primary);
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    .hero-title {
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 16px;
-      letter-spacing: -2px;
-      animation: fadeInUp 0.8s ease-out 0.3s both;
-    }
-
-    @media (min-width: 768px) {
-      .hero-title {
-        font-size: 80px;
-      }
-    }
-
-    .hero-description {
-      font-size: 18px;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 32px;
-      animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      gap: 16px;
-      animation: fadeInUp 0.8s ease-out 0.5s both;
-    }
-
-    .btn {
-      padding: 12px 28px;
-      border-radius: 24px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-primary {
-      background: var(--accent-primary);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(213, 189, 55, 0.3);
-    }
-
-    .btn-secondary {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-tertiary);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--shadow);
-    }
-
-    /* Section Styling */
-    section {
-      padding: 80px 24px;
-      position: relative;
-    }
-
-    @media (min-width: 768px) {
-      section {
-        padding: 100px 48px;
-      }
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .section-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent-primary);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -1px;
-    }
-
-    .section-description {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* About Section */
-    .about-content {
-      max-width: 700px;
-      margin: 0 auto;
-      background: var(--bg-secondary);
-      padding: 40px;
-      border-radius: 24px;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .about-text {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--accent-primary);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Timeline */
-    .timeline {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 32px;
-      margin-bottom: 40px;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 6px;
-      width: 14px;
-      height: 14px;
-      background: var(--accent-primary);
-      border-radius: 50%;
-      border: 2px solid var(--bg-primary);
-      box-shadow: 0 0 0 3px var(--bg-secondary);
-    }
-
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 20px;
-      width: 2px;
-      height: calc(100% + 20px);
-      background: var(--border);
-    }
-
-    .timeline-item:last-child::after {
-      display: none;
-    }
-
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .timeline-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .timeline-date {
-      font-size: 13px;
-      color: var(--text-tertiary);
-      font-weight: 500;
-    }
-
-    .timeline-subtitle {
-      font-size: 14px;
-      color: var(--accent-primary);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    .timeline-description {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .timeline-list {
-      list-style: none;
-      margin-top: 10px;
-    }
-
-    .timeline-list li {
-      color: var(--text-secondary);
-      padding-left: 16px;
-      position: relative;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-
-    .timeline-list li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent-primary);
-      font-weight: bold;
-    }
-
-    /* Skills Section */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .skill-card {
-      background: var(--bg-secondary);
-      padding: 28px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      animation: fadeInUp 0.8s ease-out;
-      border: 1px solid var(--border);
-    }
-
-    .skill-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px var(--shadow-lg);
-      border-color: var(--accent-primary);
-    }
-
-    .skill-icon {
-      font-size: 28px;
-      margin-bottom: 14px;
-      display: block;
-      color: var(--accent-primary);
-    }
-
-    .skill-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      padding: 6px 12px;
-      background: var(--bg-primary);
-      border-radius: 12px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .tag:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
-      background: rgba(213, 189, 55, 0.05);
-    }
-
-    /* Contact Section */
-    .contact-content {
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 32px;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border);
-      font-size: 20px;
-    }
-
-    .contact-link:hover {
-      background: var(--accent-primary);
-      color: #000;
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(213, 189, 55, 0.3);
-      border-color: var(--accent-primary);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--bg-secondary);
-      padding: 40px 24px;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 13px;
-      transition: color 0.3s ease;
-    }
-
-    .footer-link:hover {
-      color: var(--accent-primary);
-    }
-
-    .footer-text {
-      color: var(--text-secondary);
-      font-size: 13px;
-      margin: 8px 0;
-    }
-
-    /* Animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile Menu */
-    .mobile-menu-btn {
-      display: block;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: var(--text-primary);
-      padding: 8px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @media (min-width: 768px) {
-      .mobile-menu-btn {
+      .nav-links {
         display: none;
+        gap: 32px;
+        list-style: none;
       }
-    }
 
-    .mobile-menu {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border);
-      padding: 20px;
-      display: none;
-      animation: slideDown 0.3s ease-out;
-      max-height: calc(100vh - 60px);
-      overflow-y: auto;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        transition: color 0.3s ease;
+        position: relative;
       }
-    }
 
-    .mobile-menu.active {
-      display: block;
-    }
+      .nav-links a:hover {
+        color: var(--text-primary);
+      }
 
-    .mobile-menu-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-primary);
+        transition: width 0.3s ease;
+      }
 
-    .mobile-menu-links a {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      display: block;
-      padding: 12px 0;
-      transition: color 0.3s ease;
-    }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
-    .mobile-menu-links a:hover {
-      color: var(--accent-primary);
-    }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
 
-    @media (max-width: 480px) {
+      .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        color: var(--text-secondary);
+        font-size: 18px;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+      }
+
+      .theme-toggle:hover {
+        background: var(--bg-secondary);
+        color: var(--accent-primary);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 24px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          var(--accent-primary) 0%,
+          transparent 70%
+        );
+        opacity: 0.03;
+        animation: pulse 8s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: translateX(-50%) scale(1);
+          opacity: 0.03;
+        }
+        50% {
+          transform: translateX(-50%) scale(1.1);
+          opacity: 0.05;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-image-wrapper {
+        margin-bottom: 32px;
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+      }
+
+      .hero-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 24px;
+        object-fit: cover;
+        margin: 0 auto;
+        border: 3px solid var(--accent-primary);
+        box-shadow: 0 20px 60px rgba(213, 189, 55, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .hero-image:hover {
+        transform: scale(1.02);
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--accent-primary);
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+      }
+
       .hero-title {
-        font-size: 48px;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 16px;
+        letter-spacing: -2px;
+        animation: fadeInUp 0.8s ease-out 0.3s both;
       }
 
-      .section-title {
-        font-size: 36px;
+      @media (min-width: 768px) {
+        .hero-title {
+          font-size: 80px;
+        }
       }
 
       .hero-description {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 32px;
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        gap: 16px;
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+      }
+
+      .btn {
+        padding: 12px 28px;
+        border-radius: 24px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-primary {
+        background: var(--accent-primary);
+        color: #000;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(213, 189, 55, 0.3);
+      }
+
+      .btn-secondary {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--bg-tertiary);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--shadow);
+      }
+
+      /* Section Styling */
+      section {
+        padding: 80px 24px;
+        position: relative;
+      }
+
+      @media (min-width: 768px) {
+        section {
+          padding: 100px 48px;
+        }
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .section-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent-primary);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -1px;
+      }
+
+      .section-description {
         font-size: 16px;
+        color: var(--text-secondary);
+        max-width: 500px;
+        margin: 0 auto;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="container">
-      <div class="nav-content">
-        <a href="#" class="logo">AL</a>
-        
-        <ul class="nav-links">
-          <li><a href="#about">Sobre mí</a></li>
-          <li><a href="#experience">Experiencia</a></li>
-          <li><a href="#skills">Habilidades</a></li>
-          <li><a href="#contact">Contacto</a></li>
+      /* About Section */
+      .about-content {
+        max-width: 700px;
+        margin: 0 auto;
+        background: var(--bg-secondary);
+        padding: 40px;
+        border-radius: 24px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .about-text {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 36px;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--accent-primary);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Timeline */
+      .timeline {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 32px;
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        background: var(--accent-primary);
+        border-radius: 50%;
+        border: 2px solid var(--bg-primary);
+        box-shadow: 0 0 0 3px var(--bg-secondary);
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 20px;
+        width: 2px;
+        height: calc(100% + 20px);
+        background: var(--border);
+      }
+
+      .timeline-item:last-child::after {
+        display: none;
+      }
+
+      .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .timeline-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .timeline-date {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        font-weight: 500;
+      }
+
+      .timeline-subtitle {
+        font-size: 14px;
+        color: var(--accent-primary);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .timeline-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      .timeline-list {
+        list-style: none;
+        margin-top: 10px;
+      }
+
+      .timeline-list li {
+        color: var(--text-secondary);
+        padding-left: 16px;
+        position: relative;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .timeline-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--accent-primary);
+        font-weight: bold;
+      }
+
+      /* Skills Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .skill-card {
+        background: var(--bg-secondary);
+        padding: 28px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.8s ease-out;
+        border: 1px solid var(--border);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 48px var(--shadow-lg);
+        border-color: var(--accent-primary);
+      }
+
+      .skill-icon {
+        font-size: 28px;
+        margin-bottom: 14px;
+        display: block;
+        color: var(--accent-primary);
+      }
+
+      .skill-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-primary);
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .tag {
+        padding: 6px 12px;
+        background: var(--bg-primary);
+        border-radius: 12px;
+        font-size: 12px;
+        color: var(--text-secondary);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+        background: rgba(213, 189, 55, 0.05);
+      }
+
+      /* Contact Section */
+      .contact-content {
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--bg-secondary);
+        border-radius: 16px;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border);
+        font-size: 20px;
+      }
+
+      .contact-link:hover {
+        background: var(--accent-primary);
+        color: #000;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(213, 189, 55, 0.3);
+        border-color: var(--accent-primary);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--bg-secondary);
+        padding: 40px 24px;
+        text-align: center;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+
+      .footer-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--accent-primary);
+      }
+
+      .footer-text {
+        color: var(--text-secondary);
+        font-size: 13px;
+        margin: 8px 0;
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--text-primary);
+        padding: 8px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        .mobile-menu-btn {
+          display: none;
+        }
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border);
+        padding: 20px;
+        display: none;
+        animation: slideDown 0.3s ease-out;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .mobile-menu.active {
+        display: block;
+      }
+
+      .mobile-menu-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .mobile-menu-links a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        display: block;
+        padding: 12px 0;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-menu-links a:hover {
+        color: var(--accent-primary);
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 48px;
+        }
+
+        .section-title {
+          font-size: 36px;
+        }
+
+        .hero-description {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <a href="#" class="logo">AL</a>
+
+          <ul class="nav-links">
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#experience">Experiencia</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              aria-label="Cambiar tema"
+            >
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button
+              class="mobile-menu-btn"
+              id="mobileMenuBtn"
+              aria-label="Menú"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+          <li><a href="#about" class="mobile-link">Sobre mí</a></li>
+          <li><a href="#experience" class="mobile-link">Experiencia</a></li>
+          <li><a href="#skills" class="mobile-link">Habilidades</a></li>
+          <li><a href="#contact" class="mobile-link">Contacto</a></li>
         </ul>
+      </div>
+    </nav>
 
-        <div class="nav-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-            <i class="fas fa-moon" id="themeIcon"></i>
-          </button>
-          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
-            <i class="fas fa-bars"></i>
-          </button>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-image-wrapper">
+          <img src="/alvaro.webp" alt="Álvaro Lostal" class="hero-image" />
+        </div>
+        <div class="hero-subtitle">Hola, soy</div>
+        <h1 class="hero-title">Álvaro Lostal</h1>
+        <p class="hero-description">
+          Ingeniero Informático especializado en Desarrollo Web Frontend.
+          Creando experiencias digitales elegantes y funcionales.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-arrow-right"></i> Contactar
+          </a>
+          <a href="#about" class="btn btn-secondary">Conocer más</a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <ul class="mobile-menu-links">
-        <li><a href="#about" class="mobile-link">Sobre mí</a></li>
-        <li><a href="#experience" class="mobile-link">Experiencia</a></li>
-        <li><a href="#skills" class="mobile-link">Habilidades</a></li>
-        <li><a href="#contact" class="mobile-link">Contacto</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-image-wrapper">
-        <img src="/alvaro.webp" alt="Álvaro Lostal" class="hero-image">
-      </div>
-      <div class="hero-subtitle">Hola, soy</div>
-      <h1 class="hero-title">Álvaro Lostal</h1>
-      <p class="hero-description">
-        Ingeniero Informático especializado en Desarrollo Web Frontend. 
-        Creando experiencias digitales elegantes y funcionales.
-      </p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">
-          <i class="fas fa-arrow-right"></i> Contactar
-        </a>
-        <a href="#about" class="btn btn-secondary">Conocer más</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-label">Sobre mí</div>
-        <h2 class="section-title">Pasión por crear</h2>
-        <p class="section-description">
-          Desarrollador frontend con foco en diseño limpio y experiencias de usuario excepcionales
-        </p>
-      </div>
-
-      <div class="about-content fade-in">
-        <p class="about-text">
-          Soy un ingeniero informático de <strong>21 años</strong> con base en <strong>Santander, España</strong>, 
-          apasionado por el desarrollo web frontend y el diseño de interfaces elegantes. 
-          Actualmente cursando el último año del Grado en Ingeniería Informática en la Universidad 
-          Europea del Atlántico, combino conocimientos técnicos sólidos con un ojo crítico para el diseño.
-        </p>
-        
-        <p class="about-text">
-          Mi enfoque se centra en crear experiencias web que no solo funcionen perfectamente, 
-          sino que también sean visualmente impactantes y fáciles de usar. Creo en el poder 
-          del diseño minimalista y la atención al detalle para construir productos digitales excepcionales.
-        </p>
-
-        <div class="about-stats">
-          <div class="stat">
-            <span class="stat-number">2026</span>
-            <span class="stat-label">Graduación</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">B2</span>
-            <span class="stat-label">Inglés</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">∞</span>
-            <span class="stat-label">Pasión</span>
-          </div>
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div class="section-label">Sobre mí</div>
+          <h2 class="section-title">Pasión por crear</h2>
+          <p class="section-description">
+            Desarrollador frontend con foco en diseño limpio y experiencias de
+            usuario excepcionales
+          </p>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Experience & Education Section -->
-  <section id="experience" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-label">Trayectoria</div>
-        <h2 class="section-title">Experiencia & Educación</h2>
-      </div>
+        <div class="about-content fade-in">
+          <p class="about-text">
+            Soy un ingeniero informático de <strong>21 años</strong> con base en
+            <strong>Santander, España</strong>, apasionado por el desarrollo web
+            frontend y el diseño de interfaces elegantes. Actualmente cursando
+            el último año del Grado en Ingeniería Informática en la Universidad
+            Europea del Atlántico, combino conocimientos técnicos sólidos con un
+            ojo crítico para el diseño.
+          </p>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto;">
-        <!-- Educación -->
-        <div>
-          <div style="margin-bottom: 40px; text-align: center;">
-            <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Educación</h3>
-            <div style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"></div>
-          </div>
+          <p class="about-text">
+            Mi enfoque se centra en crear experiencias web que no solo funcionen
+            perfectamente, sino que también sean visualmente impactantes y
+            fáciles de usar. Creo en el poder del diseño minimalista y la
+            atención al detalle para construir productos digitales
+            excepcionales.
+          </p>
 
-          <div class="timeline" style="max-width: 100%;">
-            <div class="timeline-item fade-in">
-              <div class="timeline-header">
-                <h4 class="timeline-title">Grado en Ingeniería Informática</h4>
-                <span class="timeline-date">Sep 2022 - Jun 2026</span>
-              </div>
-              <div class="timeline-subtitle">Universidad Europea del Atlántico</div>
-              <p class="timeline-description">
-                Formación integral en ingeniería informática con especialización en desarrollo web y seguridad.
-              </p>
-              <ul class="timeline-list">
-                <li>Diseño Web y Experiencia de Usuario</li>
-                <li>Ingeniería del Software</li>
-                <li>Seguridad Informática y Criptografía</li>
-              </ul>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">2026</span>
+              <span class="stat-label">Graduación</span>
             </div>
-
-            <div class="timeline-item fade-in">
-              <div class="timeline-header">
-                <h4 class="timeline-title">B2 First Certificate in English</h4>
-                <span class="timeline-date">2021</span>
-              </div>
-              <div class="timeline-subtitle">Cambridge English • Score: 162</div>
-              <p class="timeline-description">
-                Certificación oficial de nivel B2 del Marco Común Europeo de Referencia para las lenguas.
-              </p>
+            <div class="stat">
+              <span class="stat-number">B2</span>
+              <span class="stat-label">Inglés</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Experiencia -->
-        <div>
-          <div style="margin-bottom: 40px; text-align: center;">
-            <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Experiencia</h3>
-            <div style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"></div>
-          </div>
-
-          <div class="timeline" style="max-width: 100%;">
-            <div class="timeline-item fade-in">
-              <div class="timeline-header">
-                <h4 class="timeline-title">Prácticas en Desarrollo Web</h4>
-                <span class="timeline-date">1 mes</span>
-              </div>
-              <div class="timeline-subtitle">Eurocastalia</div>
-              <p class="timeline-description">
-                Prácticas curriculares enfocadas en el desarrollo de aplicaciones web modernas, 
-                trabajando con tecnologías frontend y colaborando en proyectos reales.
-              </p>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Pasión</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-label">Habilidades</div>
-        <h2 class="section-title">Competencias Técnicas</h2>
-        <p class="section-description">
-          Tecnologías y herramientas con las que trabajo día a día
+    <!-- Experience & Education Section -->
+    <section id="experience" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div class="section-label">Trayectoria</div>
+          <h2 class="section-title">Experiencia & Educación</h2>
+        </div>
+
+        <div
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto;"
+        >
+          <!-- Educación -->
+          <div>
+            <div style="margin-bottom: 40px; text-align: center;">
+              <h3
+                style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;"
+              >
+                Educación
+              </h3>
+              <div
+                style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"
+              >
+              </div>
+            </div>
+
+            <div class="timeline" style="max-width: 100%;">
+              <div class="timeline-item fade-in">
+                <div class="timeline-header">
+                  <h4 class="timeline-title">
+                    Grado en Ingeniería Informática
+                  </h4>
+                  <span class="timeline-date">Sep 2022 - Jun 2026</span>
+                </div>
+                <div class="timeline-subtitle">
+                  Universidad Europea del Atlántico
+                </div>
+                <p class="timeline-description">
+                  Formación integral en ingeniería informática con
+                  especialización en desarrollo web y seguridad.
+                </p>
+                <ul class="timeline-list">
+                  <li>Diseño Web y Experiencia de Usuario</li>
+                  <li>Ingeniería del Software</li>
+                  <li>Seguridad Informática y Criptografía</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item fade-in">
+                <div class="timeline-header">
+                  <h4 class="timeline-title">
+                    B2 First Certificate in English
+                  </h4>
+                  <span class="timeline-date">2021</span>
+                </div>
+                <div class="timeline-subtitle">
+                  Cambridge English • Score: 162
+                </div>
+                <p class="timeline-description">
+                  Certificación oficial de nivel B2 del Marco Común Europeo de
+                  Referencia para las lenguas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiencia -->
+          <div>
+            <div style="margin-bottom: 40px; text-align: center;">
+              <h3
+                style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;"
+              >
+                Experiencia
+              </h3>
+              <div
+                style="height: 2px; width: 40px; background: var(--accent-primary); margin: 0 auto;"
+              >
+              </div>
+            </div>
+
+            <div class="timeline" style="max-width: 100%;">
+              <div class="timeline-item fade-in">
+                <div class="timeline-header">
+                  <h4 class="timeline-title">Prácticas en Desarrollo Web</h4>
+                  <span class="timeline-date">1 mes</span>
+                </div>
+                <div class="timeline-subtitle">Eurocastalia</div>
+                <p class="timeline-description">
+                  Prácticas curriculares enfocadas en el desarrollo de
+                  aplicaciones web modernas, trabajando con tecnologías frontend
+                  y colaborando en proyectos reales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div class="section-label">Habilidades</div>
+          <h2 class="section-title">Competencias Técnicas</h2>
+          <p class="section-description">
+            Tecnologías y herramientas con las que trabajo día a día
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card fade-in">
+            <i class="fas fa-code skill-icon"></i>
+            <h3 class="skill-title">Lenguajes</h3>
+            <div class="skill-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Java</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in">
+            <i class="fas fa-layer-group skill-icon"></i>
+            <h3 class="skill-title">Frameworks</h3>
+            <div class="skill-tags">
+              <span class="tag">React.js</span>
+              <span class="tag">Astro</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in">
+            <i class="fas fa-tools skill-icon"></i>
+            <h3 class="skill-title">Herramientas</h3>
+            <div class="skill-tags">
+              <span class="tag">GitHub</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in">
+            <i class="fas fa-chart-line skill-icon"></i>
+            <h3 class="skill-title">Soft Skills</h3>
+            <div class="skill-tags">
+              <span class="tag">Liderazgo</span>
+              <span class="tag">Pensamiento Crítico</span>
+              <span class="tag">Gestión de Proyectos</span>
+              <span class="tag">Atención al Detalle</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in">
+            <i class="fas fa-globe skill-icon"></i>
+            <h3 class="skill-title">Idiomas</h3>
+            <div class="skill-tags">
+              <span class="tag">Español (Nativo)</span>
+              <span class="tag">Inglés (B2)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div class="section-label">Contacto</div>
+          <h2 class="section-title">Trabajemos juntos</h2>
+          <p class="section-description">
+            ¿Tienes un proyecto en mente? Me encantaría saber de ti
+          </p>
+        </div>
+
+        <div class="contact-content fade-in">
+          <div class="contact-links">
+            <a
+              href="mailto:alvarolostal04@gmail.com"
+              class="contact-link"
+              title="Email"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a
+              href="https://github.com/alvarolostal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              title="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com/in/alvarolostal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              title="LinkedIn"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#about" class="footer-link">Sobre mí</a>
+          <a href="#experience" class="footer-link">Experiencia</a>
+          <a href="#skills" class="footer-link">Habilidades</a>
+          <a href="#contact" class="footer-link">Contacto</a>
+        </div>
+        <p class="footer-text">
+          © 2025 Álvaro Lostal. Hecho con ❤️ en Santander, España.
         </p>
       </div>
+    </footer>
 
-      <div class="skills-grid">
-        <div class="skill-card fade-in">
-          <i class="fas fa-code skill-icon"></i>
-          <h3 class="skill-title">Lenguajes</h3>
-          <div class="skill-tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">Java</span>
-          </div>
-        </div>
+    <script>
+      // Theme Toggle (JavaScript puro)
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const html = document.documentElement;
 
-        <div class="skill-card fade-in">
-          <i class="fas fa-layer-group skill-icon"></i>
-          <h3 class="skill-title">Frameworks</h3>
-          <div class="skill-tags">
-            <span class="tag">React.js</span>
-            <span class="tag">Astro</span>
-          </div>
-        </div>
+      const savedTheme = localStorage.getItem("theme") || "light";
+      html.setAttribute("data-theme", savedTheme);
 
-        <div class="skill-card fade-in">
-          <i class="fas fa-tools skill-icon"></i>
-          <h3 class="skill-title">Herramientas</h3>
-          <div class="skill-tags">
-            <span class="tag">GitHub</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">Figma</span>
-            <span class="tag">Git</span>
-          </div>
-        </div>
-
-        <div class="skill-card fade-in">
-          <i class="fas fa-chart-line skill-icon"></i>
-          <h3 class="skill-title">Soft Skills</h3>
-          <div class="skill-tags">
-            <span class="tag">Liderazgo</span>
-            <span class="tag">Pensamiento Crítico</span>
-            <span class="tag">Gestión de Proyectos</span>
-            <span class="tag">Atención al Detalle</span>
-          </div>
-        </div>
-
-        <div class="skill-card fade-in">
-          <i class="fas fa-globe skill-icon"></i>
-          <h3 class="skill-title">Idiomas</h3>
-          <div class="skill-tags">
-            <span class="tag">Español (Nativo)</span>
-            <span class="tag">Inglés (B2)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-label">Contacto</div>
-        <h2 class="section-title">Trabajemos juntos</h2>
-        <p class="section-description">
-          ¿Tienes un proyecto en mente? Me encantaría saber de ti
-        </p>
-      </div>
-
-      <div class="contact-content fade-in">
-        <div class="contact-links">
-          <a href="mailto:alvarolostal04@gmail.com" class="contact-link" title="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
-          <a href="https://github.com/alvarolostal" target="_blank" rel="noopener noreferrer" class="contact-link" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://linkedin.com/in/alvarolostal" target="_blank" rel="noopener noreferrer" class="contact-link" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="#about" class="footer-link">Sobre mí</a>
-        <a href="#experience" class="footer-link">Experiencia</a>
-        <a href="#skills" class="footer-link">Habilidades</a>
-        <a href="#contact" class="footer-link">Contacto</a>
-      </div>
-      <p class="footer-text">
-        © 2025 Álvaro Lostal. Hecho con ❤️ en Santander, España.
-      </p>
-    </div>
-  </footer>
-
-  <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle') as HTMLButtonElement | null;
-    const themeIcon = document.getElementById('themeIcon') as HTMLElement | null;
-    const html = document.documentElement;
-
-    const savedTheme = (localStorage.getItem('theme') || 'light') as 'light' | 'dark';
-    html.setAttribute('data-theme', savedTheme);
-    
-    function updateThemeIcon(theme: 'light' | 'dark'): void {
-      if (!themeIcon) return;
-      if (theme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-stars');
-      } else {
-        themeIcon.classList.remove('fa-stars');
-        themeIcon.classList.add('fa-moon');
+      function updateThemeIcon(theme) {
+        if (!themeIcon) return;
+        // Quitamos ambas clases primero (por si acaso) y añadimos la que corresponda
+        themeIcon.classList.remove("fa-moon", "fa-sun", "fa-stars");
+        if (theme === "dark") {
+          // icono para tema oscuro (puedes usar fa-moon o lo que prefieras)
+          themeIcon.classList.add("fa-moon");
+        } else {
+          // icono para tema claro -> mostrar sol
+          themeIcon.classList.add("fa-sun");
+        }
       }
-    }
 
-    updateThemeIcon(savedTheme);
+      updateThemeIcon(savedTheme);
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme') as 'light' | 'dark';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-      });
-    }
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar') as HTMLElement | null;
-    window.addEventListener('scroll', () => {
-      if (!navbar) return;
-      if (window.pageYOffset > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const currentTheme = html.getAttribute("data-theme") || "light";
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          html.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          updateThemeIcon(newTheme);
+        });
       }
-    });
 
-    // Mobile Menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn') as HTMLButtonElement | null;
-    const mobileMenu = document.getElementById('mobileMenu') as HTMLElement | null;
-    const mobileLinks = document.querySelectorAll('.mobile-link') as NodeListOf<HTMLAnchorElement>;
-
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-      });
-    }
-
-    mobileLinks.forEach((link: HTMLAnchorElement) => {
-      link.addEventListener('click', () => {
-        if (mobileMenu) {
-          mobileMenu.classList.remove('active');
+      // Navbar scroll effect
+      const navbar = document.getElementById("navbar") as HTMLElement | null;
+      window.addEventListener("scroll", () => {
+        if (!navbar) return;
+        if (window.pageYOffset > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
         }
       });
-    });
 
-    // Intersection Observer para animaciones
-    const observerOptions: IntersectionObserverInit = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+      // Mobile Menu
+      const mobileMenuBtn = document.getElementById(
+        "mobileMenuBtn"
+      ) as HTMLButtonElement | null;
+      const mobileMenu = document.getElementById(
+        "mobileMenu"
+      ) as HTMLElement | null;
+      const mobileLinks = document.querySelectorAll(
+        ".mobile-link"
+      ) as NodeListOf<HTMLAnchorElement>;
 
-    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry: IntersectionObserverEntry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+        });
+      }
 
-    document.querySelectorAll('.fade-in').forEach((el: Element) => observer.observe(el));
-
-    // Smooth scroll para navegación
-    document.querySelectorAll('a[href^="#"]').forEach((anchor: Element) => {
-      anchor.addEventListener('click', (e: Event) => {
-        e.preventDefault();
-        const anchorElement = anchor as HTMLAnchorElement;
-        const href = anchorElement.getAttribute('href');
-        if (href) {
-          const target = document.querySelector(href);
-          if (target) {
-            const offset = 60;
-            const targetPosition = (target as HTMLElement).offsetTop - offset;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
+      mobileLinks.forEach((link: HTMLAnchorElement) => {
+        link.addEventListener("click", () => {
+          if (mobileMenu) {
+            mobileMenu.classList.remove("active");
           }
-        }
+        });
       });
-    });
-  </script>
-</body>
+
+      // Intersection Observer para animaciones
+      const observerOptions: IntersectionObserverInit = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(
+        (entries: IntersectionObserverEntry[]) => {
+          entries.forEach((entry: IntersectionObserverEntry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        observerOptions
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el: Element) => observer.observe(el));
+
+      // Smooth scroll para navegación
+      document.querySelectorAll('a[href^="#"]').forEach((anchor: Element) => {
+        anchor.addEventListener("click", (e: Event) => {
+          e.preventDefault();
+          const anchorElement = anchor as HTMLAnchorElement;
+          const href = anchorElement.getAttribute("href");
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              const offset = 60;
+              const targetPosition = (target as HTMLElement).offsetTop - offset;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
