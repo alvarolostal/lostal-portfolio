@@ -3,15 +3,39 @@
 const navbar = document.getElementById("navbar");
 const scrollDown = document.getElementById("scrollDown");
 
+// Detectar si es un dispositivo táctil
+function isTouchDevice() {
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0 ||
+    window.innerWidth <= 1024
+  );
+}
+
 window.addEventListener("scroll", () => {
   const scrollPosition = window.pageYOffset;
   
   // Navbar effect
   if (navbar) {
-    if (scrollPosition > 50) {
-      navbar.classList.add("scrolled");
+    if (isTouchDevice()) {
+      // En dispositivos táctiles: mostrar navbar solo al llegar a la sección "about"
+      const aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        const aboutPosition = aboutSection.offsetTop - 100; // Offset para que aparezca un poco antes
+        if (scrollPosition >= aboutPosition) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
     } else {
-      navbar.classList.remove("scrolled");
+      // En ordenador: comportamiento actual (al hacer scroll mínimo)
+      if (scrollPosition > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
     }
   }
   

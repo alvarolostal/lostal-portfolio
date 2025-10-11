@@ -73,21 +73,28 @@ function handleVisibility(scrollTop, windowHeight) {
   const scrollThreshold = windowHeight * 0.1; // 10% de la pantalla
   
   if (isTouchDevice) {
-    // En dispositivos táctiles: mostrar apenas se detecte scroll
-    if (scrollTop > 20 && !initialScrollDetected) {
-      initialScrollDetected = true;
-      showProgressBar();
-      console.log('📱 Dispositivo táctil: mostrando barra al deslizar');
-    }
-    
-    // IMPORTANTE: También ocultar cuando volvemos al top en táctiles
-    if (scrollTop < 50) {
-      hideProgressBar();
-      initialScrollDetected = false;
-      console.log('📱 Dispositivo táctil: ocultando barra al volver al top');
+    // En dispositivos táctiles: mostrar solo al llegar a la sección "about"
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const aboutPosition = aboutSection.offsetTop - 100; // Offset para que aparezca un poco antes
+      
+      if (scrollTop >= aboutPosition) {
+        if (!initialScrollDetected) {
+          initialScrollDetected = true;
+          showProgressBar();
+          console.log('📱 Dispositivo táctil: mostrando barra al llegar a "about"');
+        }
+      } else {
+        // Ocultar cuando estamos antes de la sección "about"
+        if (initialScrollDetected) {
+          hideProgressBar();
+          initialScrollDetected = false;
+          console.log('📱 Dispositivo táctil: ocultando barra al salir de "about"');
+        }
+      }
     }
   } else {
-    // En desktop: mostrar después del auto-scroll o scroll manual significativo
+    // En desktop: mantener comportamiento actual
     if (scrollTop > scrollThreshold) {
       if (!hasAutoScrolled) {
         // Detectar si fue auto-scroll (movimiento suave y rápido)
@@ -145,19 +152,25 @@ function setupEventListeners() {
     }, { passive: true });
     
     window.addEventListener('touchmove', () => {
-      if (!initialScrollDetected) {
-        setTimeout(updateScrollProgress, 50);
-      }
+      // Actualizar progreso durante el movimiento táctil
+      setTimeout(updateScrollProgress, 50);
     }, { passive: true });
     
     // Listener específico para detectar cuando se vuelve al top en móviles
     window.addEventListener('touchend', () => {
       setTimeout(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop <= 10) {
-          console.log('📱 Touch end detectado en top - forzando ocultación');
-          hideProgressBar();
-          initialScrollDetected = false;
+        const aboutSection = document.getElementById('about');
+        
+        if (aboutSection) {
+          const aboutPosition = aboutSection.offsetTop - 100;
+          
+          // Ocultar solo si estamos antes de la sección "about"
+          if (scrollTop < aboutPosition && initialScrollDetected) {
+            console.log('📱 Touch end detectado antes de "about" - forzando ocultación');
+            hideProgressBar();
+            initialScrollDetected = false;
+          }
         }
       }, 100);
     }, { passive: true });
