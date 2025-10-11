@@ -27,12 +27,8 @@ html.setAttribute("data-theme", initialTheme);
 
 function updateThemeIcon(theme) {
   if (!themeIcon) return;
-  themeIcon.classList.remove("fa-moon", "fa-sun");
-  if (theme === "dark") {
-    themeIcon.classList.add("fa-moon");
-  } else {
-    themeIcon.classList.add("fa-sun");
-  }
+  themeIcon.classList.remove("fa-moon", "fa-sun", "fa-lightbulb");
+  themeIcon.classList.add("fa-lightbulb");
 }
 
 updateThemeIcon(initialTheme);
