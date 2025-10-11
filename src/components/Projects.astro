@@ -15,19 +15,150 @@
 
     <div class="projects-grid">
       <article class="project-card fade-in">
-        <div class="project-image-container">
-          <img
-            src="/projects/vivenza-preview.webp"
-            alt="Rediseño de Vivenza Expo - Vista previa del proyecto"
-            class="project-image"
-            loading="lazy"
-            width="800"
-            height="500"
-            decoding="async"
-          />
-          <!-- Overlay para desktop (hover) -->
-          <div class="project-overlay">
-            <div class="project-links">
+        <div class="project-card-wrapper">
+          <div class="project-image-container">
+            <img
+              src="/projects/vivenza-preview.webp"
+              alt="Rediseño de Vivenza Expo - Vista previa del proyecto"
+              class="project-image"
+              loading="lazy"
+              width="400"
+              height="300"
+              decoding="async"
+            />
+            <!-- Overlay para desktop (hover) -->
+            <div class="project-overlay">
+              <div class="project-links">
+                <a
+                  href="https://vivenza.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary"
+                  aria-label="Ver proyecto en vivo"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    ></path>
+                    <polyline points="15,3 21,3 21,9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  Ver Proyecto
+                </a>
+                <a
+                  href="https://vivenzaexpo.es/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-secondary"
+                  aria-label="Ver sitio original"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12,6 12,12 16,14"></polyline>
+                  </svg>
+                  Original
+                </a>
+              </div>
+            </div>
+
+            <!-- Botones para móvil (siempre visibles) -->
+            <div class="project-mobile-actions">
+              <a
+                href="https://vivenza.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary mobile-btn"
+                aria-label="Ver proyecto en vivo"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Ver Proyecto
+              </a>
+              <a
+                href="https://vivenzaexpo.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary mobile-btn"
+                aria-label="Ver sitio original"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                Original
+              </a>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Rediseño Vivenza Expo</h3>
+              <div class="project-status">
+                <span class="project-type">Rediseño Conceptual</span>
+              </div>
+            </div>
+
+            <p class="project-description">
+              Rediseño completo de la landing page de Vivenza Expo, aplicando
+              principios de diseño moderno. Proyecto personal enfocado en probar
+              mis capacidades de diseño y desarrollo frontend.
+            </p>
+
+            <div class="project-highlights">
+              <h4 class="highlights-title">Mejoras implementadas:</h4>
+              <ul class="highlights-list">
+                <li>Diseño responsivo y accesible</li>
+                <li>Optimización de performance y carga</li>
+                <li>Jerarquía visual mejorada</li>
+                <li>Experiencia de usuario moderna</li>
+              </ul>
+            </div>
+
+            <div class="project-tech">
+              <div class="tech-label">Tecnologías:</div>
+              <div class="tech-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Next.js</span>
+              </div>
+            </div>
+
+            <!-- Botones de acción para desktop -->
+            <div class="project-actions">
               <a
                 href="https://vivenza.netlify.app/"
                 target="_blank"
@@ -71,88 +202,6 @@
                 </svg>
                 Original
               </a>
-            </div>
-          </div>
-
-          <!-- Botones para móvil (siempre visibles) -->
-          <div class="project-mobile-actions">
-            <a
-              href="https://vivenza.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary mobile-btn"
-              aria-label="Ver proyecto en vivo"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                ></path>
-                <polyline points="15,3 21,3 21,9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              Ver Proyecto
-            </a>
-            <a
-              href="https://vivenzaexpo.es/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-secondary mobile-btn"
-              aria-label="Ver sitio original"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12,6 12,12 16,14"></polyline>
-              </svg>
-              Original
-            </a>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Rediseño Vivenza Expo</h3>
-            <div class="project-status">
-              <span class="project-type">Rediseño Conceptual</span>
-            </div>
-          </div>
-
-          <p class="project-description">
-            Rediseño completo de la landing page de Vivenza Expo, aplicando
-            principios de diseño moderno. Proyecto personal enfocado en probar
-            mis capacidades de diseño y desarrollo frontend.
-          </p>
-
-          <div class="project-highlights">
-            <h4 class="highlights-title">Mejoras implementadas:</h4>
-            <ul class="highlights-list">
-              <li>Diseño responsivo y accesible</li>
-              <li>Optimización de performance y carga</li>
-              <li>Jerarquía visual mejorada</li>
-              <li>Experiencia de usuario moderna</li>
-            </ul>
-          </div>
-
-          <div class="project-tech">
-            <div class="tech-label">Tecnologías:</div>
-            <div class="tech-tags">
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Next.js</span>
             </div>
           </div>
         </div>
