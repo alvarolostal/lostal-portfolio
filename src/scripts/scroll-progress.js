@@ -59,6 +59,11 @@ function updateScrollProgress() {
   // Actualizar la altura de la barra (se llena hacia abajo)
   progressFill.style.height = `${scrollProgress}%`;
   
+  // Debug adicional para dispositivos táctiles
+  if (isTouchDevice && scrollTop < 100) {
+    console.log(`📱 Touch Debug - ScrollTop: ${scrollTop}, Visible: ${isVisible}, InitialDetected: ${initialScrollDetected}`);
+  }
+  
   // Lógica de visibilidad
   handleVisibility(scrollTop, windowHeight);
 }
@@ -72,7 +77,14 @@ function handleVisibility(scrollTop, windowHeight) {
     if (scrollTop > 20 && !initialScrollDetected) {
       initialScrollDetected = true;
       showProgressBar();
-      console.log('� Dispositivo táctil: mostrando barra al deslizar');
+      console.log('📱 Dispositivo táctil: mostrando barra al deslizar');
+    }
+    
+    // IMPORTANTE: También ocultar cuando volvemos al top en táctiles
+    if (scrollTop < 50) {
+      hideProgressBar();
+      initialScrollDetected = false;
+      console.log('📱 Dispositivo táctil: ocultando barra al volver al top');
     }
   } else {
     // En desktop: mostrar después del auto-scroll o scroll manual significativo
@@ -136,6 +148,18 @@ function setupEventListeners() {
       if (!initialScrollDetected) {
         setTimeout(updateScrollProgress, 50);
       }
+    }, { passive: true });
+    
+    // Listener específico para detectar cuando se vuelve al top en móviles
+    window.addEventListener('touchend', () => {
+      setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop <= 10) {
+          console.log('📱 Touch end detectado en top - forzando ocultación');
+          hideProgressBar();
+          initialScrollDetected = false;
+        }
+      }, 100);
     }, { passive: true });
   }
   
