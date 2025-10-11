@@ -120,7 +120,7 @@
   color: var(--text-secondary);
   font-size: 20px;
   transition: all 0.3s ease;
-  animation: bounce 2s infinite;
+  animation: bounce 4s infinite;
   border-radius: 50%;
   background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(10px);
@@ -162,7 +162,7 @@
 
 @media (max-width: 768px) {
   .scroll-down {
-    bottom: 20px;
+    bottom: 60px;
     width: 36px;
     height: 36px;
     font-size: 18px;

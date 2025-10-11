@@ -28,14 +28,8 @@ html.setAttribute("data-theme", initialTheme);
 function updateThemeIcon(theme) {
   if (!themeIcon) return;
   
-  // Añadir animación de giro
-  themeIcon.style.transform = 'rotate(360deg)';
-  themeIcon.style.transition = 'transform 0.6s ease-in-out';
-  
-  // Resetear la transformación después de la animación
-  setTimeout(() => {
-    themeIcon.style.transform = 'rotate(0deg)';
-  }, 600);
+  // Añadir animación de brillo/parpadeo
+  themeIcon.style.transition = 'all 0.3s ease';
   
   themeIcon.classList.remove("fa-moon", "fa-sun", "fa-lightbulb");
   themeIcon.classList.add("fa-lightbulb");
@@ -65,7 +59,7 @@ if (themeToggle) {
     // Remover la clase después de la animación
     setTimeout(() => {
       themeToggle.classList.remove('animate');
-    }, 600);
+    }, 800);
     
     html.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
