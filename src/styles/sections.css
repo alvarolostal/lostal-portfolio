@@ -4,6 +4,17 @@ section {
   position: relative;
 }
 
+/* Secciones alternativas con fondo secundario */
+.section-alt {
+  background: var(--bg-secondary);
+}
+
+/* Estilo especial para las cards en secciones alternativas */
+.section-alt .card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
 #experience {
   padding-top: 64px;
   padding-bottom: 64px;
