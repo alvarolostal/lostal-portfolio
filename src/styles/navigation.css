@@ -109,63 +109,7 @@ nav.scrolled {
   color: var(--accent-primary);
 }
 
-/* Animación de la bombilla */
-.theme-toggle i {
-  transition: transform 0.3s ease, color 0.3s ease;
-}
 
-.theme-toggle:hover i {
-  transform: scale(1.1);
-  color: var(--accent-primary);
-}
-
-/* Animación de encendido de bombilla con saltito */
-@keyframes bulb-lighten {
-  0% { 
-    color: var(--text-secondary);
-    text-shadow: none;
-    transform: translateY(0);
-  }
-  15% { 
-    color: var(--accent-primary);
-    text-shadow: 0 0 4px var(--accent-primary);
-    transform: translateY(-2px);
-  }
-  30% { 
-    color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-primary);
-    transform: translateY(0);
-  }
-  45% { 
-    color: var(--accent-primary);
-    text-shadow: 0 0 12px var(--accent-primary), 0 0 18px var(--accent-primary);
-    transform: translateY(-3px);
-  }
-  60% { 
-    color: var(--accent-primary);
-    text-shadow: 0 0 15px var(--accent-primary), 0 0 25px var(--accent-primary);
-    transform: translateY(0);
-  }
-  75% { 
-    color: var(--accent-primary);
-    text-shadow: 0 0 10px var(--accent-primary), 0 0 15px var(--accent-primary);
-    transform: translateY(-1px);
-  }
-  90% { 
-    color: var(--text-secondary);
-    text-shadow: 0 0 5px var(--accent-primary);
-    transform: translateY(0);
-  }
-  100% { 
-    color: var(--text-secondary);
-    text-shadow: none;
-    transform: translateY(0);
-  }
-}
-
-.theme-toggle.animate i {
-  animation: bulb-lighten 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
 /* Mobile Menu */
 .mobile-menu-btn {

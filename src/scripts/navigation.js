@@ -38,6 +38,11 @@ if (mobileMenuBtn && mobileMenu) {
 
 mobileLinks.forEach((link) => {
   link.addEventListener("click", () => {
+    // Notificar al auto-scroll que se está realizando navegación manual
+    if (window.setManualNavigation) {
+      window.setManualNavigation(true);
+    }
+    
     if (mobileMenu) {
       mobileMenu.classList.remove("active");
     }
@@ -48,6 +53,12 @@ mobileLinks.forEach((link) => {
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", (e) => {
     e.preventDefault();
+    
+    // Notificar al auto-scroll que se está realizando navegación manual
+    if (window.setManualNavigation) {
+      window.setManualNavigation(true);
+    }
+    
     const href = anchor.getAttribute("href");
     if (href) {
       const target = document.querySelector(href);
