@@ -124,9 +124,10 @@
   border-radius: 50%;
   background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
+  border: none;
   opacity: 1;
   visibility: visible;
+  text-decoration: none;
 }
 
 .scroll-down.hidden {
@@ -138,7 +139,13 @@
   color: var(--accent-primary);
   transform: translateX(-50%) translateY(-5px);
   background: rgba(var(--accent-primary-rgb), 0.1);
-  border-color: var(--accent-primary);
+}
+
+.scroll-down i {
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  outline: none;
 }
 
 @keyframes bounce {

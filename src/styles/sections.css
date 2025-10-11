@@ -15,7 +15,7 @@ section {
   border: 1px solid var(--border);
 }
 
-#experience {
+#journey {
   padding-top: 64px;
   padding-bottom: 64px;
 }
@@ -118,7 +118,7 @@ section {
   letter-spacing: 1px;
 }
 
-/* Experience Section */
+/* Journey Section */
 .experience-grid {
   display: grid;
   grid-template-columns: 1fr;
