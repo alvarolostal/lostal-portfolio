@@ -777,3 +777,42 @@ section {
     padding: 8px 12px !important;
   }
 }
+
+/* Mobile Spacing Adjustments */
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .experience-grid {
+    gap: 40px;
+  }
+  
+  .column-header {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  
+  #journey {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  
+  .section-header {
+    margin-bottom: 32px;
+  }
+  
+  .experience-grid {
+    gap: 32px;
+  }
+  
+  .column-header {
+    margin-bottom: 24px;
+  }
+}
