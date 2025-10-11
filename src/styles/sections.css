@@ -46,7 +46,7 @@ section {
   max-width: 700px;
   margin: 0 auto;
   background: var(--bg-secondary);
-  padding: 40px;
+  padding: 28px; /* reduced to make card less tall after content removal */
   border-radius: 24px;
   animation: fadeInUp 0.8s ease-out;
 }
@@ -63,6 +63,23 @@ section {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 36px;
+}
+
+/* Responsive: en móviles usar 2 columnas y forzar que la tercera estadística
+   baje centrada debajo de las dos primeras para evitar que salga fuera de la tarjeta */
+@media (max-width: 600px) {
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  /* Seleccionamos la tercera .stat y la hacemos ocupar toda la fila y centrarla */
+  .about-stats .stat:nth-child(3) {
+    grid-column: 1 / -1; /* ocupa todas las columnas */
+    justify-self: center;
+    max-width: 260px; /* opcional para mantenerla contenida */
+    width: 100%;
+  }
 }
 
 .stat {
