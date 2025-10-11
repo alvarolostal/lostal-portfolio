@@ -109,6 +109,27 @@ nav.scrolled {
   color: var(--accent-primary);
 }
 
+/* Animación de la bombilla */
+.theme-toggle i {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover i {
+  transform: scale(1.1);
+  color: var(--accent-primary);
+}
+
+/* Animación de brillo cuando cambia el tema */
+@keyframes bulb-glow {
+  0% { text-shadow: none; }
+  50% { text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary); }
+  100% { text-shadow: none; }
+}
+
+.theme-toggle.animate i {
+  animation: bulb-glow 0.6s ease-in-out;
+}
+
 /* Mobile Menu */
 .mobile-menu-btn {
   display: block;

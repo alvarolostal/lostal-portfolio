@@ -1,12 +1,27 @@
 // src/scripts/navigation.js
 // Navbar scroll effect
 const navbar = document.getElementById("navbar");
+const scrollDown = document.getElementById("scrollDown");
+
 window.addEventListener("scroll", () => {
-  if (!navbar) return;
-  if (window.pageYOffset > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
+  const scrollPosition = window.pageYOffset;
+  
+  // Navbar effect
+  if (navbar) {
+    if (scrollPosition > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+  
+  // Scroll down arrow visibility
+  if (scrollDown) {
+    if (scrollPosition > 100) {
+      scrollDown.classList.add("hidden");
+    } else {
+      scrollDown.classList.remove("hidden");
+    }
   }
 });
 
