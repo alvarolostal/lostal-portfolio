@@ -9,6 +9,44 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ocultar scrollbar del navegador en todos los navegadores */
+/* Webkit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Para mayor compatibilidad */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 /* Prevenir transiciones durante la carga inicial del tema */
 html.theme-loading,
 html.theme-loading *,

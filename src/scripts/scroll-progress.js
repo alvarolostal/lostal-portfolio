@@ -155,6 +155,7 @@ function setupEventListeners() {
 // Inicialización
 function initScrollProgress() {
   console.log('🚀 Inicializando scroll progress...');
+  console.log('📏 Scrollbar del navegador oculta - usando barra personalizada');
   
   progressIndicator = document.getElementById('scrollProgressIndicator');
   progressFill = document.getElementById('progressFill');
