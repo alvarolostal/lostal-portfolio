@@ -19,12 +19,6 @@ html.theme-loading *:after {
   animation-delay: 0s !important;
 }
 
-/* Modo de batería baja - reducir animaciones */
-html.low-battery-mode * {
-  animation-duration: 0.1s !important;
-  transition-duration: 0.1s !important;
-}
-
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
@@ -36,7 +30,7 @@ body {
 }
 
 /* Transiciones suaves para cambios de tema en tiempo real */
-*:not(.theme-loading *):not(.low-battery-mode *) {
+*:not(.theme-loading *) {
   transition: 
     background-color var(--animation-duration, 0.3s) ease,
     color var(--animation-duration, 0.3s) ease,

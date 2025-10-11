@@ -281,25 +281,6 @@ if (window.matchMedia) {
   }
 }
 
-// Gestión de batería para dispositivos móviles
-if ('getBattery' in navigator) {
-  navigator.getBattery().then((battery) => {
-    const handleBatteryChange = () => {
-      if (battery.level < 0.2 && !battery.charging) {
-        document.documentElement.classList.add('low-battery-mode');
-      } else {
-        document.documentElement.classList.remove('low-battery-mode');
-      }
-    };
-    
-    battery.addEventListener('levelchange', handleBatteryChange);
-    battery.addEventListener('chargingchange', handleBatteryChange);
-    handleBatteryChange();
-  }).catch(() => {
-    // getBattery no soportado, ignorar
-  });
-}
-
 // Cleanup al descargar la página
 window.addEventListener("beforeunload", () => {
   if (systemThemeMediaQuery.removeEventListener) {

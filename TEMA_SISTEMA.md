@@ -141,7 +141,6 @@ Para añadir temas adicionales, modifica `variables.css`:
 - **Lazy Loading**: Los detectores se inicializan solo cuando es necesario
 - **Debouncing**: Los eventos de cambio se procesan de manera eficiente
 - **Memory Management**: Limpieza automática de listeners al descargar la página
-- **Battery Awareness**: Reduce animaciones automáticamente en dispositivos con batería baja
 
 ## Troubleshooting
 
