@@ -2,6 +2,15 @@
 let isAutoScrolling = false;
 
 function initAutoScroll() {
+  // Detectar si es un dispositivo táctil/móvil
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  
+  // Deshabilitar auto-scroll en dispositivos táctiles
+  if (isTouchDevice) {
+    console.log('Auto-scroll deshabilitado en dispositivo táctil');
+    return;
+  }
+
   let lastScrollY = window.scrollY;
 
   function handleScroll() {
@@ -56,23 +65,7 @@ function initAutoScroll() {
     }
   }, { passive: true });
 
-  // Detectar gestos táctiles para dispositivos móviles - respuesta instantánea
-  let touchStartY = 0;
-  
-  window.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  window.addEventListener('touchmove', (e) => {
-    const currentScrollY = window.scrollY;
-    const touchCurrentY = e.touches[0].clientY;
-    const touchDiff = touchStartY - touchCurrentY;
-
-    // Si estamos cerca de la parte superior y hacemos swipe hacia arriba (scroll down)
-    if (currentScrollY < 50 && touchDiff > 20 && !isAutoScrolling) {
-      autoScrollToAbout();
-    }
-  }, { passive: true });
+  // Los eventos táctiles están deshabilitados para evitar errores en móviles
 }
 
 // Inicializar cuando el DOM esté listo
