@@ -32,6 +32,44 @@ const { title, description } = Astro.props;
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
+    <!-- Inline script para aplicar tema inmediatamente sin flash -->
+    <script>
+      (function() {
+        function getSystemTheme() {
+          return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        
+        function getInitialTheme() {
+          // Verificar si hay override manual de esta sesión
+          const manualOverride = sessionStorage.getItem("themeManualOverride");
+          
+          if (manualOverride === "true") {
+            const manualTheme = localStorage.getItem("theme");
+            if (manualTheme) {
+              return manualTheme;
+            }
+          }
+          
+          // Si no hay override manual, usar tema del sistema
+          return getSystemTheme();
+        }
+        
+        // Aplicar tema inmediatamente
+        const theme = getInitialTheme();
+        document.documentElement.setAttribute("data-theme", theme);
+        
+        // Añadir clase para prevenir transiciones durante la carga inicial
+        document.documentElement.classList.add('theme-loading');
+        
+        // Remover la clase después de que la página haya cargado
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(function() {
+            document.documentElement.classList.remove('theme-loading');
+          }, 100);
+        });
+      })();
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
