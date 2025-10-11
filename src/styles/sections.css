@@ -127,23 +127,38 @@ section {
   margin: 0 auto;
 }
 
+/* Card-style timeline entries for a cleaner, Apple-like look */
+.card {
+  background: var(--bg-primary);
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px var(--shadow);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px var(--shadow-lg);
+}
+
 .timeline-item {
   position: relative;
-  padding-left: 32px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   animation: fadeInUp 0.8s ease-out;
 }
 
 .timeline-item::before {
+  /* Small accent dot to the left on wide screens */
   content: "";
   position: absolute;
-  left: 0;
-  top: 6px;
-  width: 14px;
-  height: 14px;
+  left: -28px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
   background: var(--accent-primary);
   border-radius: 50%;
-  border: 2px solid var(--bg-primary);
+  border: 2px solid var(--bg-secondary);
   box-shadow: 0 0 0 3px var(--bg-secondary);
 }
 
@@ -158,6 +173,23 @@ section {
   margin-bottom: 8px;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+/* Alignments for smaller screens: place the accent dot inline with card */
+@media (max-width: 767px) {
+  /* En pantallas verticales ocultamos el punto decorativo para evitar solapamientos
+     y ajustamos el padding para que el contenido quede alineado correctamente. */
+  .timeline-item::before {
+    display: none;
+  }
+
+  .timeline {
+    padding-left: 0;
+  }
+
+  .card {
+    padding-left: 14px;
+  }
 }
 
 .timeline-title {
@@ -294,4 +326,10 @@ section {
   .section-title {
     font-size: 36px;
   }
+}
+
+/* Slightly larger section spacing for Experience to breathe */
+#experience {
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
