@@ -492,6 +492,38 @@ section {
   gap: 12px;
 }
 
+/* Project Mobile Actions */
+.project-mobile-actions {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: none;
+  gap: 8px;
+  z-index: 2;
+}
+
+.mobile-btn {
+  flex: 1;
+  font-size: 13px !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-btn.btn-primary {
+  background: var(--accent-primary) !important;
+  color: #000 !important;
+}
+
+.mobile-btn.btn-secondary {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
 /* Project Content */
 .project-content {
   padding: 32px;
@@ -610,6 +642,15 @@ section {
 
 /* Responsive Design for Projects */
 @media (max-width: 768px) {
+  /* Ocultar overlay en móvil y mostrar botones móviles */
+  .project-overlay {
+    display: none;
+  }
+  
+  .project-mobile-actions {
+    display: flex;
+  }
+
   .project-content {
     padding: 24px;
   }
@@ -622,15 +663,16 @@ section {
   .project-title {
     font-size: 20px;
   }
+}
 
-  .project-links {
-    flex-direction: column;
-    width: 100%;
-    max-width: 200px;
+/* Para tablets y desktop - ocultar botones móviles */
+@media (min-width: 769px) {
+  .project-mobile-actions {
+    display: none !important;
   }
-
-  .project-links .btn {
-    justify-content: center;
+  
+  .project-overlay {
+    display: flex;
   }
 }
 
@@ -649,5 +691,10 @@ section {
 
   .tech-tags {
     gap: 6px;
+  }
+  
+  .mobile-btn {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
   }
 }
