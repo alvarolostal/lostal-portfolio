@@ -8,6 +8,7 @@
   --text-primary: #1d1d1f;
   --text-secondary: #6e6e73;
   --text-tertiary: #86868b;
+  --text-tertiary-rgb: 134, 134, 139;
   --border: #d2d2d7;
   --shadow: rgba(0, 0, 0, 0.08);
   --shadow-lg: rgba(0, 0, 0, 0.12);
@@ -24,6 +25,7 @@
     --text-primary: #f5f5f7;
     --text-secondary: #a1a1a6;
     --text-tertiary: #86868b;
+    --text-tertiary-rgb: 134, 134, 139;
     --border: #424245;
     --shadow: rgba(0, 0, 0, 0.3);
     --shadow-lg: rgba(0, 0, 0, 0.5);
@@ -40,7 +42,24 @@
   --text-primary: #f5f5f7;
   --text-secondary: #a1a1a6;
   --text-tertiary: #86868b;
+  --text-tertiary-rgb: 134, 134, 139;
   --border: #424245;
   --shadow: rgba(0, 0, 0, 0.3);
   --shadow-lg: rgba(0, 0, 0, 0.5);
+}
+
+/* Tema claro manual */
+[data-theme="light"] {
+  --accent-primary: #d5bd37;
+  --accent-dark: #c4ab2f;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-tertiary: #fafafa;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #86868b;
+  --text-tertiary-rgb: 134, 134, 139;
+  --border: #d2d2d7;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
 }

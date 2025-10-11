@@ -1,0 +1,204 @@
+---
+// src/components/ScrollProgress.astro
+---
+
+<!-- Barra de progreso minimalista -->
+<div 
+  class="scroll-progress-indicator" 
+  id="scrollProgressIndicator"
+  style="position: fixed; right: 16px; top: 50%; transform: translateY(-50%); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;"
+>
+  <div 
+    class="progress-track"
+    style="width: 4px; height: 180px; background: rgba(134, 134, 139, 0.4); border-radius: 4px; position: relative; overflow: hidden; border: 1px solid rgba(134, 134, 139, 0.2);"
+  ></div>
+  <div 
+    class="progress-fill" 
+    id="progressFill"
+    style="width: 100%; height: 0%; background: linear-gradient(to bottom, #d5bd37, #f4d03f); border-radius: 4px; position: absolute; top: 0; transition: height 0.1s ease-out; box-shadow: 0 0 8px rgba(213, 189, 55, 0.4);"
+  ></div>
+</div>
+
+<style>
+  /* Responsive para dispositivos móviles */
+  @media (max-width: 1024px) {
+    .scroll-progress-indicator {
+      right: 12px !important;
+    }
+    
+    .progress-track {
+      height: 140px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-progress-indicator {
+      right: 8px !important;
+      top: 20% !important;
+      transform: translateY(0) !important;
+    }
+    
+    .progress-track {
+      width: 2px !important;
+      height: 120px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scroll-progress-indicator {
+      right: 6px !important;
+    }
+    
+    .progress-track {
+      width: 2px !important;
+      height: 100px !important;
+    }
+  }
+
+  /* Animación de entrada suave */
+  .scroll-progress-indicator {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  /* Efecto para cuando aparece */
+  .scroll-progress-indicator.showing {
+    animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateY(-50%) translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
+  /* Para móviles */
+  @media (max-width: 768px) {
+    @keyframes slideInFromRight {
+      from {
+        opacity: 0;
+        transform: translateY(0) translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    }
+  }
+</style>
+
+<style>
+  .scroll-progress-indicator {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scroll-progress-indicator.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .progress-track {
+    width: 3px;
+    height: 180px;
+    background: rgba(var(--text-tertiary-rgb, 134, 134, 139), 0.3);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(var(--text-tertiary-rgb, 134, 134, 139), 0.1);
+  }
+
+  .progress-fill {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(
+      to bottom,
+      var(--accent-primary),
+      #f4d03f
+    );
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    transition: height 0.1s ease-out;
+    box-shadow: 0 0 8px rgba(213, 189, 55, 0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .scroll-progress-indicator {
+      right: 12px;
+    }
+    
+    .progress-track {
+      height: 140px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-progress-indicator {
+      right: 8px;
+      top: 20%;
+      transform: translateY(0);
+    }
+    
+    .progress-track {
+      width: 2px;
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scroll-progress-indicator {
+      right: 6px;
+    }
+    
+    .progress-track {
+      width: 2px;
+      height: 100px;
+    }
+  }
+
+  /* Animación de entrada */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50%) translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
+  .scroll-progress-indicator.visible {
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Ajuste para móviles */
+  @media (max-width: 768px) {
+    .scroll-progress-indicator.visible {
+      animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(0) translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    }
+  }
+</style>
