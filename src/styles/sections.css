@@ -34,13 +34,6 @@ section {
   letter-spacing: -1px;
 }
 
-.section-description {
-  font-size: 16px;
-  color: var(--text-secondary);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
 /* About Section */
 .about-content {
   max-width: 700px;
