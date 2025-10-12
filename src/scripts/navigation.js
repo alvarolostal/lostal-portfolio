@@ -57,6 +57,12 @@ const mobileLinks = document.querySelectorAll(".mobile-link");
 if (mobileMenuBtn && mobileMenu) {
   mobileMenuBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("active");
+    mobileMenuBtn.classList.toggle("active");
+    
+    // Add a subtle vibration on mobile devices
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
   });
 }
 
@@ -69,6 +75,10 @@ mobileLinks.forEach((link) => {
     
     if (mobileMenu) {
       mobileMenu.classList.remove("active");
+    }
+    
+    if (mobileMenuBtn) {
+      mobileMenuBtn.classList.remove("active");
     }
   });
 });
