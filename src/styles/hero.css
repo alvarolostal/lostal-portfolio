@@ -120,7 +120,7 @@
   color: var(--text-secondary);
   font-size: 20px;
   transition: all 0.3s ease;
-  animation: bounce 4s infinite;
+  animation: bounce 4s infinite, fadeInUp 0.8s ease-out 0.6s both;
   border-radius: 50%;
   background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(10px);
@@ -166,5 +166,19 @@
     width: 36px;
     height: 36px;
     font-size: 18px;
+  }
+}
+
+/* Ocultar la flecha en pantallas verticales de móviles */
+@media (max-width: 768px) and (orientation: portrait) {
+  .scroll-down {
+    display: none;
+  }
+}
+
+/* También ocultar en pantallas muy pequeñas independientemente de la orientación */
+@media (max-height: 600px) {
+  .scroll-down {
+    display: none;
   }
 }
