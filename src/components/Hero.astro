@@ -5,7 +5,15 @@
 <section id="hero" class="hero">
   <div class="hero-content">
     <div class="hero-image-wrapper">
-      <img src="/alvaro.webp" alt="Álvaro Lostal" class="hero-image" />
+      <img 
+        src="/alvaro.webp" 
+        alt="Álvaro Lostal" 
+        class="hero-image interactive-image" 
+        id="heroImage"
+        tabindex="0"
+        role="button"
+        aria-label="Conocer más sobre Álvaro Lostal"
+      />
     </div>
     <div class="hero-subtitle">Hola, soy</div>
     <h1 class="hero-title">Álvaro Lostal</h1>
@@ -17,11 +25,249 @@
       <a href="#contact" class="btn btn-primary">
         <i class="fas fa-arrow-right"></i> Contactar
       </a>
-      <a href="#about" class="btn btn-secondary">Conocer más</a>
+      <a href="#projects" class="btn btn-secondary">Conocer más</a>
     </div>
   </div>
+
+  <!-- Card flotante con información personal -->
+  <div class="about-card" id="aboutCard" aria-hidden="true">
+    <button class="about-card__close" id="closeCard" aria-label="Cerrar información">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="about-card__content">
+      <h3 class="about-card__title">Sobre mí</h3>
+      <p class="about-card__text">
+        Soy Álvaro Lostal, ingeniero informático (21) de Santander, España. Me
+        dedico al desarrollo frontend y al diseño de interfaces elegantes,
+        minimalistas y funcionales; estudio el último año del grado en la
+        Universidad Europea del Atlántico.
+      </p>
+      <div class="about-card__stats">
+        <div class="stat">
+          <span class="stat-number">2026</span>
+          <span class="stat-label">Graduación</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">B2</span>
+          <span class="stat-label">Inglés</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4 años</span>
+          <span class="stat-label">Autodidacta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay para móvil -->
+  <div class="about-card-overlay" id="cardOverlay" aria-hidden="true"></div>
   
-  <a href="#about" class="scroll-down" id="scrollDown" aria-label="Ir a la sección Sobre mí">
+  <a href="#projects" class="scroll-down" id="scrollDown" aria-label="Ir a proyectos">
     <i class="fas fa-angle-down"></i>
   </a>
 </section>
+
+<script>
+// Hero Card Manager - Funcionalidad interactiva del card flotante
+// @ts-nocheck
+class HeroCardManager {
+  constructor() {
+    this.heroImage = document.getElementById('heroImage');
+    this.aboutCard = document.getElementById('aboutCard');
+    this.closeButton = document.getElementById('closeCard');
+    this.overlay = document.getElementById('cardOverlay');
+    this.isCardOpen = false;
+    this.isMobile = window.innerWidth <= 768;
+    
+    this.init();
+  }
+
+  init() {
+    if (!this.heroImage || !this.aboutCard) return;
+
+    this.bindEvents();
+    this.handleResize();
+    
+    // Configurar posicionamiento inicial
+    window.addEventListener('load', () => {
+      this.calculateCardPosition();
+    });
+  }
+
+  bindEvents() {
+    // Limpiar eventos existentes
+    this.removeAllEvents();
+    
+    // Desktop: hover events
+    if (!this.isMobile) {
+      this.showCardBound = () => this.showCard();
+      this.hideCardBound = () => this.hideCard();
+      
+      this.heroImage.addEventListener('mouseenter', this.showCardBound);
+      this.heroImage.addEventListener('mouseleave', this.hideCardBound);
+      this.aboutCard.addEventListener('mouseenter', this.showCardBound);
+      this.aboutCard.addEventListener('mouseleave', this.hideCardBound);
+    } else {
+      // Mobile: touch events
+      this.toggleCardBound = (e) => {
+        e.preventDefault();
+        this.toggleCard();
+      };
+      
+      this.heroImage.addEventListener('click', this.toggleCardBound);
+    }
+
+    // Eventos que no cambian con el tipo de dispositivo
+    this.bindStaticEvents();
+
+    // Redimensionar ventana
+    window.addEventListener('resize', () => this.handleResize());
+  }
+
+  bindStaticEvents() {
+    // Cerrar card
+    this.closeButton?.addEventListener('click', () => this.hideCard());
+    this.overlay?.addEventListener('click', () => this.hideCard());
+
+    // Teclado
+    this.heroImage.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.toggleCard();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isCardOpen) {
+        this.hideCard();
+      }
+    });
+  }
+
+  removeAllEvents() {
+    if (this.showCardBound) {
+      this.heroImage.removeEventListener('mouseenter', this.showCardBound);
+      this.aboutCard.removeEventListener('mouseenter', this.showCardBound);
+    }
+    if (this.hideCardBound) {
+      this.heroImage.removeEventListener('mouseleave', this.hideCardBound);
+      this.aboutCard.removeEventListener('mouseleave', this.hideCardBound);
+    }
+    if (this.toggleCardBound) {
+      this.heroImage.removeEventListener('click', this.toggleCardBound);
+    }
+  }
+
+  handleResize() {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 768;
+    
+    if (wasMobile !== this.isMobile) {
+      this.hideCard(true); // Force hide without animation
+      this.bindEvents(); // Re-bind events for new device type
+    }
+    
+    if (this.isCardOpen) {
+      this.calculateCardPosition();
+    }
+  }
+
+  calculateCardPosition() {
+    if (!this.heroImage || !this.aboutCard) return;
+
+    const imageRect = this.heroImage.getBoundingClientRect();
+    const cardRect = this.aboutCard.getBoundingClientRect();
+    const viewport = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+
+    // Obtener altura del header
+    const header = document.querySelector('nav') || document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const minTopMargin = headerHeight + 20;
+
+    let cardX, cardY;
+
+    if (this.isMobile || viewport.width <= 768) {
+      // En móvil, centrar el card
+      cardX = (viewport.width - cardRect.width) / 2;
+      cardY = Math.max(
+        minTopMargin,
+        (viewport.height - cardRect.height) / 2
+      );
+    } else {
+      // En desktop, posicionar a la derecha de la imagen
+      const desiredX = imageRect.right + 40;
+      const maxX = viewport.width - cardRect.width - 30;
+      
+      cardX = Math.min(desiredX, maxX);
+      
+      // Calcular Y para que no toque el header
+      const desiredY = imageRect.top;
+      cardY = Math.max(minTopMargin, desiredY);
+      
+      // Asegurar que no se salga por abajo
+      const maxY = viewport.height - cardRect.height - 30;
+      cardY = Math.min(cardY, maxY);
+    }
+
+    // Aplicar posición
+    this.aboutCard.style.left = `${cardX}px`;
+    this.aboutCard.style.top = `${cardY}px`;
+  }
+
+  showCard() {
+    if (this.isCardOpen) return;
+    
+    this.isCardOpen = true;
+    this.calculateCardPosition();
+    
+    // Añadir clases para animación
+    this.aboutCard.classList.add('show');
+    this.aboutCard.setAttribute('aria-hidden', 'false');
+    
+    if (this.isMobile) {
+      this.overlay.classList.add('show');
+      this.overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Focus management para accesibilidad
+    setTimeout(() => {
+      if (this.isMobile) {
+        this.closeButton?.focus();
+      }
+    }, 300);
+  }
+
+  hideCard(force = false) {
+    if (!this.isCardOpen && !force) return;
+    
+    this.isCardOpen = false;
+    
+    // Remover clases para animación
+    this.aboutCard.classList.remove('show');
+    this.aboutCard.setAttribute('aria-hidden', 'true');
+    
+    if (this.isMobile) {
+      this.overlay.classList.remove('show');
+      this.overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  toggleCard() {
+    if (this.isCardOpen) {
+      this.hideCard();
+    } else {
+      this.showCard();
+    }
+  }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  new HeroCardManager();
+});
+</script>

@@ -47,18 +47,18 @@ function initAutoScroll() {
     }
   };
 
-  function autoScrollToAbout() {
-    const aboutSection = document.getElementById('about');
-    if (!aboutSection || hasTriggeredAutoScroll) return;
+  function autoScrollToProjects() {
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection || hasTriggeredAutoScroll) return;
 
     isAutoScrolling = true;
     hasTriggeredAutoScroll = true;
 
     // Calcular la posición exacta
-    const aboutPosition = aboutSection.getBoundingClientRect().top + window.scrollY;
+    const projectsPosition = projectsSection.getBoundingClientRect().top + window.scrollY;
     const offset = 80; // Ajustado para mejor posicionamiento
 
-    console.log('🚀 Auto-scroll activado instantáneamente hacia About');
+    console.log('🚀 Auto-scroll activado instantáneamente hacia Projects');
 
     // Cancelar cualquier animación de scroll en curso
     window.scrollTo({
@@ -66,10 +66,10 @@ function initAutoScroll() {
       behavior: 'auto'
     });
 
-    // Inmediatamente después, hacer el scroll suave hacia About
+    // Inmediatamente después, hacer el scroll suave hacia Projects
     requestAnimationFrame(() => {
       window.scrollTo({
-        top: aboutPosition - offset,
+        top: projectsPosition - offset,
         behavior: 'smooth'
       });
     });
@@ -123,7 +123,7 @@ function initAutoScroll() {
       }
       
       // Activar inmediatamente
-      autoScrollToAbout();
+      autoScrollToProjects();
       return false; // Asegurar que no se propague
     }
   }
@@ -177,7 +177,7 @@ function handleKeyNavigation(e) {
     if (e.code === 'ArrowDown' && currentScrollY < 80 && !hasTriggeredAutoScroll && 
         isInitialized && !isAutoScrolling && !isManualNavigation) {
       e.preventDefault();
-      autoScrollToAbout();
+      autoScrollToProjects();
     } else {
       setManualNavigation(true);
     }
