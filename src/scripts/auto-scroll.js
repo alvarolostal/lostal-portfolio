@@ -42,22 +42,29 @@ class AutoScrollManager {
   }
 
   delayedInit() {
-    // Esperar un poco más para asegurar que otros scripts estén listos
+    // Inicialización más rápida para mejor responsividad
     setTimeout(() => {
       this.isInitialized = true;
       this.bindEvents();
-      console.log('Auto-scroll inicializado correctamente');
-    }, 800); // Aumentado el delay para evitar conflictos
+      console.log('✅ Auto-scroll inicializado y listo');
+    }, 300); // Reducido para ser más responsivo
   }
 
   bindEvents() {
-    // Usar solo UN listener de wheel con alta prioridad
-    window.addEventListener('wheel', (e) => this.handleWheel(e), { 
+    // Event listeners con máxima prioridad para intercepción inmediata
+    const wheelHandler = (e) => this.handleWheel(e);
+    
+    // Registrar en múltiples targets para máxima cobertura
+    window.addEventListener('wheel', wheelHandler, { 
+      passive: false, 
+      capture: true 
+    });
+    document.addEventListener('wheel', wheelHandler, { 
       passive: false, 
       capture: true 
     });
     
-    // Listener de scroll para resetear flags
+    // Listener de scroll para resetear flags (más frecuente)
     window.addEventListener('scroll', () => this.handleScroll(), { 
       passive: true 
     });
@@ -65,6 +72,8 @@ class AutoScrollManager {
     // Listeners para detectar navegación manual
     document.addEventListener('keydown', (e) => this.handleKeyNavigation(e));
     document.addEventListener('click', (e) => this.handleLinkClick(e));
+    
+    console.log('🎯 Event listeners configurados con máxima prioridad');
   }
 
   autoScrollToProjects() {
@@ -134,25 +143,59 @@ class AutoScrollManager {
   }
 
   handleWheel(e) {
-    // Verificaciones de estado
-    if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) {
-      return;
-    }
-    
     const currentScrollY = window.scrollY;
     
-    // Solo interceptar scroll hacia abajo en la zona del hero
-    if (e.deltaY > 0 && currentScrollY < 120 && !this.hasTriggeredAutoScroll) {
-      console.log('🛑 Wheel interceptado - activando auto-scroll');
+    // Condición más estricta y confiable para el auto-scroll
+    if (e.deltaY > 0 && currentScrollY <= 150 && !this.hasTriggeredAutoScroll) {
+      // Verificaciones adicionales solo después de detectar scroll hacia abajo
+      if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) {
+        return;
+      }
       
-      // Prevenir el scroll natural
+      console.log('🛑 Wheel interceptado - INMEDIATO auto-scroll');
+      
+      // Prevenir COMPLETAMENTE el scroll natural
       e.preventDefault();
       e.stopPropagation();
+      e.stopImmediatePropagation();
       
-      // Activar auto-scroll inmediatamente
-      this.autoScrollToProjects();
+      // Ejecutar inmediatamente sin delays
+      this.executeImmediateAutoScroll();
       return false;
     }
+  }
+
+  executeImmediateAutoScroll() {
+    const projectsSection = document.getElementById('projects');
+    if (!projectsSection) {
+      console.log('❌ Sección projects no encontrada');
+      return;
+    }
+
+    // Marcar inmediatamente para evitar ejecuciones múltiples
+    this.isAutoScrolling = true;
+    this.hasTriggeredAutoScroll = true;
+    
+    console.log('� EJECUTANDO auto-scroll INMEDIATO');
+    
+    // Limpiar timeouts
+    this.clearTimeouts();
+
+    // Calcular posición y ejecutar INMEDIATAMENTE
+    const rect = projectsSection.getBoundingClientRect();
+    const targetPosition = window.scrollY + rect.top - 80;
+
+    // Scroll inmediato y suave
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+
+    // Reset más rápido para mejor responsividad
+    this.scrollTimeout = setTimeout(() => {
+      this.isAutoScrolling = false;
+      console.log('✅ Auto-scroll INMEDIATO completado');
+    }, 800);
   }
 
   handleKeyNavigation(e) {

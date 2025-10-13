@@ -165,18 +165,31 @@ class HeroCardManager {
     if (wasMobile !== this.isMobile) {
       this.hideCard(true); // Force hide without animation
       this.bindEvents(); // Re-bind events for new device type
+      console.log(`📱 Cambio de dispositivo: ${this.isMobile ? 'móvil' : 'desktop'}`);
     }
     
     if (this.isCardOpen) {
-      this.calculateCardPosition();
+      // En móvil, recalcular con delay para asegurar dimensiones correctas
+      if (this.isMobile) {
+        setTimeout(() => {
+          this.calculateCardPosition();
+        }, 100);
+      } else {
+        this.calculateCardPosition();
+      }
     }
   }
 
   calculateCardPosition() {
     if (!this.heroImage || !this.aboutCard) return;
 
+    // Asegurar que el card esté visible para obtener dimensiones correctas
+    if (!this.aboutCard.classList.contains('show')) {
+      this.aboutCard.style.visibility = 'hidden';
+      this.aboutCard.style.display = 'block';
+    }
+
     const imageRect = this.heroImage.getBoundingClientRect();
-    const cardRect = this.aboutCard.getBoundingClientRect();
     const viewport = {
       width: window.innerWidth,
       height: window.innerHeight
@@ -190,14 +203,27 @@ class HeroCardManager {
     let cardX, cardY;
 
     if (this.isMobile || viewport.width <= 768) {
-      // En móvil, centrar el card
-      cardX = (viewport.width - cardRect.width) / 2;
-      cardY = Math.max(
-        minTopMargin,
-        (viewport.height - cardRect.height) / 2
-      );
+      // En móvil: centrado perfecto con dimensiones reales del card
+      const cardWidth = this.aboutCard.scrollWidth || 360; // fallback width
+      const cardHeight = this.aboutCard.scrollHeight || 400; // fallback height
+      
+      // Centrar horizontalmente con márgenes seguros
+      const margins = 20; // márgenes mínimos
+      const availableWidth = viewport.width - (margins * 2);
+      const finalWidth = Math.min(cardWidth, availableWidth);
+      
+      cardX = (viewport.width - finalWidth) / 2;
+      
+      // Centrar verticalmente considerando el header
+      const availableHeight = viewport.height - minTopMargin - margins;
+      const finalHeight = Math.min(cardHeight, availableHeight);
+      
+      cardY = minTopMargin + (availableHeight - finalHeight) / 2;
+      
+      console.log(`📱 Mobile positioning: X=${cardX}, Y=${cardY}, W=${finalWidth}, H=${finalHeight}`);
     } else {
       // En desktop, posicionar a la derecha de la imagen
+      const cardRect = this.aboutCard.getBoundingClientRect();
       const desiredX = imageRect.right + 40;
       const maxX = viewport.width - cardRect.width - 30;
       
@@ -210,17 +236,27 @@ class HeroCardManager {
       // Asegurar que no se salga por abajo
       const maxY = viewport.height - cardRect.height - 30;
       cardY = Math.min(cardY, maxY);
+      
+      console.log(`🖥️ Desktop positioning: X=${cardX}, Y=${cardY}`);
     }
 
-    // Aplicar posición
-    this.aboutCard.style.left = `${cardX}px`;
-    this.aboutCard.style.top = `${cardY}px`;
+    // Aplicar posición con valores enteros para evitar blur
+    this.aboutCard.style.left = `${Math.round(cardX)}px`;
+    this.aboutCard.style.top = `${Math.round(cardY)}px`;
+    
+    // Restaurar visibilidad
+    if (!this.aboutCard.classList.contains('show')) {
+      this.aboutCard.style.visibility = '';
+      this.aboutCard.style.display = '';
+    }
   }
 
   showCard() {
     if (this.isCardOpen) return;
     
     this.isCardOpen = true;
+    
+    // Calcular posición inicial
     this.calculateCardPosition();
     
     // Añadir clases para animación
@@ -231,6 +267,14 @@ class HeroCardManager {
       this.overlay.classList.add('show');
       this.overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      
+      // Recalcular posición después del render para móvil (más preciso)
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          this.calculateCardPosition();
+          console.log('📱 Posición recalculada para móvil');
+        }, 50);
+      });
     }
 
     // Focus management para accesibilidad
