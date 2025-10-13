@@ -1,93 +1,203 @@
 // src/scripts/auto-scroll.js
 let isAutoScrolling = false;
 let isManualNavigation = false;
+let scrollTimeout = null;
+let wheelTimeout = null;
+let hasTriggeredAutoScroll = false;
 
 function initAutoScroll() {
-  // Detectar si es un dispositivo táctil/móvil
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  // Detectar si es un dispositivo táctil/móvil más preciso
+  const isTouchDevice = () => {
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0 ||
+      window.innerWidth <= 1024 ||
+      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    );
+  };
   
   // Deshabilitar auto-scroll en dispositivos táctiles
-  if (isTouchDevice) {
-    console.log('Auto-scroll deshabilitado en dispositivo táctil');
+  if (isTouchDevice()) {
+    console.log('🚫 Auto-scroll deshabilitado en dispositivo táctil');
     return;
   }
+  
+  console.log('✅ Auto-scroll habilitado para dispositivo de escritorio');
 
   let lastScrollY = window.scrollY;
   let isInitialized = false;
+  let scrollDirection = 0;
+  let consecutiveScrollDown = 0;
 
-  // Dar tiempo para que la página se cargue completamente antes de activar auto-scroll
-  setTimeout(() => {
-    isInitialized = true;
-  }, 1000);
+  // Esperar a que la página esté completamente cargada
+  const initializeAutoScroll = () => {
+    if (document.readyState === 'complete') {
+      setTimeout(() => {
+        isInitialized = true;
+        console.log('Auto-scroll inicializado correctamente');
+      }, 500); // Reducido de 1000ms a 500ms
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          isInitialized = true;
+          console.log('Auto-scroll inicializado correctamente');
+        }, 300);
+      });
+    }
+  };
+
+  function autoScrollToAbout() {
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection || hasTriggeredAutoScroll) return;
+
+    isAutoScrolling = true;
+    hasTriggeredAutoScroll = true;
+
+    // Calcular la posición exacta
+    const aboutPosition = aboutSection.getBoundingClientRect().top + window.scrollY;
+    const offset = 80; // Ajustado para mejor posicionamiento
+
+    console.log('🚀 Auto-scroll activado instantáneamente hacia About');
+
+    // Cancelar cualquier animación de scroll en curso
+    window.scrollTo({
+      top: window.scrollY,
+      behavior: 'auto'
+    });
+
+    // Inmediatamente después, hacer el scroll suave hacia About
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: aboutPosition - offset,
+        behavior: 'smooth'
+      });
+    });
+
+    // Resetear flags después de completar el scroll
+    setTimeout(() => {
+      isAutoScrolling = false;
+      // Permitir que se pueda activar nuevamente después de volver al top
+      setTimeout(() => {
+        if (window.scrollY < 100) {
+          hasTriggeredAutoScroll = false;
+        }
+      }, 500);
+    }, 1000); // Tiempo para completar el scroll suave
+  }
 
   function handleScroll() {
+    if (!isInitialized || isAutoScrolling || isManualNavigation) return;
+
     const currentScrollY = window.scrollY;
-    const aboutSection = document.getElementById('about');
     
-    if (!aboutSection || isAutoScrolling || isManualNavigation || !isInitialized) return;
-
-    // Verificar si estamos en la parte superior (primeros 50px para ser más estricto)
-    const isAtTop = currentScrollY < 50;
-
-    // Solo activar si realmente estamos muy cerca del inicio y hay un scroll mínimo
-    if (isAtTop && currentScrollY > lastScrollY && currentScrollY > 20) {
-      autoScrollToAbout();
+    // Resetear el flag si volvemos muy cerca del top
+    if (currentScrollY < 50 && hasTriggeredAutoScroll) {
+      hasTriggeredAutoScroll = false;
+      consecutiveScrollDown = 0;
     }
 
     lastScrollY = currentScrollY;
   }
 
-  function autoScrollToAbout() {
-    const aboutSection = document.getElementById('about');
-    if (!aboutSection) return;
-
-    isAutoScrolling = true;
-
-    // Calcular la posición exacta para un scroll más preciso
-    const aboutPosition = aboutSection.getBoundingClientRect().top + window.scrollY;
-    const offset = 60; // Pequeño offset para mejor presentación
-
-    // Scroll suave hacia la sección About
-    window.scrollTo({
-      top: aboutPosition - offset,
-      behavior: 'smooth'
-    });
-
-    // Resetear el flag después de completar el scroll
-    setTimeout(() => {
-      isAutoScrolling = false;
-    }, 800);
-  }
-
-  // Escuchar eventos de scroll
-  window.addEventListener('scroll', handleScroll, { passive: true });
-
-  // Detectar el scroll con la rueda del mouse para respuesta instantánea
-  window.addEventListener('wheel', (e) => {
+  // Manejar evento wheel (más preciso para desktop) - INSTANTÁNEO
+  function handleWheel(e) {
+    if (!isInitialized || isAutoScrolling || isManualNavigation) return;
+    
     const currentScrollY = window.scrollY;
     
-    // Solo activar si estamos muy cerca del inicio (menos de 30px) y la página está inicializada
-    if (currentScrollY < 30 && e.deltaY > 0 && !isAutoScrolling && !isManualNavigation && isInitialized) {
+    // Interceptar CUALQUIER scroll hacia abajo desde el área del hero
+    if (e.deltaY > 0 && currentScrollY < 100 && !hasTriggeredAutoScroll) {
+      // PREVENIR completamente el scroll natural
+      e.preventDefault();
+      e.stopPropagation();
+      
+      console.log('🛑 Scroll interceptado - activando auto-scroll');
+      
+      // Limpiar cualquier timeout pendiente
+      if (wheelTimeout) {
+        clearTimeout(wheelTimeout);
+      }
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      
+      // Activar inmediatamente
       autoScrollToAbout();
+      return false; // Asegurar que no se propague
     }
-  }, { passive: true });
+  }
 
-  // Los eventos táctiles están deshabilitados para evitar errores en móviles
+  // Inicializar
+  initializeAutoScroll();
+
+  // Event listeners - El wheel listener se registra primero para máxima prioridad
+  window.addEventListener('wheel', handleWheel, { passive: false, capture: true }); // Capture phase para interceptar antes
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Listener adicional en el documento para máxima cobertura
+  document.addEventListener('wheel', handleWheel, { passive: false, capture: true });
 }
 
 // Función para indicar que se está realizando navegación manual
 function setManualNavigation(isManual) {
   isManualNavigation = isManual;
+  console.log(`Navegación manual: ${isManual ? 'activada' : 'desactivada'}`);
+  
   if (isManual) {
+    // Limpiar timeouts activos
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = null;
+    }
+    if (wheelTimeout) {
+      clearTimeout(wheelTimeout);
+      wheelTimeout = null;
+    }
+    
     // Resetear después de un tiempo para permitir auto-scroll nuevamente
     setTimeout(() => {
       isManualNavigation = false;
-    }, 1500);
+      console.log('Navegación manual desactivada automáticamente');
+    }, 2000); // Aumentado a 2 segundos para mayor seguridad
   }
 }
 
-// Exponer la función globalmente para que navigation.js pueda usarla
+// Detectar navegación manual por teclado (Page Down, Space, flechas)
+function handleKeyNavigation(e) {
+  const navigationKeys = [
+    'PageDown', 'PageUp', 'Home', 'End', 
+    'ArrowDown', 'ArrowUp', 'Space'
+  ];
+  
+  if (navigationKeys.includes(e.code)) {
+    const currentScrollY = window.scrollY;
+    
+    // Si estamos en el top y es ArrowDown, activar auto-scroll instantáneo
+    if (e.code === 'ArrowDown' && currentScrollY < 80 && !hasTriggeredAutoScroll && 
+        isInitialized && !isAutoScrolling && !isManualNavigation) {
+      e.preventDefault();
+      autoScrollToAbout();
+    } else {
+      setManualNavigation(true);
+    }
+  }
+}
+
+// Detectar clicks en enlaces internos
+function handleLinkClick(e) {
+  const target = e.target.closest('a[href^="#"]');
+  if (target) {
+    setManualNavigation(true);
+  }
+}
+
+// Exponer funciones globalmente
 window.setManualNavigation = setManualNavigation;
+
+// Event listeners adicionales para detectar navegación manual
+document.addEventListener('keydown', handleKeyNavigation);
+document.addEventListener('click', handleLinkClick);
 
 // Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {

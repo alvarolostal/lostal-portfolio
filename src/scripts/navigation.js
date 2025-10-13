@@ -83,12 +83,12 @@ mobileLinks.forEach((link) => {
   });
 });
 
-// Smooth scroll
+// Smooth scroll mejorado
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", (e) => {
     e.preventDefault();
     
-    // Notificar al auto-scroll que se está realizando navegación manual
+    // Notificar al auto-scroll que se está realizando navegación manual ANTES del scroll
     if (window.setManualNavigation) {
       window.setManualNavigation(true);
     }
@@ -99,9 +99,13 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       if (target) {
         const offset = 60;
         const targetPosition = target.offsetTop - offset;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
+        
+        // Usar requestAnimationFrame para asegurar que setManualNavigation se ejecute primero
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
         });
       }
     }
