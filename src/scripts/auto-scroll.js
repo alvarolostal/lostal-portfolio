@@ -1,13 +1,28 @@
 // src/scripts/auto-scroll.js
-let isAutoScrolling = false;
-let isManualNavigation = false;
-let scrollTimeout = null;
-let wheelTimeout = null;
-let hasTriggeredAutoScroll = false;
+class AutoScrollManager {
+  constructor() {
+    this.isAutoScrolling = false;
+    this.isManualNavigation = false;
+    this.hasTriggeredAutoScroll = false;
+    this.isInitialized = false;
+    this.scrollTimeout = null;
+    this.wheelTimeout = null;
+    this.lastScrollY = window.scrollY;
+    this.consecutiveScrollDown = 0;
+    
+    // Detectar si es un dispositivo táctil/móvil más preciso
+    this.isTouchDevice = this.detectTouchDevice();
+    
+    if (this.isTouchDevice) {
+      console.log('🚫 Auto-scroll deshabilitado en dispositivo táctil');
+      return;
+    }
+    
+    console.log('✅ Auto-scroll habilitado para dispositivo de escritorio');
+    this.init();
+  }
 
-function initAutoScroll() {
-  // Detectar si es un dispositivo táctil/móvil más preciso
-  const isTouchDevice = () => {
+  detectTouchDevice() {
     return (
       'ontouchstart' in window ||
       navigator.maxTouchPoints > 0 ||
@@ -15,193 +30,202 @@ function initAutoScroll() {
       window.innerWidth <= 1024 ||
       /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     );
-  };
-  
-  // Deshabilitar auto-scroll en dispositivos táctiles
-  if (isTouchDevice()) {
-    console.log('🚫 Auto-scroll deshabilitado en dispositivo táctil');
-    return;
   }
-  
-  console.log('✅ Auto-scroll habilitado para dispositivo de escritorio');
 
-  let lastScrollY = window.scrollY;
-  let isInitialized = false;
-  let scrollDirection = 0;
-  let consecutiveScrollDown = 0;
-
-  // Esperar a que la página esté completamente cargada
-  const initializeAutoScroll = () => {
+  init() {
+    // Esperar a que todo esté completamente cargado, incluyendo otros scripts
     if (document.readyState === 'complete') {
-      setTimeout(() => {
-        isInitialized = true;
-        console.log('Auto-scroll inicializado correctamente');
-      }, 500); // Reducido de 1000ms a 500ms
+      this.delayedInit();
     } else {
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          isInitialized = true;
-          console.log('Auto-scroll inicializado correctamente');
-        }, 300);
-      });
+      window.addEventListener('load', () => this.delayedInit());
     }
-  };
+  }
 
-  function autoScrollToProjects() {
+  delayedInit() {
+    // Esperar un poco más para asegurar que otros scripts estén listos
+    setTimeout(() => {
+      this.isInitialized = true;
+      this.bindEvents();
+      console.log('Auto-scroll inicializado correctamente');
+    }, 800); // Aumentado el delay para evitar conflictos
+  }
+
+  bindEvents() {
+    // Usar solo UN listener de wheel con alta prioridad
+    window.addEventListener('wheel', (e) => this.handleWheel(e), { 
+      passive: false, 
+      capture: true 
+    });
+    
+    // Listener de scroll para resetear flags
+    window.addEventListener('scroll', () => this.handleScroll(), { 
+      passive: true 
+    });
+
+    // Listeners para detectar navegación manual
+    document.addEventListener('keydown', (e) => this.handleKeyNavigation(e));
+    document.addEventListener('click', (e) => this.handleLinkClick(e));
+  }
+
+  autoScrollToProjects() {
     const projectsSection = document.getElementById('projects');
-    if (!projectsSection || hasTriggeredAutoScroll) return;
+    if (!projectsSection || this.hasTriggeredAutoScroll) {
+      console.log('❌ Auto-scroll bloqueado: sección no encontrada o ya ejecutado');
+      return;
+    }
 
-    isAutoScrolling = true;
-    hasTriggeredAutoScroll = true;
+    console.log('🚀 Iniciando auto-scroll hacia Projects');
+    
+    this.isAutoScrolling = true;
+    this.hasTriggeredAutoScroll = true;
+
+    // Limpiar cualquier timeout pendiente
+    this.clearTimeouts();
 
     // Calcular la posición exacta
     const projectsPosition = projectsSection.getBoundingClientRect().top + window.scrollY;
-    const offset = 80; // Ajustado para mejor posicionamiento
+    const offset = 80;
 
-    console.log('🚀 Auto-scroll activado instantáneamente hacia Projects');
-
-    // Cancelar cualquier animación de scroll en curso
+    // Scroll suave hacia Projects
     window.scrollTo({
-      top: window.scrollY,
-      behavior: 'auto'
-    });
-
-    // Inmediatamente después, hacer el scroll suave hacia Projects
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: projectsPosition - offset,
-        behavior: 'smooth'
-      });
+      top: projectsPosition - offset,
+      behavior: 'smooth'
     });
 
     // Resetear flags después de completar el scroll
-    setTimeout(() => {
-      isAutoScrolling = false;
-      // Permitir que se pueda activar nuevamente después de volver al top
+    this.scrollTimeout = setTimeout(() => {
+      this.isAutoScrolling = false;
+      console.log('✅ Auto-scroll completado');
+      
+      // Permitir reactivación si se vuelve al top
       setTimeout(() => {
         if (window.scrollY < 100) {
-          hasTriggeredAutoScroll = false;
+          this.hasTriggeredAutoScroll = false;
+          console.log('🔄 Auto-scroll habilitado nuevamente');
         }
       }, 500);
-    }, 1000); // Tiempo para completar el scroll suave
+    }, 1200);
   }
 
-  function handleScroll() {
-    if (!isInitialized || isAutoScrolling || isManualNavigation) return;
+  clearTimeouts() {
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
+      this.scrollTimeout = null;
+    }
+    if (this.wheelTimeout) {
+      clearTimeout(this.wheelTimeout);
+      this.wheelTimeout = null;
+    }
+  }
+
+  handleScroll() {
+    if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) return;
 
     const currentScrollY = window.scrollY;
     
     // Resetear el flag si volvemos muy cerca del top
-    if (currentScrollY < 50 && hasTriggeredAutoScroll) {
-      hasTriggeredAutoScroll = false;
-      consecutiveScrollDown = 0;
+    if (currentScrollY < 50 && this.hasTriggeredAutoScroll) {
+      this.hasTriggeredAutoScroll = false;
+      this.consecutiveScrollDown = 0;
+      console.log('🔄 Reset: volviendo al top');
     }
 
-    lastScrollY = currentScrollY;
+    this.lastScrollY = currentScrollY;
   }
 
-  // Manejar evento wheel (más preciso para desktop) - INSTANTÁNEO
-  function handleWheel(e) {
-    if (!isInitialized || isAutoScrolling || isManualNavigation) return;
+  handleWheel(e) {
+    // Verificaciones de estado
+    if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) {
+      return;
+    }
     
     const currentScrollY = window.scrollY;
     
-    // Interceptar CUALQUIER scroll hacia abajo desde el área del hero
-    if (e.deltaY > 0 && currentScrollY < 100 && !hasTriggeredAutoScroll) {
-      // PREVENIR completamente el scroll natural
+    // Solo interceptar scroll hacia abajo en la zona del hero
+    if (e.deltaY > 0 && currentScrollY < 120 && !this.hasTriggeredAutoScroll) {
+      console.log('🛑 Wheel interceptado - activando auto-scroll');
+      
+      // Prevenir el scroll natural
       e.preventDefault();
       e.stopPropagation();
       
-      console.log('🛑 Scroll interceptado - activando auto-scroll');
-      
-      // Limpiar cualquier timeout pendiente
-      if (wheelTimeout) {
-        clearTimeout(wheelTimeout);
-      }
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      
-      // Activar inmediatamente
-      autoScrollToProjects();
-      return false; // Asegurar que no se propague
+      // Activar auto-scroll inmediatamente
+      this.autoScrollToProjects();
+      return false;
     }
   }
 
-  // Inicializar
-  initializeAutoScroll();
-
-  // Event listeners - El wheel listener se registra primero para máxima prioridad
-  window.addEventListener('wheel', handleWheel, { passive: false, capture: true }); // Capture phase para interceptar antes
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  
-  // Listener adicional en el documento para máxima cobertura
-  document.addEventListener('wheel', handleWheel, { passive: false, capture: true });
-}
-
-// Función para indicar que se está realizando navegación manual
-function setManualNavigation(isManual) {
-  isManualNavigation = isManual;
-  console.log(`Navegación manual: ${isManual ? 'activada' : 'desactivada'}`);
-  
-  if (isManual) {
-    // Limpiar timeouts activos
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = null;
-    }
-    if (wheelTimeout) {
-      clearTimeout(wheelTimeout);
-      wheelTimeout = null;
-    }
+  handleKeyNavigation(e) {
+    const navigationKeys = [
+      'PageDown', 'PageUp', 'Home', 'End', 
+      'ArrowDown', 'ArrowUp', 'Space'
+    ];
     
-    // Resetear después de un tiempo para permitir auto-scroll nuevamente
-    setTimeout(() => {
-      isManualNavigation = false;
-      console.log('Navegación manual desactivada automáticamente');
-    }, 2000); // Aumentado a 2 segundos para mayor seguridad
+    if (navigationKeys.includes(e.code)) {
+      const currentScrollY = window.scrollY;
+      
+      // Si estamos en el top y es ArrowDown, activar auto-scroll
+      if (e.code === 'ArrowDown' && currentScrollY < 80 && 
+          !this.hasTriggeredAutoScroll && this.isInitialized && 
+          !this.isAutoScrolling && !this.isManualNavigation) {
+        e.preventDefault();
+        this.autoScrollToProjects();
+      } else {
+        this.setManualNavigation(true);
+      }
+    }
   }
-}
 
-// Detectar navegación manual por teclado (Page Down, Space, flechas)
-function handleKeyNavigation(e) {
-  const navigationKeys = [
-    'PageDown', 'PageUp', 'Home', 'End', 
-    'ArrowDown', 'ArrowUp', 'Space'
-  ];
-  
-  if (navigationKeys.includes(e.code)) {
-    const currentScrollY = window.scrollY;
+  handleLinkClick(e) {
+    const target = e.target.closest('a[href^="#"]');
+    if (target) {
+      console.log('🔗 Click en enlace interno detectado');
+      this.setManualNavigation(true);
+    }
+  }
+
+  setManualNavigation(isManual) {
+    this.isManualNavigation = isManual;
+    console.log(`Navegación manual: ${isManual ? 'activada' : 'desactivada'}`);
     
-    // Si estamos en el top y es ArrowDown, activar auto-scroll instantáneo
-    if (e.code === 'ArrowDown' && currentScrollY < 80 && !hasTriggeredAutoScroll && 
-        isInitialized && !isAutoScrolling && !isManualNavigation) {
-      e.preventDefault();
-      autoScrollToProjects();
-    } else {
-      setManualNavigation(true);
+    if (isManual) {
+      this.clearTimeouts();
+      
+      // Resetear después de un tiempo
+      setTimeout(() => {
+        this.isManualNavigation = false;
+        console.log('Navegación manual desactivada automáticamente');
+      }, 2000);
     }
   }
 }
 
-// Detectar clicks en enlaces internos
-function handleLinkClick(e) {
-  const target = e.target.closest('a[href^="#"]');
-  if (target) {
-    setManualNavigation(true);
+// Instancia global del manager
+let autoScrollManager;
+
+// Exponer funciones globalmente para compatibilidad
+window.setManualNavigation = function(isManual) {
+  if (autoScrollManager) {
+    autoScrollManager.setManualNavigation(isManual);
   }
-}
-
-// Exponer funciones globalmente
-window.setManualNavigation = setManualNavigation;
-
-// Event listeners adicionales para detectar navegación manual
-document.addEventListener('keydown', handleKeyNavigation);
-document.addEventListener('click', handleLinkClick);
+};
 
 // Inicializar cuando el DOM esté listo
+function initAutoScrollManager() {
+  // Evitar doble inicialización
+  if (autoScrollManager) {
+    console.log('⚠️ Auto-scroll ya inicializado');
+    return;
+  }
+  
+  console.log('🚀 Inicializando Auto-scroll Manager');
+  autoScrollManager = new AutoScrollManager();
+}
+
+// Inicializar con el timing correcto
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initAutoScroll);
+  document.addEventListener('DOMContentLoaded', initAutoScrollManager);
 } else {
-  initAutoScroll();
+  // Si el DOM ya está listo, esperar un poco para otros scripts
+  setTimeout(initAutoScrollManager, 100);
 }
