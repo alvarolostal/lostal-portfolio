@@ -90,28 +90,98 @@
   }
 }
 
-/* Indicación visual sutil para móvil */
-@media (hover: none) {
-  .hero-image.interactive-image {
-    position: relative;
+/* Indicador visual estático estilo Apple */
+.hero-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: rgba(var(--bg-primary-rgb), 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--border-rgb), 0.3);
+  border-radius: 16px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+}
+
+.profile-indicator__text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.profile-indicator__icon {
+  font-size: 12px;
+  opacity: 0.8;
+  font-style: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Comportamiento en hover del contenedor */
+.hero-image-wrapper:hover .profile-indicator {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+/* Ocultar indicador cuando la tarjeta está visible */
+.about-card.show ~ .hero-content .hero-image-wrapper .profile-indicator {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Alternativa: ocultar cuando hay clase específica */
+.profile-indicator.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .profile-indicator {
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 12px;
   }
   
-  .hero-image.interactive-image::before {
-    content: '👆';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 24px;
-    height: 24px;
-    background: var(--accent-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    animation: pulse-tap 2s ease-in-out infinite;
-    z-index: 1;
+  .profile-indicator__text {
+    display: none;
   }
+  
+  .profile-indicator__icon {
+    font-size: 11px;
+  }
+}
+
+/* Tema oscuro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .profile-indicator {
+    background: rgba(29, 29, 31, 0.9);
+    border-color: rgba(66, 66, 69, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+[data-theme="dark"] .profile-indicator {
+  background: rgba(29, 29, 31, 0.9);
+  border-color: rgba(66, 66, 69, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pulse-tap {

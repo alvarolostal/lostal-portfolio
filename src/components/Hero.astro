@@ -14,6 +14,10 @@
         role="button"
         aria-label="Conocer más sobre Álvaro Lostal"
       />
+      <div class="profile-indicator" aria-hidden="true">
+        <span class="profile-indicator__text">Sobre mí</span>
+        <i class="profile-indicator__icon">ⓘ</i>
+      </div>
     </div>
     <div class="hero-subtitle">Hola, soy</div>
     <h1 class="hero-title">Álvaro Lostal</h1>
@@ -76,6 +80,7 @@ class HeroCardManager {
     this.aboutCard = document.getElementById('aboutCard');
     this.closeButton = document.getElementById('closeCard');
     this.overlay = document.getElementById('cardOverlay');
+    this.profileIndicator = document.querySelector('.profile-indicator');
     this.isCardOpen = false;
     this.isMobile = window.innerWidth <= 768;
     
@@ -259,6 +264,11 @@ class HeroCardManager {
     // Calcular posición inicial
     this.calculateCardPosition();
     
+    // Ocultar indicador visual
+    if (this.profileIndicator) {
+      this.profileIndicator.classList.add('hidden');
+    }
+    
     // Añadir clases para animación
     this.aboutCard.classList.add('show');
     this.aboutCard.setAttribute('aria-hidden', 'false');
@@ -289,6 +299,11 @@ class HeroCardManager {
     if (!this.isCardOpen && !force) return;
     
     this.isCardOpen = false;
+    
+    // Mostrar indicador visual nuevamente
+    if (this.profileIndicator) {
+      this.profileIndicator.classList.remove('hidden');
+    }
     
     // Remover clases para animación
     this.aboutCard.classList.remove('show');
