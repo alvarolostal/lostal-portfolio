@@ -21,9 +21,9 @@
   bottom: -37px; /* Punto medio ajustado para mostrar peek perfecto */
 }
 
-/* Hover: widget completamente visible */
+/* Hover: widget completamente visible con elevación sutil */
 .floating-contact.visible:hover {
-  bottom: 24px; /* Posición normal al hacer hover */
+  bottom: 10px; /* Reducido de 24px para elevación más sutil */
 }
 
 /* Contenedor interno con glassmorphism - más compacto */

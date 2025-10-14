@@ -15,6 +15,9 @@
   --border-rgb: 210, 210, 215;
   --shadow: rgba(0, 0, 0, 0.08);
   --shadow-lg: rgba(0, 0, 0, 0.12);
+  
+  /* Duración de animaciones y transiciones */
+  --animation-duration: 0.3s;
 }
 
 /* Tema oscuro automático basado en preferencias del sistema */
