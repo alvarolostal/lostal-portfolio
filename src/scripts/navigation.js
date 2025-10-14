@@ -88,16 +88,41 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", (e) => {
     e.preventDefault();
     
-    // Notificar al auto-scroll que se está realizando navegación manual ANTES del scroll
+    const href = anchor.getAttribute("href");
+    
+    // Tratamiento especial para el logo AL
+    if (href === "#top") {
+      console.log('🏠 Click en logo AL detectado');
+      
+      // Notificar al auto-scroll
+      if (window.setManualNavigation) {
+        window.setManualNavigation(true);
+      }
+      
+      // Scroll al top
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      
+      // Resetear el auto-scroll después de llegar al top
+      setTimeout(() => {
+        if (window.resetAutoScroll) {
+          window.resetAutoScroll();
+        }
+      }, 600);
+      
+      return;
+    }
+    
+    // Para otros enlaces, comportamiento normal
     if (window.setManualNavigation) {
       window.setManualNavigation(true);
     }
     
-    const href = anchor.getAttribute("href");
     if (href) {
       const target = document.querySelector(href);
       if (target) {
-        const offset = 60;
         const targetPosition = target.offsetTop - offset;
         
         // Usar requestAnimationFrame para asegurar que setManualNavigation se ejecute primero

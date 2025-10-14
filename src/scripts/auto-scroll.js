@@ -93,7 +93,7 @@ class AutoScrollManager {
 
     // Calcular la posición exacta
     const projectsPosition = projectsSection.getBoundingClientRect().top + window.scrollY;
-    const offset = 80;
+    const offset = 60;
 
     // Scroll suave hacia Projects
     window.scrollTo({
@@ -128,7 +128,7 @@ class AutoScrollManager {
   }
 
   handleScroll() {
-    if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) return;
+    if (!this.isInitialized || this.isAutoScrolling) return;
 
     const currentScrollY = window.scrollY;
     
@@ -137,6 +137,12 @@ class AutoScrollManager {
       this.hasTriggeredAutoScroll = false;
       this.consecutiveScrollDown = 0;
       console.log('🔄 Reset: volviendo al top');
+      
+      // Resetear también la navegación manual cuando llegamos al top
+      if (this.isManualNavigation) {
+        this.isManualNavigation = false;
+        console.log('🔄 Reset navegación manual al llegar al top');
+      }
     }
 
     this.lastScrollY = currentScrollY;
@@ -148,7 +154,18 @@ class AutoScrollManager {
     // Condición más estricta y confiable para el auto-scroll
     if (e.deltaY > 0 && currentScrollY <= 150 && !this.hasTriggeredAutoScroll) {
       // Verificaciones adicionales solo después de detectar scroll hacia abajo
-      if (!this.isInitialized || this.isAutoScrolling || this.isManualNavigation) {
+      if (!this.isInitialized || this.isAutoScrolling) {
+        return;
+      }
+      
+      // Si está en navegación manual, resetearla si estamos en el top
+      if (this.isManualNavigation && currentScrollY < 80) {
+        this.isManualNavigation = false;
+        console.log('🔄 Reseteando navegación manual desde el top');
+      }
+      
+      // Si aún está en navegación manual, no hacer auto-scroll
+      if (this.isManualNavigation) {
         return;
       }
       
@@ -183,7 +200,7 @@ class AutoScrollManager {
 
     // Calcular posición y ejecutar INMEDIATAMENTE
     const rect = projectsSection.getBoundingClientRect();
-    const targetPosition = window.scrollY + rect.top - 80;
+    const targetPosition = window.scrollY + rect.top - 60;
 
     // Scroll inmediato y suave
     window.scrollTo({
@@ -222,8 +239,25 @@ class AutoScrollManager {
   handleLinkClick(e) {
     const target = e.target.closest('a[href^="#"]');
     if (target) {
-      console.log('🔗 Click en enlace interno detectado');
-      this.setManualNavigation(true);
+      const href = target.getAttribute('href');
+      console.log(`🔗 Click en enlace interno detectado: ${href}`);
+      
+      // Si es click en el logo (AL) que va al top
+      if (href === '#top') {
+        console.log('🏠 Click en logo AL - preparando para auto-scroll');
+        this.setManualNavigation(true);
+        
+        // Después de que termine el scroll al top, resetear flags más rápido
+        setTimeout(() => {
+          if (window.scrollY < 100) {
+            this.hasTriggeredAutoScroll = false;
+            this.isManualNavigation = false;
+            console.log('🔄 Reset rápido después de click en logo');
+          }
+        }, 800);
+      } else {
+        this.setManualNavigation(true);
+      }
     }
   }
 
@@ -234,11 +268,13 @@ class AutoScrollManager {
     if (isManual) {
       this.clearTimeouts();
       
-      // Resetear después de un tiempo
+      // Resetear después de un tiempo más corto cuando se hace clic en el logo
+      const resetTime = window.scrollY < 100 ? 1000 : 2000; // Más rápido si estamos cerca del top
+      
       setTimeout(() => {
         this.isManualNavigation = false;
         console.log('Navegación manual desactivada automáticamente');
-      }, 2000);
+      }, resetTime);
     }
   }
 }
@@ -250,6 +286,16 @@ let autoScrollManager;
 window.setManualNavigation = function(isManual) {
   if (autoScrollManager) {
     autoScrollManager.setManualNavigation(isManual);
+  }
+};
+
+// Función adicional para resetear el estado del auto-scroll
+window.resetAutoScroll = function() {
+  if (autoScrollManager) {
+    autoScrollManager.hasTriggeredAutoScroll = false;
+    autoScrollManager.isManualNavigation = false;
+    autoScrollManager.consecutiveScrollDown = 0;
+    console.log('🔄 Auto-scroll reseteado manualmente');
   }
 };
 
