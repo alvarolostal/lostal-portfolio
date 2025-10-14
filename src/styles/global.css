@@ -24,18 +24,18 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color 0.3s ease, 
-              color 0.3s ease;
+  transition: background-color var(--animation-duration, 0.3s) ease, 
+              color var(--animation-duration, 0.3s) ease;
   overflow-x: hidden;
 }
 
 /* Transiciones suaves para cambios de tema en tiempo real */
 *:not(.theme-loading *) {
   transition: 
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color var(--animation-duration, 0.3s) ease,
+    color var(--animation-duration, 0.3s) ease,
+    border-color var(--animation-duration, 0.3s) ease,
+    box-shadow var(--animation-duration, 0.3s) ease;
 }
 
 /* Respeto por preferencias de accesibilidad */
