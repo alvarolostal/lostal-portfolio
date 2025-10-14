@@ -38,6 +38,16 @@ body {
     box-shadow var(--animation-duration, 0.3s) ease;
 }
 
+/* Asegurar transiciones específicas para TODOS los elementos de texto */
+h1, h2, h3, h4, h5, h6,
+.section-title, .section-subtitle, .section-label,
+.timeline-title, .timeline-subtitle,
+.skill-title, .project-title,
+.about-card__title, .highlights-title,
+.hero-subtitle /* .hero-title ya tiene su propia transición */ {
+  transition: color var(--animation-duration, 0.3s) ease !important;
+}
+
 /* Respeto por preferencias de accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   *,
