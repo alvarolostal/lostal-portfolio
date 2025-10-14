@@ -1,241 +1,117 @@
-// src/scripts/floating-contact.js
+// src/scripts/floating-contact.js - PEEK BEHAVIOR CON DETECCIÓN EXACTA
 
 class FloatingContactWidget {
   constructor() {
-    this.floatingContact = null;
-    this.mainContactLinks = null;
-    this.heroSection = null;
-    this.projectsSection = null;
+    this.widget = null;
     this.contactSection = null;
-    
+    this.projectsSection = null;
     this.isVisible = false;
-    this.isMerging = false;
-    this.hasTriggeredMerge = false;
-    this.isMobile = this.detectMobile();
+    this.isAnimating = false;
     
-    // Esperar a que el DOM esté cargado
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.init());
-    } else {
+    // Solo inicializar en desktop
+    if (!this.isMobile()) {
       this.init();
     }
   }
 
-  detectMobile() {
-    return window.matchMedia('(max-width: 768px)').matches;
+  isMobile() {
+    return window.matchMedia('(max-width: 768px)').matches || 
+           'ontouchstart' in window || 
+           navigator.maxTouchPoints > 0;
   }
 
   init() {
-    // Buscar elementos
-    this.floatingContact = document.getElementById('floating-contact');
-    this.mainContactLinks = document.getElementById('main-contact-links');
-    this.heroSection = document.querySelector('#hero, .hero, section:first-of-type');
-    this.projectsSection = document.getElementById('projects');
+    // Encontrar elementos
+    this.widget = document.getElementById('floating-contact');
     this.contactSection = document.getElementById('contact');
+    this.projectsSection = document.getElementById('projects');
     
-    if (!this.floatingContact || !this.projectsSection || !this.contactSection) {
-      console.warn('FloatingContact: Required elements not found');
+    if (!this.widget || !this.contactSection || !this.projectsSection) {
+      console.warn('FloatingContact: Elementos requeridos no encontrados');
       return;
     }
 
-    this.setupScrollListener();
-    this.setupIntersectionObserver();
-    this.setupHoverEffects();
+    // Setup scroll listener para detectar posición exacta
+    window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
     
     // Evaluar estado inicial
-    setTimeout(() => this.handleScrollUpdate(), 100);
+    this.handleScroll();
+  }
+
+  handleScroll() {
+    if (this.isAnimating) return;
     
-    // Listener para cambios de tamaño de ventana
-    window.addEventListener('resize', () => {
-      this.isMobile = this.detectMobile();
-    });
-  }
-
-  setupHoverEffects() {
-    if (!this.isMobile && this.floatingContact) {
-      // Solo en desktop: efectos de hover para el peek
-      this.floatingContact.addEventListener('mouseenter', () => {
-        if (this.isVisible && !this.isMerging) {
-          this.floatingContact.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-        }
-      });
-      
-      this.floatingContact.addEventListener('mouseleave', () => {
-        if (this.isVisible && !this.isMerging) {
-          this.floatingContact.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        }
-      });
-    }
-  }
-
-  setupScrollListener() {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          this.handleScrollUpdate();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-  }
-
-  setupIntersectionObserver() {
-    const options = {
-      root: null,
-      rootMargin: '-20% 0px -20% 0px',
-      threshold: [0, 0.1, 0.3, 0.5, 0.7, 0.9]
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.target === this.contactSection) {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
-            this.triggerMergeAnimation();
-          } else if (!entry.isIntersecting && this.hasTriggeredMerge) {
-            this.resetMergeState();
-          }
-        }
-      });
-    }, options);
-
-    if (this.contactSection) {
-      observer.observe(this.contactSection);
-    }
-  }
-
-  handleScrollUpdate() {
-    if (!this.floatingContact || !this.projectsSection || !this.contactSection) {
-      return;
-    }
-
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
-    // Calcular posiciones de las secciones
+    // Posiciones de las secciones
     const projectsTop = this.projectsSection.offsetTop;
     const contactTop = this.contactSection.offsetTop;
     
-    // Mostrar widget cuando esté en o después de la sección de proyectos, pero antes del contacto
-    // En móvil: más margen para facilitar interacción
-    const marginOffset = this.isMobile ? 300 : 200;
-    const afterProjects = scrollY + windowHeight > projectsTop + marginOffset;
-    const beforeContact = scrollY + windowHeight < contactTop + 100;
-    const shouldShow = afterProjects && beforeContact;
-
-    if (shouldShow && !this.isVisible && !this.isMerging) {
-      this.showWidget();
-    } else if (!shouldShow && this.isVisible && !this.isMerging) {
-      this.hideWidget();
+    // LÓGICA EXACTA:
+    // 1. Mostrar después de proyectos
+    const afterProjects = scrollY + windowHeight > projectsTop + 200;
+    
+    // 2. OCULTAR EXACTAMENTE cuando los iconos de contacto están visibles
+    const contactIconsVisible = scrollY + windowHeight > contactTop + 100;
+    
+    const shouldShow = afterProjects && !contactIconsVisible;
+    
+    // Actualizar visibilidad con animaciones
+    if (shouldShow && !this.isVisible) {
+      this.show();
+    } else if (!shouldShow && this.isVisible) {
+      this.hide();
     }
   }
 
-  showWidget() {
-    if (this.isVisible || this.isMerging) return;
+  show() {
+    if (this.isVisible || this.isAnimating) return;
     
+    this.isAnimating = true;
     this.isVisible = true;
-    this.floatingContact.classList.add('visible');
     
-    // Delay más corto para móvil
-    const delay = this.isMobile ? 200 : 300;
+    console.log('Mostrando widget con deslizamiento');
+    
+    // Remover clases de animación previa
+    this.widget.classList.remove('slide-down');
+    
+    // Mostrar widget
+    this.widget.classList.add('visible');
+    
+    // Agregar animación de deslizamiento hacia arriba
+    this.widget.classList.add('slide-up');
+    
+    // Limpiar animación después
     setTimeout(() => {
-      if (this.floatingContact) {
-        this.floatingContact.style.pointerEvents = 'auto';
-      }
-    }, delay);
+      this.widget.classList.remove('slide-up');
+      this.isAnimating = false;
+    }, 500);
   }
 
-  hideWidget() {
-    if (!this.isVisible || this.isMerging) return;
+  hide() {
+    if (!this.isVisible || this.isAnimating) return;
     
+    this.isAnimating = true;
     this.isVisible = false;
-    this.floatingContact.classList.remove('visible');
-    this.floatingContact.style.pointerEvents = 'none';
-  }
-
-  triggerMergeAnimation() {
-    if (this.isMerging || this.hasTriggeredMerge || !this.isVisible) return;
     
-    this.isMerging = true;
-    this.hasTriggeredMerge = true;
+    console.log('Ocultando widget con deslizamiento');
     
-    // Iniciar animación de fusión
-    this.floatingContact.classList.add('merge-animation');
+    // Remover clases de animación previa
+    this.widget.classList.remove('slide-up');
     
-    // Delay diferente para móvil y desktop
-    const mergeDelay = this.isMobile ? 300 : 400;
-    const hideDelay = this.isMobile ? 600 : 800;
+    // Agregar animación de deslizamiento hacia abajo
+    this.widget.classList.add('slide-down');
     
-    // Después de un delay, activar la animación de aparición en contacto
+    // Después de la animación, ocultar completamente
     setTimeout(() => {
-      if (this.mainContactLinks) {
-        this.mainContactLinks.classList.add('merge-active');
-      }
-    }, mergeDelay);
-    
-    // Ocultar completamente el widget flotante
-    setTimeout(() => {
-      this.floatingContact.classList.remove('visible');
-      this.floatingContact.classList.add('merging');
-      this.isVisible = false;
-    }, hideDelay);
-  }
-
-  resetMergeState() {
-    if (!this.hasTriggeredMerge) return;
-    
-    this.hasTriggeredMerge = false;
-    this.isMerging = false;
-    
-    // Limpiar clases de animación
-    this.floatingContact.classList.remove('merge-animation', 'merging');
-    if (this.mainContactLinks) {
-      this.mainContactLinks.classList.remove('merge-active');
-    }
-    
-    // Restaurar el estado del widget basado en la posición actual
-    setTimeout(() => {
-      this.handleScrollUpdate();
-    }, 100);
-  }
-
-  // Método público para forzar actualización
-  update() {
-    this.handleScrollUpdate();
+      this.widget.classList.remove('visible', 'slide-down');
+      this.isAnimating = false;
+    }, 400);
   }
 }
 
-// Inicializar cuando esté disponible
-let widget = null;
-
-function initWidget() {
-  if (!widget) {
-    widget = new FloatingContactWidget();
-    window.floatingContactWidget = widget;
-  }
-}
-
-// Múltiples puntos de inicialización para asegurar carga
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initWidget);
-} else {
-  initWidget();
-}
-
-// También inicializar en el evento load por si acaso
-window.addEventListener('load', initWidget);
-
-// Reinicializar en cambios de tamaño de ventana
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    if (window.floatingContactWidget) {
-      window.floatingContactWidget.update();
-    }
-  }, 250);
+// Inicialización simple
+document.addEventListener('DOMContentLoaded', () => {
+  new FloatingContactWidget();
 });
