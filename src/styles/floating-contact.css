@@ -1,0 +1,296 @@
+/* src/styles/floating-contact.css */
+
+/* Widget flotante de contacto - Peek from bottom */
+.floating-contact {
+  position: fixed;
+  bottom: -85px; /* Aún más escondido */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  will-change: transform, opacity;
+  /* Área expandida para evitar temblor */
+  padding-bottom: 30px;
+}
+
+.floating-contact.visible {
+  opacity: 1;
+  visibility: visible;
+  bottom: -85px; /* Aún más escondido */
+  pointer-events: auto;
+}
+
+/* Hover effect - elevación moderada */
+.floating-contact.visible:hover {
+  bottom: -25px; /* Mantiene la altura de elevación que te gusta */
+  transform: translateX(-50%) scale(1.02);
+}
+
+.floating-contact.merging {
+  opacity: 0;
+  bottom: -105px;
+  transform: translateX(-50%) scale(0.8);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-contact-inner {
+  display: flex;
+  gap: 14px;
+  padding: 16px 20px; /* Padding normal arriba */
+  background: rgba(var(--bg-primary-rgb), 0.9);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-radius: 28px; /* Border radius más redondeado */
+  border: 1px solid rgba(var(--border-rgb), 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  /* Área invisible para hover estable */
+  margin-bottom: 20px;
+}
+
+/* Efecto de glassmorphism adicional */
+.floating-contact-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Área invisible para hover estable */
+.floating-contact-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+  right: -20px;
+  height: 40px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.floating-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 18px; /* Border radius más redondeado para concordancia */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  background: rgba(var(--bg-secondary-rgb, 245, 245, 247), 0.6);
+  border: 1px solid rgba(var(--border-rgb), 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.floating-contact-link:hover {
+  background: var(--accent-primary) !important;
+  color: #000 !important;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 8px 24px rgba(213, 189, 55, 0.3),
+    0 2px 12px rgba(213, 189, 55, 0.2);
+  border-color: var(--accent-primary);
+}
+
+.floating-contact-link:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Animación de fusión mejorada */
+@keyframes mergeToContact {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    bottom: -85px;
+  }
+  30% {
+    opacity: 0.8;
+    transform: scale(0.9);
+    bottom: -60px;
+  }
+  70% {
+    opacity: 0.4;
+    transform: scale(0.7);
+    bottom: -40px;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+    bottom: -20px;
+  }
+}
+
+.floating-contact.merge-animation .floating-contact-link {
+  animation: mergeToContact 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.floating-contact.merge-animation .floating-contact-link:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.floating-contact.merge-animation .floating-contact-link:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.floating-contact.merge-animation .floating-contact-link:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* Efecto de aparición en la sección de contacto */
+.contact-links.merge-active .contact-link {
+  animation: contactAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contactAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.6);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contact-links.merge-active .contact-link:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.contact-links.merge-active .contact-link:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.contact-links.merge-active .contact-link:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+/* Tema oscuro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .floating-contact-inner {
+    background: rgba(var(--bg-primary-rgb), 0.95);
+    border: 1px solid rgba(var(--border-rgb, 66, 66, 69), 0.5);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 2px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  :root:not([data-theme="light"]) .floating-contact-link {
+    background: rgba(29, 29, 31, 0.8);
+    border: 1px solid rgba(66, 66, 69, 0.6);
+  }
+  
+  /* Asegurar que el hover sea amarillo en modo oscuro */
+  :root:not([data-theme="light"]) .floating-contact-link:hover {
+    background: var(--accent-primary) !important;
+    color: #000 !important;
+    border-color: var(--accent-primary) !important;
+  }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  /* En móvil: widget más pequeño y se muestra completo sin peek */
+  .floating-contact {
+    bottom: 20px;
+  }
+  
+  .floating-contact.visible {
+    bottom: 20px; /* Siempre visible completo en móvil */
+  }
+  
+  .floating-contact.visible:hover {
+    bottom: 20px; /* Sin efecto hover en móvil */
+    transform: translateX(-50%);
+  }
+  
+  .floating-contact-inner {
+    padding: 10px 16px;
+    gap: 12px;
+    border-radius: 22px; /* Border radius actualizado para concordancia */
+    border: 1px solid rgba(var(--border-rgb), 0.3); /* Borde completo */
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  .floating-contact-link {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 16px; /* Border radius actualizado para concordancia */
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-contact {
+    bottom: 16px;
+  }
+  .floating-contact.visible {
+    bottom: 16px;
+  }
+  
+  .floating-contact-inner {
+    padding: 8px 14px;
+    gap: 10px;
+    border-radius: 20px; /* Border radius actualizado */
+  }
+  
+  .floating-contact-link {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    border-radius: 14px; /* Border radius actualizado */
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .floating-contact,
+  .floating-contact-link {
+    transition: none;
+  }
+  
+  .floating-contact.merge-animation .floating-contact-link {
+    animation: none;
+  }
+  
+  .contact-links.merge-active .contact-link {
+    animation: none;
+  }
+}
+
+/* Estado hover mejorado para el contenedor */
+.floating-contact.visible:hover .floating-contact-inner {
+  transform: scale(1.02);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
