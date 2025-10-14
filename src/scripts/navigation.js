@@ -123,6 +123,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     if (href) {
       const target = document.querySelector(href);
       if (target) {
+        const offset = 60;
         const targetPosition = target.offsetTop - offset;
         
         // Usar requestAnimationFrame para asegurar que setManualNavigation se ejecute primero
