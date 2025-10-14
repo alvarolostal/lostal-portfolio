@@ -140,25 +140,22 @@
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(213, 189, 55, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
   letter-spacing: 0.2px;
   pointer-events: none;
-  animation: subtle-pulse 3s ease-in-out infinite;
+  animation: smooth-breathe 3s ease-in-out infinite;
 }
 
-/* Animación sutil para llamar la atención periódicamente */
-@keyframes subtle-pulse {
-  0%, 90%, 100% { 
-    box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(213, 189, 55, 0.1);
+/* Animación más fluida y visible de "respiración" */
+@keyframes smooth-breathe {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
   }
-  5% { 
-    box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(213, 189, 55, 0.3),
-      0 0 20px rgba(213, 189, 55, 0.1);
+  50% { 
+    transform: scale(1.08);
+    opacity: 1;
   }
 }
 
@@ -227,7 +224,7 @@
   .profile-indicator {
     font-size: 10px;
     padding: 6px 10px;
-    border-radius: 12px;
+    border-radius: 16px;
     /* Usar los mismos colores que desktop sin hover */
     background: rgba(var(--bg-primary-rgb), 0.95);
     color: var(--text-secondary);
@@ -235,7 +232,7 @@
     box-shadow: 
       0 4px 16px rgba(0, 0, 0, 0.06),
       0 0 0 1px rgba(213, 189, 55, 0.1);
-    animation: pulse-mobile 2s ease-in-out infinite;
+    animation: smooth-breathe 3s ease-in-out infinite;
   }
   
   .profile-indicator__text {
@@ -259,20 +256,7 @@
   }
 }
 
-/* Animación sutil para llamar la atención en móvil */
-@keyframes pulse-mobile {
-  0%, 100% { 
-    box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(213, 189, 55, 0.1);
-  }
-  50% { 
-    box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(213, 189, 55, 0.3),
-      0 0 20px rgba(213, 189, 55, 0.1);
-  }
-}
+/* Animación para móvil (consistente con desktop) */
 
 /* Móvil en modo oscuro - usar colores de modo oscuro sin hover */
 @media (max-width: 480px) and (prefers-color-scheme: dark) {
@@ -344,6 +328,7 @@
   margin-bottom: 16px;
   letter-spacing: -2px;
   animation: fadeInUp 0.8s ease-out 0.3s both;
+  transition: color 0.3s ease; /* Transición suave para cambios de color */
 }
 
 @media (min-width: 768px) {
@@ -392,8 +377,8 @@
   justify-content: center;
   color: var(--text-secondary);
   font-size: 20px;
-  transition: all 0.3s ease;
-  animation: scroll-pulse 4s ease-in-out infinite, fadeInUp 0.8s ease-out 0.6s both;
+  transition: color 0.3s ease, background 0.3s ease;
+  animation: bounce-simple 2s ease-in-out infinite, fadeInUp 0.8s ease-out 0.6s both;
   border-radius: 50%;
   background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(10px);
@@ -410,8 +395,8 @@
 
 .scroll-down:hover {
   color: var(--accent-primary);
-  transform: translateY(-5px);
   background: rgba(var(--accent-primary-rgb), 0.1);
+  /* Eliminamos transform para no interferir con la animación */
 }
 
 .scroll-down i {
@@ -421,22 +406,13 @@
   outline: none;
 }
 
-/* Animación de pulso vertical cada 4 segundos */
-@keyframes scroll-pulse {
-  0%, 85%, 100% {
+/* Animación simple y clara para la flecha */
+@keyframes bounce-simple {
+  0%, 50%, 100% {
     transform: translateY(0);
   }
-  5% {
-    transform: translateY(-8px);
-  }
-  10% {
-    transform: translateY(0);
-  }
-  15% {
-    transform: translateY(-4px);
-  }
-  20% {
-    transform: translateY(0);
+  25% {
+    transform: translateY(-10px);
   }
 }
 
