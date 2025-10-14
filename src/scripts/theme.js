@@ -84,35 +84,8 @@ function applyTheme(theme, source = 'system') {
     console.log(`🎨 Aplicando tema: ${theme} (${source}) - Dispositivo: ${deviceInfo.operatingSystem} ${deviceInfo.deviceType}`);
   }
   
-  // En móviles, aplicar cambios de manera más eficiente
-  if (deviceInfo.deviceType === 'mobile') {
-    // Marcar que estamos cambiando el tema para optimizaciones CSS
-    html.setAttribute('data-theme-changing', 'true');
-    
-    // Temporalmente deshabilitar transiciones para cambio inmediato
-    html.classList.add('theme-loading');
-    
-    // Aplicar el tema
-    html.setAttribute("data-theme", theme);
-    
-    // Forzar un repaint/reflow
-    html.offsetHeight;
-    
-    // Reactivar transiciones después de un frame
-    requestAnimationFrame(() => {
-      html.classList.remove('theme-loading');
-      updateThemeIcon(theme);
-      
-      // Limpiar el flag después de que las transiciones terminen
-      setTimeout(() => {
-        html.removeAttribute('data-theme-changing');
-      }, 250); // Ligeramente más que la duración de la transición
-    });
-  } else {
-    // En desktop, aplicar normalmente
-    html.setAttribute("data-theme", theme);
-    updateThemeIcon(theme);
-  }
+  html.setAttribute("data-theme", theme);
+  updateThemeIcon(theme);
   
   // Si el cambio no es manual, limpiar cualquier override
   if (source !== 'manual') {
