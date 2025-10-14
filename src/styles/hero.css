@@ -328,8 +328,7 @@
   margin-bottom: 16px;
   letter-spacing: -2px;
   animation: fadeInUp 0.8s ease-out 0.3s both;
-  /* Usar la misma duración de transición que el resto del sitio */
-  transition: color var(--animation-duration, 0.3s) ease;
+  /* Las transiciones ahora se manejan globalmente */
 }
 
 @media (min-width: 768px) {

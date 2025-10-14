@@ -19,6 +19,29 @@ html.theme-loading *:after {
   animation-delay: 0s !important;
 }
 
+/* Asegurar que en móviles el cambio sea más inmediato */
+@media (max-width: 768px) {
+  html.theme-loading h1,
+  html.theme-loading h2,
+  html.theme-loading h3,
+  html.theme-loading h4,
+  html.theme-loading h5,
+  html.theme-loading h6,
+  html.theme-loading .hero-title,
+  html.theme-loading .hero-subtitle,
+  html.theme-loading .section-title,
+  html.theme-loading .section-subtitle,
+  html.theme-loading .timeline-title,
+  html.theme-loading .timeline-subtitle,
+  html.theme-loading .skill-title,
+  html.theme-loading .project-title,
+  html.theme-loading .about-card__title,
+  html.theme-loading .highlights-title {
+    transition: none !important;
+    transform: translateZ(0); /* Activar aceleración por hardware */
+  }
+}
+
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
@@ -36,6 +59,68 @@ body {
     color var(--animation-duration, 0.3s) ease,
     border-color var(--animation-duration, 0.3s) ease,
     box-shadow var(--animation-duration, 0.3s) ease;
+}
+
+/* Asegurar transiciones específicas para títulos y elementos de texto */
+h1, h2, h3, h4, h5, h6,
+.hero-title, .hero-subtitle,
+.section-title, .section-subtitle,
+.timeline-title, .timeline-subtitle,
+.skill-title, .project-title,
+.about-card__title, .highlights-title {
+  transition: 
+    color var(--animation-duration, 0.3s) ease,
+    background-color var(--animation-duration, 0.3s) ease !important;
+}
+
+/* Optimización específica para dispositivos móviles */
+@media (max-width: 768px) {
+  /* En móviles, usar transiciones más rápidas para mejor rendimiento */
+  :root {
+    --animation-duration: 0.2s;
+  }
+  
+  /* Asegurar que los títulos en móvil tengan la misma velocidad */
+  h1, h2, h3, h4, h5, h6,
+  .hero-title, .hero-subtitle,
+  .section-title, .section-subtitle,
+  .timeline-title, .timeline-subtitle,
+  .skill-title, .project-title,
+  .about-card__title, .highlights-title {
+    transition: 
+      color 0.2s ease,
+      background-color 0.2s ease !important;
+    /* Optimización de rendimiento para móviles */
+    will-change: color, background-color;
+  }
+  
+  /* Optimizar el body también */
+  body {
+    will-change: color, background-color;
+  }
+}
+
+/* Limpiar will-change después de las transiciones en móviles */
+@media (max-width: 768px) {
+  html:not([data-theme-changing]) h1,
+  html:not([data-theme-changing]) h2,
+  html:not([data-theme-changing]) h3,
+  html:not([data-theme-changing]) h4,
+  html:not([data-theme-changing]) h5,
+  html:not([data-theme-changing]) h6,
+  html:not([data-theme-changing]) .hero-title,
+  html:not([data-theme-changing]) .hero-subtitle,
+  html:not([data-theme-changing]) .section-title,
+  html:not([data-theme-changing]) .section-subtitle,
+  html:not([data-theme-changing]) .timeline-title,
+  html:not([data-theme-changing]) .timeline-subtitle,
+  html:not([data-theme-changing]) .skill-title,
+  html:not([data-theme-changing]) .project-title,
+  html:not([data-theme-changing]) .about-card__title,
+  html:not([data-theme-changing]) .highlights-title,
+  html:not([data-theme-changing]) body {
+    will-change: auto;
+  }
 }
 
 /* Respeto por preferencias de accesibilidad */
