@@ -16,8 +16,18 @@
   --shadow: rgba(0, 0, 0, 0.08);
   --shadow-lg: rgba(0, 0, 0, 0.12);
   
-  /* Duración de animaciones y transiciones */
+  /* Duración de animaciones optimizada para dispositivo */
   --animation-duration: 0.3s;
+  
+  /* Optimización: usar transform en lugar de multiple color changes donde sea posible */
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimización para móviles */
+@media (max-width: 768px) {
+  :root {
+    --animation-duration: 0.2s;
+  }
 }
 
 /* Tema oscuro automático basado en preferencias del sistema */

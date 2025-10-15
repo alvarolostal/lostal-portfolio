@@ -6,9 +6,13 @@ const html = document.documentElement;
 // Variables de control para la gestión de temas
 let userManualOverride = false; // Flag para saber si el usuario cambió manualmente
 let systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+let deviceInfo = null; // Cache de información del dispositivo
+let themeChangeInProgress = false; // Prevenir cambios concurrentes
 
-// Función para detectar el tipo de dispositivo y sistema operativo
+// Función para detectar el tipo de dispositivo y sistema operativo (solo una vez)
 function getDeviceInfo() {
+  if (deviceInfo) return deviceInfo; // Usar cache
+  
   const userAgent = navigator.userAgent.toLowerCase();
   const platform = navigator.platform.toLowerCase();
   
@@ -42,12 +46,15 @@ function getDeviceInfo() {
     deviceType = 'tablet';
   }
   
-  return { 
+  deviceInfo = { 
     deviceType, 
     operatingSystem,
     touchScreen: 'ontouchstart' in window,
-    orientation: typeof window.orientation !== 'undefined'
+    orientation: typeof window.orientation !== 'undefined',
+    isMobile: deviceType === 'mobile' || deviceType === 'tablet'
   };
+  
+  return deviceInfo;
 }
 
 // Función para obtener el tema preferido del sistema
@@ -75,17 +82,34 @@ function getInitialTheme() {
 
 // Función para aplicar el tema
 function applyTheme(theme, source = 'system') {
-  if (!theme) return;
+  if (!theme || themeChangeInProgress) return;
   
-  const deviceInfo = getDeviceInfo();
+  themeChangeInProgress = true;
+  const device = getDeviceInfo();
   
   // Log para debugging en desarrollo
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    console.log(`🎨 Aplicando tema: ${theme} (${source}) - Dispositivo: ${deviceInfo.operatingSystem} ${deviceInfo.deviceType}`);
+    console.log(`🎨 Aplicando tema: ${theme} (${source}) - Dispositivo: ${device.operatingSystem} ${device.deviceType}`);
   }
   
-  html.setAttribute("data-theme", theme);
-  updateThemeIcon(theme);
+  // Optimización para móviles: aplicar tema sin transiciones si es necesario
+  if (device.isMobile && source === 'system') {
+    html.classList.add('theme-loading');
+    requestAnimationFrame(() => {
+      html.setAttribute("data-theme", theme);
+      updateThemeIcon(theme);
+      requestAnimationFrame(() => {
+        html.classList.remove('theme-loading');
+        themeChangeInProgress = false;
+      });
+    });
+  } else {
+    html.setAttribute("data-theme", theme);
+    updateThemeIcon(theme);
+    setTimeout(() => {
+      themeChangeInProgress = false;
+    }, 300);
+  }
   
   // Si el cambio no es manual, limpiar cualquier override
   if (source !== 'manual') {
@@ -99,8 +123,11 @@ function applyTheme(theme, source = 'system') {
 function updateThemeIcon(theme) {
   if (!themeIcon) return;
   
-  // Añadir animación de transición
-  themeIcon.style.transition = 'all 0.3s ease';
+  const device = getDeviceInfo();
+  
+  // Reducir animaciones en móviles para mejor rendimiento
+  const animationDuration = device.isMobile ? '0.2s' : '0.3s';
+  themeIcon.style.transition = `all ${animationDuration} ease`;
   
   // Remover todas las clases de iconos
   themeIcon.classList.remove("fa-moon", "fa-sun", "fa-lightbulb");
@@ -108,11 +135,12 @@ function updateThemeIcon(theme) {
   // Usar el ícono de bombilla como era originalmente
   themeIcon.classList.add("fa-lightbulb");
   
-  // Añadir una pequeña animación de rotación
-  themeIcon.style.transform = 'rotate(20deg)';
+  // Animación más ligera en móviles
+  const rotationAngle = device.isMobile ? '15deg' : '20deg';
+  themeIcon.style.transform = `rotate(${rotationAngle})`;
   setTimeout(() => {
     themeIcon.style.transform = 'rotate(0deg)';
-  }, 300);
+  }, device.isMobile ? 200 : 300);
 }
 
 // Aplicar tema inicial inmediatamente al cargar
@@ -163,7 +191,8 @@ if (themeToggle) {
     applyTheme(newTheme, 'manual');
     
     // Vibración en móviles si está disponible
-    if ('vibrate' in navigator && getDeviceInfo().touchScreen) {
+    const device = getDeviceInfo();
+    if ('vibrate' in navigator && device.touchScreen) {
       navigator.vibrate(50);
     }
   });
