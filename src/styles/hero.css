@@ -379,7 +379,10 @@
   color: var(--text-secondary);
   font-size: 20px;
   transition: color var(--animation-duration, 0.3s) ease, background var(--animation-duration, 0.3s) ease;
-  animation: bounce-simple 2s ease-in-out infinite, fadeInUp 0.8s ease-out 0.6s both;
+  /* Combinamos fade-in inicial con bounce continuo con delay para que se vea el fade-in primero */
+  animation: 
+    fadeInUp 0.8s ease-out 0.6s both,
+    bounce-dynamic 2.5s ease-in-out 1.4s infinite;
   border-radius: 50%;
   background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(10px);
@@ -397,7 +400,8 @@
 .scroll-down:hover {
   color: var(--accent-primary);
   background: rgba(var(--accent-primary-rgb), 0.1);
-  /* Eliminamos transform para no interferir con la animación */
+  /* Pausar la animación de bounce en hover para mejor interacción */
+  animation-play-state: paused;
 }
 
 .scroll-down i {
@@ -407,13 +411,25 @@
   outline: none;
 }
 
-/* Animación simple y clara para la flecha */
-@keyframes bounce-simple {
-  0%, 50%, 100% {
-    transform: translateY(0);
+/* Animación de bounce más dinámica y sutil */
+@keyframes bounce-dynamic {
+  0%, 100% {
+    transform: translateY(0) scale(1);
   }
-  25% {
-    transform: translateY(-10px);
+  15% {
+    transform: translateY(-8px) scale(1.05);
+  }
+  30% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-4px) scale(1.02);
+  }
+  60% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(-2px) scale(1.01);
   }
 }
 
