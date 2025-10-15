@@ -52,8 +52,6 @@ section {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 12px;
-  /* Asegurar transición de color consistente */
-  transition: color var(--animation-duration, 0.3s) ease;
 }
 
 .section-title {
@@ -61,8 +59,6 @@ section {
   font-weight: 700;
   margin-bottom: 12px;
   letter-spacing: -1px;
-  /* Asegurar transición de color consistente en todos los dispositivos */
-  transition: color var(--animation-duration, 0.3s) ease;
 }
 
 /* About Section */
@@ -151,8 +147,6 @@ section {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 6px;
-  /* Asegurar transición de color consistente */
-  transition: color var(--animation-duration, 0.3s) ease;
 }
 
 .column-divider {
