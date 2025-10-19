@@ -39,17 +39,25 @@ const { title, description } = Astro.props;
       gtag('config', 'G-0Q34SCCETB');
     </script>
 
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- Favicon - Configuración completa con transparencia -->
+    <!-- SVG para navegadores modernos (vector, transparente, perfecto) -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    
+    <!-- ICO para Google Search y compatibilidad legacy -->
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon" />
+    
+    <!-- PNG fallbacks transparentes en orden de preferencia -->
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    
+    <!-- Apple Touch Icon para iOS -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    
+    <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Additional favicon declarations for better compatibility -->
+    <!-- Fallback adicional -->
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="msapplication-TileColor" content="#000000" />
     <meta name="theme-color" content="#ffffff" />
 
     <!-- Inline script para aplicar tema inmediatamente sin flash -->
