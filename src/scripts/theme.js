@@ -5,7 +5,7 @@ const html = document.documentElement;
 
 // Variables de control para la gestión de temas
 let userManualOverride = false; // Flag para saber si el usuario cambió manualmente
-let systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 let deviceInfo = null; // Cache de información del dispositivo
 let themeChangeInProgress = false; // Prevenir cambios concurrentes
 
@@ -97,7 +97,7 @@ function applyTheme(theme, source = 'system') {
     html.classList.add('theme-loading');
     requestAnimationFrame(() => {
       html.setAttribute("data-theme", theme);
-      updateThemeIcon(theme);
+      updateThemeIcon();
       requestAnimationFrame(() => {
         html.classList.remove('theme-loading');
         themeChangeInProgress = false;
@@ -105,7 +105,7 @@ function applyTheme(theme, source = 'system') {
     });
   } else {
     html.setAttribute("data-theme", theme);
-    updateThemeIcon(theme);
+    updateThemeIcon();
     setTimeout(() => {
       themeChangeInProgress = false;
     }, 300);
@@ -120,7 +120,7 @@ function applyTheme(theme, source = 'system') {
 }
 
 // Función para actualizar el ícono del tema
-function updateThemeIcon(theme) {
+function updateThemeIcon() {
   if (!themeIcon) return;
   
   const device = getDeviceInfo();

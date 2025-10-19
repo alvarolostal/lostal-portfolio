@@ -5,6 +5,43 @@
   box-sizing: border-box;
 }
 
+/* Skip to content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--accent-primary);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10000;
+  transition: top 0.3s ease;
+  border: 2px solid var(--accent-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Asegurar que esté completamente oculto */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+  /* Mostrar completamente al hacer focus */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.skip-link:hover:focus {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
 html {
   scroll-behavior: smooth;
 }
