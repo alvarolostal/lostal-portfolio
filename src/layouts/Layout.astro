@@ -30,7 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:image" content="https://lostal.dev/alvaro.webp" />
+    <meta property="og:image" content="https://lostal.dev/assets/alvaro.webp" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
 
@@ -38,7 +38,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://lostal.dev/alvaro.webp" />
+    <meta name="twitter:image" content="https://lostal.dev/assets/alvaro.webp" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
@@ -59,7 +59,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "url": "https://lostal.dev",
             "image": {
               "@type": "ImageObject",
-              "url": "https://lostal.dev/alvaro.webp",
+              "url": "https://lostal.dev/assets/alvaro.webp",
               "caption": "Álvaro Lostal - Ingeniero Informático"
             },
             "address": {
@@ -169,28 +169,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Favicon - Configuración completa con transparencia -->
     <!-- SVG para navegadores modernos (vector, transparente, perfecto) -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
 
     <!-- ICO para Google Search y compatibilidad legacy -->
     <link
       rel="icon"
-      href="/favicon.ico"
+      href="/assets/favicons/favicon.ico"
       sizes="16x16 32x32 48x48"
       type="image/x-icon"
     />
 
     <!-- PNG fallbacks transparentes en orden de preferencia -->
-    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="/assets/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/assets/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
 
     <!-- Apple Touch Icon para iOS -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" sizes="180x180" />
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Fallback adicional -->
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico" />
     <meta name="theme-color" content="#ffffff" />
 
     <!-- Inline script para aplicar tema inmediatamente sin flash -->
