@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://lostal.dev/sitemap-index.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow crawling of development/testing files if any
+User-agent: *
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /test/
+Disallow: /dev/
+
+# Contact information
+# Portfolio: https://lostal.dev
+# Contact: alvarolostal04@gmail.com

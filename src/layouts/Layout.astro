@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -27,7 +28,130 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lostal.dev" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content="https://lostal.dev/alvaro.webp" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://lostal.dev/alvaro.webp" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://lostal.dev/#person",
+            "name": "Álvaro Lostal",
+            "givenName": "Álvaro",
+            "familyName": "Lostal",
+            "jobTitle": "Ingeniero Informático",
+            "description": "Ingeniero Informático especializado en Desarrollo Web Frontend",
+            "url": "https://lostal.dev",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://lostal.dev/alvaro.webp",
+              "caption": "Álvaro Lostal - Ingeniero Informático"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Santander",
+              "addressRegion": "Cantabria",
+              "addressCountry": "ES"
+            },
+            "email": "alvarolostal04@gmail.com",
+            "sameAs": [
+              "https://github.com/alvarolostal",
+              "https://linkedin.com/in/alvarolostal"
+            ],
+            "knowsAbout": [
+              "Desarrollo Web Frontend",
+              "JavaScript",
+              "React.js",
+              "Astro",
+              "Next.js",
+              "HTML5",
+              "CSS3",
+              "Diseño Web",
+              "UX/UI Design"
+            ],
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "Universidad Europea del Atlántico",
+              "description": "Grado en Ingeniería Informática"
+            },
+            "hasCredential": {
+              "@type": "EducationalOccupationalCredential",
+              "name": "B2 First (FCE)",
+              "credentialCategory": "Cambridge Assessment English",
+              "dateCreated": "2021"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://lostal.dev/#website",
+            "url": "https://lostal.dev",
+            "name": "Álvaro Lostal - Portfolio",
+            "description": "Portfolio profesional de Álvaro Lostal, Ingeniero Informático especializado en desarrollo web frontend",
+            "publisher": {
+              "@id": "https://lostal.dev/#person"
+            },
+            "inLanguage": "es-ES",
+            "copyrightYear": "2025",
+            "datePublished": "2024-01-01",
+            "dateModified": "2025-10-19"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://lostal.dev/#service",
+            "name": "Álvaro Lostal - Desarrollo Web Frontend",
+            "description": "Servicios de desarrollo web frontend, diseño de interfaces y consultoría técnica",
+            "provider": {
+              "@id": "https://lostal.dev/#person"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "España"
+            },
+            "serviceType": [
+              "Desarrollo Web Frontend",
+              "Diseño UX/UI",
+              "Consultoría Técnica",
+              "Optimización Web"
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://lostal.dev/#project-vivenza",
+            "name": "Rediseño Vivenza Expo",
+            "description": "Rediseño completo de la landing page de Vivenza Expo, aplicando principios de diseño moderno",
+            "creator": {
+              "@id": "https://lostal.dev/#person"
+            },
+            "dateCreated": "2024",
+            "genre": "Desarrollo Web",
+            "keywords": [
+              "Rediseño Web",
+              "Next.js",
+              "JavaScript",
+              "HTML5",
+              "CSS3",
+              "Diseño Responsivo"
+            ],
+            "url": "https://vivenza.netlify.app/",
+            "isBasedOn": "https://vivenzaexpo.es/"
+          }
+        ]
+      }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB"></script>
