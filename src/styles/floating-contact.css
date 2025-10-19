@@ -36,7 +36,7 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(var(--border-rgb, 229, 231, 235), 0.3);
   border-radius: 36px; /* Reducido de 40px para ser más compacto */
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.12),
     0 2px 16px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -59,7 +59,7 @@
 /* Hover elevado del contenedor */
 .floating-contact.visible:hover .floating-contact-inner {
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.15),
     0 4px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -131,10 +131,10 @@
 
 /* Tema oscuro */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .floating-contact-inner {
+  :root:not([data-theme='light']) .floating-contact-inner {
     background: rgba(var(--bg-primary-rgb), 0.95);
     border: 1px solid rgba(var(--border-rgb, 66, 66, 69), 0.5);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.4),
       0 2px 16px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);

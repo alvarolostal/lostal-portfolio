@@ -10,9 +10,9 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       entryLimit: 45000,
-    })
+    }),
   ],
   build: {
-    inlineStylesheets: 'auto'
-  }
+    inlineStylesheets: 'auto',
+  },
 });

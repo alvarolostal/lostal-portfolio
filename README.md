@@ -34,6 +34,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 ## 📞 Contacto
 
 **Álvaro Lostal**
+
 - Portfolio: [lostal.dev](https://lostal.dev)
 - GitHub: [@alvarolostal](https://github.com/alvarolostal)
 - LinkedIn: [Álvaro Lostal](https://linkedin.com/in/alvarolostal)

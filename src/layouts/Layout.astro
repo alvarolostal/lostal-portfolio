@@ -14,6 +14,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -28,7 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:image" content="https://lostal.dev/alvaro.webp" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
@@ -154,10 +155,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB"
+    ></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'G-0Q34SCCETB');
@@ -166,56 +170,64 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Favicon - Configuración completa con transparencia -->
     <!-- SVG para navegadores modernos (vector, transparente, perfecto) -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    
+
     <!-- ICO para Google Search y compatibilidad legacy -->
-    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon" />
-    
+    <link
+      rel="icon"
+      href="/favicon.ico"
+      sizes="16x16 32x32 48x48"
+      type="image/x-icon"
+    />
+
     <!-- PNG fallbacks transparentes en orden de preferencia -->
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
-    
+
     <!-- Apple Touch Icon para iOS -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-    
+
     <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
-    
+
     <!-- Fallback adicional -->
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="theme-color" content="#ffffff" />
 
     <!-- Inline script para aplicar tema inmediatamente sin flash -->
     <script>
-      (function() {
+      (function () {
         function getSystemTheme() {
-          return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          return window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
         }
-        
+
         function getInitialTheme() {
           // Verificar si hay override manual de esta sesión
-          const manualOverride = sessionStorage.getItem("themeManualOverride");
-          
-          if (manualOverride === "true") {
-            const manualTheme = localStorage.getItem("theme");
+          const manualOverride = sessionStorage.getItem('themeManualOverride');
+
+          if (manualOverride === 'true') {
+            const manualTheme = localStorage.getItem('theme');
             if (manualTheme) {
               return manualTheme;
             }
           }
-          
+
           // Si no hay override manual, usar tema del sistema
           return getSystemTheme();
         }
-        
+
         // Aplicar tema inmediatamente
         const theme = getInitialTheme();
-        document.documentElement.setAttribute("data-theme", theme);
-        
+        document.documentElement.setAttribute('data-theme', theme);
+
         // Añadir clase para prevenir transiciones durante la carga inicial
         document.documentElement.classList.add('theme-loading');
-        
+
         // Remover la clase después de que la página haya cargado
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(function() {
+        document.addEventListener('DOMContentLoaded', function () {
+          setTimeout(function () {
             document.documentElement.classList.remove('theme-loading');
           }, 100);
         });

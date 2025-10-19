@@ -14,7 +14,7 @@ nav {
   transition: all 0.3s ease;
 }
 
-[data-theme="dark"] nav {
+[data-theme='dark'] nav {
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -36,8 +36,18 @@ nav.scrolled {
   text-decoration: none;
   transition: all 0.3s ease;
   letter-spacing: -1px;
-  font-family: "Poppins", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-dark));
+  font-family:
+    'Poppins',
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-dark)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -46,7 +56,7 @@ nav.scrolled {
 }
 
 .logo::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 2px;
   left: 0;
@@ -86,7 +96,7 @@ nav.scrolled {
 }
 
 .nav-links a::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -126,8 +136,6 @@ nav.scrolled {
   background: var(--bg-secondary);
   color: var(--accent-primary);
 }
-
-
 
 /* Mobile Menu */
 .mobile-menu-btn {
@@ -227,7 +235,7 @@ nav.scrolled {
 }
 
 .mobile-menu::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -1px;
   right: 20px;
@@ -269,11 +277,21 @@ nav.scrolled {
   opacity: 1;
 }
 
-.mobile-menu.active .mobile-menu-links li:nth-child(1) { transition-delay: 0.1s; }
-.mobile-menu.active .mobile-menu-links li:nth-child(2) { transition-delay: 0.15s; }
-.mobile-menu.active .mobile-menu-links li:nth-child(3) { transition-delay: 0.2s; }
-.mobile-menu.active .mobile-menu-links li:nth-child(4) { transition-delay: 0.25s; }
-.mobile-menu.active .mobile-menu-links li:nth-child(5) { transition-delay: 0.3s; }
+.mobile-menu.active .mobile-menu-links li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.mobile-menu.active .mobile-menu-links li:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.mobile-menu.active .mobile-menu-links li:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.mobile-menu.active .mobile-menu-links li:nth-child(4) {
+  transition-delay: 0.25s;
+}
+.mobile-menu.active .mobile-menu-links li:nth-child(5) {
+  transition-delay: 0.3s;
+}
 
 .mobile-menu-links a {
   color: var(--text-primary);

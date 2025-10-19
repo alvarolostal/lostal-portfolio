@@ -7,7 +7,7 @@ class FloatingContactWidget {
     this.projectsSection = null;
     this.isVisible = false;
     this.isAnimating = false;
-    
+
     // Solo inicializar en desktop
     if (!this.isMobile()) {
       this.init();
@@ -15,9 +15,11 @@ class FloatingContactWidget {
   }
 
   isMobile() {
-    return window.matchMedia('(max-width: 768px)').matches || 
-           'ontouchstart' in window || 
-           navigator.maxTouchPoints > 0;
+    return (
+      window.matchMedia('(max-width: 768px)').matches ||
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0
+    );
   }
 
   init() {
@@ -25,38 +27,40 @@ class FloatingContactWidget {
     this.widget = document.getElementById('floating-contact');
     this.contactSection = document.getElementById('contact');
     this.projectsSection = document.getElementById('projects');
-    
+
     if (!this.widget || !this.contactSection || !this.projectsSection) {
       console.warn('FloatingContact: Elementos requeridos no encontrados');
       return;
     }
 
     // Setup scroll listener para detectar posición exacta
-    window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
-    
+    window.addEventListener('scroll', () => this.handleScroll(), {
+      passive: true,
+    });
+
     // Evaluar estado inicial
     this.handleScroll();
   }
 
   handleScroll() {
     if (this.isAnimating) return;
-    
+
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    
+
     // Posiciones de las secciones
     const projectsTop = this.projectsSection.offsetTop;
     const contactTop = this.contactSection.offsetTop;
-    
+
     // LÓGICA EXACTA:
     // 1. Mostrar después de proyectos
     const afterProjects = scrollY + windowHeight > projectsTop + 200;
-    
+
     // 2. OCULTAR EXACTAMENTE cuando los iconos de contacto están visibles
     const contactIconsVisible = scrollY + windowHeight > contactTop + 100;
-    
+
     const shouldShow = afterProjects && !contactIconsVisible;
-    
+
     // Actualizar visibilidad con animaciones
     if (shouldShow && !this.isVisible) {
       this.show();
@@ -67,21 +71,21 @@ class FloatingContactWidget {
 
   show() {
     if (this.isVisible || this.isAnimating) return;
-    
+
     this.isAnimating = true;
     this.isVisible = true;
-    
+
     console.log('Mostrando widget con deslizamiento');
-    
+
     // Remover clases de animación previa
     this.widget.classList.remove('slide-down');
-    
+
     // Mostrar widget
     this.widget.classList.add('visible');
-    
+
     // Agregar animación de deslizamiento hacia arriba
     this.widget.classList.add('slide-up');
-    
+
     // Limpiar animación después
     setTimeout(() => {
       this.widget.classList.remove('slide-up');
@@ -91,18 +95,18 @@ class FloatingContactWidget {
 
   hide() {
     if (!this.isVisible || this.isAnimating) return;
-    
+
     this.isAnimating = true;
     this.isVisible = false;
-    
+
     console.log('Ocultando widget con deslizamiento');
-    
+
     // Remover clases de animación previa
     this.widget.classList.remove('slide-up');
-    
+
     // Agregar animación de deslizamiento hacia abajo
     this.widget.classList.add('slide-down');
-    
+
     // Después de la animación, ocultar completamente
     setTimeout(() => {
       this.widget.classList.remove('visible', 'slide-down');

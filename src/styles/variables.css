@@ -15,10 +15,10 @@
   --border-rgb: 210, 210, 215;
   --shadow: rgba(0, 0, 0, 0.08);
   --shadow-lg: rgba(0, 0, 0, 0.12);
-  
+
   /* Duración de animaciones optimizada para dispositivo */
   --animation-duration: 0.3s;
-  
+
   /* Optimización: usar transform en lugar de multiple color changes donde sea posible */
   --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -32,7 +32,7 @@
 
 /* Tema oscuro automático basado en preferencias del sistema */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme='light']) {
     --accent-primary: #e8d159;
     --accent-dark: #d5bd37;
     --bg-primary: #000000;
@@ -52,7 +52,7 @@
 }
 
 /* Tema oscuro manual (tiene prioridad sobre el automático) */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --accent-primary: #e8d159;
   --accent-dark: #d5bd37;
   --bg-primary: #000000;
@@ -70,7 +70,7 @@
 }
 
 /* Tema claro manual */
-[data-theme="light"] {
+[data-theme='light'] {
   --accent-primary: #d5bd37;
   --accent-dark: #c4ab2f;
   --bg-primary: #ffffff;

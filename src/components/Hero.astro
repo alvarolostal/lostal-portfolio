@@ -4,14 +4,16 @@
 
 <section id="hero" class="hero">
   <div class="hero-content">
-    <div class="hero-image-wrapper" 
-         tabindex="0"
-         role="button"
-         aria-label="Ver información personal de Álvaro Lostal">
-      <img 
-        src="/alvaro.webp" 
-        alt="Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend de Santander, España" 
-        class="hero-image interactive-image" 
+    <div
+      class="hero-image-wrapper"
+      tabindex="0"
+      role="button"
+      aria-label="Ver información personal de Álvaro Lostal"
+    >
+      <img
+        src="/alvaro.webp"
+        alt="Álvaro Lostal, Ingeniero Informático especializado en Desarrollo Web Frontend de Santander, España"
+        class="hero-image interactive-image"
         id="heroImage"
       />
       <div class="profile-indicator" aria-hidden="true">
@@ -23,7 +25,7 @@
     <h1 class="hero-title">Álvaro Lostal</h1>
     <p class="hero-description">
       Ingeniero Informático especializado en Desarrollo Web Frontend.
-      <br>Me inspiran el diseño y la simplicidad.
+      <br />Me inspiran el diseño y la simplicidad.
     </p>
     <div class="hero-cta">
       <a href="#contact" class="btn btn-primary">
@@ -35,7 +37,11 @@
 
   <!-- Card flotante con información personal -->
   <div class="about-card" id="aboutCard" aria-hidden="true">
-    <button class="about-card__close" id="closeCard" aria-label="Cerrar información">
+    <button
+      class="about-card__close"
+      id="closeCard"
+      aria-label="Cerrar información"
+    >
       <i class="fas fa-times"></i>
     </button>
     <div class="about-card__content">
@@ -65,270 +71,295 @@
 
   <!-- Overlay para móvil -->
   <div class="about-card-overlay" id="cardOverlay" aria-hidden="true"></div>
-  
-  <a href="#projects" class="scroll-down" id="scrollDown" aria-label="Ir a proyectos">
+
+  <a
+    href="#projects"
+    class="scroll-down"
+    id="scrollDown"
+    aria-label="Ir a proyectos"
+  >
     <i class="fas fa-angle-down"></i>
   </a>
 </section>
 
 <script>
-// Hero Card Manager - Funcionalidad interactiva del card flotante
-// @ts-nocheck
-class HeroCardManager {
-  constructor() {
-    this.heroImage = document.getElementById('heroImage');
-    this.heroImageWrapper = document.querySelector('.hero-image-wrapper');
-    this.aboutCard = document.getElementById('aboutCard');
-    this.closeButton = document.getElementById('closeCard');
-    this.overlay = document.getElementById('cardOverlay');
-    this.profileIndicator = document.querySelector('.profile-indicator');
-    this.isCardOpen = false;
-    this.isMobile = window.innerWidth <= 768;
-    
-    this.init();
-  }
+  // Hero Card Manager - Funcionalidad interactiva del card flotante
+  // @ts-nocheck
+  class HeroCardManager {
+    constructor() {
+      this.heroImage = document.getElementById('heroImage');
+      this.heroImageWrapper = document.querySelector('.hero-image-wrapper');
+      this.aboutCard = document.getElementById('aboutCard');
+      this.closeButton = document.getElementById('closeCard');
+      this.overlay = document.getElementById('cardOverlay');
+      this.profileIndicator = document.querySelector('.profile-indicator');
+      this.isCardOpen = false;
+      this.isMobile = window.innerWidth <= 768;
 
-  init() {
-    if (!this.heroImage || !this.aboutCard) return;
-
-    this.bindEvents();
-    this.handleResize();
-    
-    // Configurar posicionamiento inicial
-    window.addEventListener('load', () => {
-      this.calculateCardPosition();
-    });
-  }
-
-  bindEvents() {
-    // Limpiar eventos existentes
-    this.removeAllEvents();
-    
-    // Desktop: hover events
-    if (!this.isMobile) {
-      this.showCardBound = () => this.showCard();
-      this.hideCardBound = () => this.hideCard();
-      
-      // Usar el wrapper para un área más grande de interacción
-      this.heroImageWrapper.addEventListener('mouseenter', this.showCardBound);
-      this.heroImageWrapper.addEventListener('mouseleave', this.hideCardBound);
-      this.aboutCard.addEventListener('mouseenter', this.showCardBound);
-      this.aboutCard.addEventListener('mouseleave', this.hideCardBound);
-    } else {
-      // Mobile: touch events en el wrapper para mayor área táctil
-      this.toggleCardBound = (e) => {
-        e.preventDefault();
-        this.toggleCard();
-      };
-      
-      this.heroImageWrapper.addEventListener('click', this.toggleCardBound);
+      this.init();
     }
 
-    // Eventos que no cambian con el tipo de dispositivo
-    this.bindStaticEvents();
+    init() {
+      if (!this.heroImage || !this.aboutCard) return;
 
-    // Redimensionar ventana
-    window.addEventListener('resize', () => this.handleResize());
-  }
+      this.bindEvents();
+      this.handleResize();
 
-  bindStaticEvents() {
-    // Cerrar card
-    this.closeButton?.addEventListener('click', () => this.hideCard());
-    this.overlay?.addEventListener('click', () => this.hideCard());
-
-    // Teclado - usar el wrapper para mayor área de interacción
-    this.heroImageWrapper.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.toggleCard();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isCardOpen) {
-        this.hideCard();
-      }
-    });
-  }
-
-  removeAllEvents() {
-    if (this.showCardBound) {
-      this.heroImageWrapper.removeEventListener('mouseenter', this.showCardBound);
-      this.aboutCard.removeEventListener('mouseenter', this.showCardBound);
-    }
-    if (this.hideCardBound) {
-      this.heroImageWrapper.removeEventListener('mouseleave', this.hideCardBound);
-      this.aboutCard.removeEventListener('mouseleave', this.hideCardBound);
-    }
-    if (this.toggleCardBound) {
-      this.heroImageWrapper.removeEventListener('click', this.toggleCardBound);
-    }
-  }
-
-  handleResize() {
-    const wasMobile = this.isMobile;
-    this.isMobile = window.innerWidth <= 768;
-    
-    if (wasMobile !== this.isMobile) {
-      this.hideCard(true); // Force hide without animation
-      this.bindEvents(); // Re-bind events for new device type
-      console.log(`📱 Cambio de dispositivo: ${this.isMobile ? 'móvil' : 'desktop'}`);
-    }
-    
-    if (this.isCardOpen) {
-      // En móvil, recalcular con delay para asegurar dimensiones correctas
-      if (this.isMobile) {
-        setTimeout(() => {
-          this.calculateCardPosition();
-        }, 100);
-      } else {
+      // Configurar posicionamiento inicial
+      window.addEventListener('load', () => {
         this.calculateCardPosition();
-      }
-    }
-  }
-
-  calculateCardPosition() {
-    if (!this.heroImage || !this.aboutCard) return;
-
-    // Asegurar que el card esté visible para obtener dimensiones correctas
-    if (!this.aboutCard.classList.contains('show')) {
-      this.aboutCard.style.visibility = 'hidden';
-      this.aboutCard.style.display = 'block';
-    }
-
-    const imageRect = this.heroImage.getBoundingClientRect();
-    const viewport = {
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-
-    // Obtener altura del header
-    const header = document.querySelector('nav') || document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 80;
-    const minTopMargin = headerHeight + 20;
-
-    let cardX, cardY;
-
-    if (this.isMobile || viewport.width <= 768) {
-      // En móvil: centrado perfecto con dimensiones reales del card
-      const cardWidth = this.aboutCard.scrollWidth || 360; // fallback width
-      const cardHeight = this.aboutCard.scrollHeight || 400; // fallback height
-      
-      // Centrar horizontalmente con márgenes seguros
-      const margins = 20; // márgenes mínimos
-      const availableWidth = viewport.width - (margins * 2);
-      const finalWidth = Math.min(cardWidth, availableWidth);
-      
-      cardX = (viewport.width - finalWidth) / 2;
-      
-      // Centrar verticalmente considerando el header
-      const availableHeight = viewport.height - minTopMargin - margins;
-      const finalHeight = Math.min(cardHeight, availableHeight);
-      
-      cardY = minTopMargin + (availableHeight - finalHeight) / 2;
-      
-      console.log(`📱 Mobile positioning: X=${cardX}, Y=${cardY}, W=${finalWidth}, H=${finalHeight}`);
-    } else {
-      // En desktop, posicionar a la derecha de la imagen
-      const cardRect = this.aboutCard.getBoundingClientRect();
-      const desiredX = imageRect.right + 40;
-      const maxX = viewport.width - cardRect.width - 30;
-      
-      cardX = Math.min(desiredX, maxX);
-      
-      // Calcular Y para que no toque el header
-      const desiredY = imageRect.top;
-      cardY = Math.max(minTopMargin, desiredY);
-      
-      // Asegurar que no se salga por abajo
-      const maxY = viewport.height - cardRect.height - 30;
-      cardY = Math.min(cardY, maxY);
-      
-      console.log(`🖥️ Desktop positioning: X=${cardX}, Y=${cardY}`);
-    }
-
-    // Aplicar posición con valores enteros para evitar blur
-    this.aboutCard.style.left = `${Math.round(cardX)}px`;
-    this.aboutCard.style.top = `${Math.round(cardY)}px`;
-    
-    // Restaurar visibilidad
-    if (!this.aboutCard.classList.contains('show')) {
-      this.aboutCard.style.visibility = '';
-      this.aboutCard.style.display = '';
-    }
-  }
-
-  showCard() {
-    if (this.isCardOpen) return;
-    
-    this.isCardOpen = true;
-    
-    // Calcular posición inicial
-    this.calculateCardPosition();
-    
-    // Ocultar indicador visual
-    if (this.profileIndicator) {
-      this.profileIndicator.classList.add('hidden');
-    }
-    
-    // Añadir clases para animación
-    this.aboutCard.classList.add('show');
-    this.aboutCard.setAttribute('aria-hidden', 'false');
-    
-    if (this.isMobile) {
-      this.overlay.classList.add('show');
-      this.overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      
-      // Recalcular posición después del render para móvil (más preciso)
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.calculateCardPosition();
-          console.log('📱 Posición recalculada para móvil');
-        }, 50);
       });
     }
 
-    // Focus management para accesibilidad
-    setTimeout(() => {
-      if (this.isMobile) {
-        this.closeButton?.focus();
+    bindEvents() {
+      // Limpiar eventos existentes
+      this.removeAllEvents();
+
+      // Desktop: hover events
+      if (!this.isMobile) {
+        this.showCardBound = () => this.showCard();
+        this.hideCardBound = () => this.hideCard();
+
+        // Usar el wrapper para un área más grande de interacción
+        this.heroImageWrapper.addEventListener(
+          'mouseenter',
+          this.showCardBound
+        );
+        this.heroImageWrapper.addEventListener(
+          'mouseleave',
+          this.hideCardBound
+        );
+        this.aboutCard.addEventListener('mouseenter', this.showCardBound);
+        this.aboutCard.addEventListener('mouseleave', this.hideCardBound);
+      } else {
+        // Mobile: touch events en el wrapper para mayor área táctil
+        this.toggleCardBound = e => {
+          e.preventDefault();
+          this.toggleCard();
+        };
+
+        this.heroImageWrapper.addEventListener('click', this.toggleCardBound);
       }
-    }, 300);
+
+      // Eventos que no cambian con el tipo de dispositivo
+      this.bindStaticEvents();
+
+      // Redimensionar ventana
+      window.addEventListener('resize', () => this.handleResize());
+    }
+
+    bindStaticEvents() {
+      // Cerrar card
+      this.closeButton?.addEventListener('click', () => this.hideCard());
+      this.overlay?.addEventListener('click', () => this.hideCard());
+
+      // Teclado - usar el wrapper para mayor área de interacción
+      this.heroImageWrapper.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.toggleCard();
+        }
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && this.isCardOpen) {
+          this.hideCard();
+        }
+      });
+    }
+
+    removeAllEvents() {
+      if (this.showCardBound) {
+        this.heroImageWrapper.removeEventListener(
+          'mouseenter',
+          this.showCardBound
+        );
+        this.aboutCard.removeEventListener('mouseenter', this.showCardBound);
+      }
+      if (this.hideCardBound) {
+        this.heroImageWrapper.removeEventListener(
+          'mouseleave',
+          this.hideCardBound
+        );
+        this.aboutCard.removeEventListener('mouseleave', this.hideCardBound);
+      }
+      if (this.toggleCardBound) {
+        this.heroImageWrapper.removeEventListener(
+          'click',
+          this.toggleCardBound
+        );
+      }
+    }
+
+    handleResize() {
+      const wasMobile = this.isMobile;
+      this.isMobile = window.innerWidth <= 768;
+
+      if (wasMobile !== this.isMobile) {
+        this.hideCard(true); // Force hide without animation
+        this.bindEvents(); // Re-bind events for new device type
+        console.log(
+          `📱 Cambio de dispositivo: ${this.isMobile ? 'móvil' : 'desktop'}`
+        );
+      }
+
+      if (this.isCardOpen) {
+        // En móvil, recalcular con delay para asegurar dimensiones correctas
+        if (this.isMobile) {
+          setTimeout(() => {
+            this.calculateCardPosition();
+          }, 100);
+        } else {
+          this.calculateCardPosition();
+        }
+      }
+    }
+
+    calculateCardPosition() {
+      if (!this.heroImage || !this.aboutCard) return;
+
+      // Asegurar que el card esté visible para obtener dimensiones correctas
+      if (!this.aboutCard.classList.contains('show')) {
+        this.aboutCard.style.visibility = 'hidden';
+        this.aboutCard.style.display = 'block';
+      }
+
+      const imageRect = this.heroImage.getBoundingClientRect();
+      const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      // Obtener altura del header
+      const header =
+        document.querySelector('nav') || document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const minTopMargin = headerHeight + 20;
+
+      let cardX, cardY;
+
+      if (this.isMobile || viewport.width <= 768) {
+        // En móvil: centrado perfecto con dimensiones reales del card
+        const cardWidth = this.aboutCard.scrollWidth || 360; // fallback width
+        const cardHeight = this.aboutCard.scrollHeight || 400; // fallback height
+
+        // Centrar horizontalmente con márgenes seguros
+        const margins = 20; // márgenes mínimos
+        const availableWidth = viewport.width - margins * 2;
+        const finalWidth = Math.min(cardWidth, availableWidth);
+
+        cardX = (viewport.width - finalWidth) / 2;
+
+        // Centrar verticalmente considerando el header
+        const availableHeight = viewport.height - minTopMargin - margins;
+        const finalHeight = Math.min(cardHeight, availableHeight);
+
+        cardY = minTopMargin + (availableHeight - finalHeight) / 2;
+
+        console.log(
+          `📱 Mobile positioning: X=${cardX}, Y=${cardY}, W=${finalWidth}, H=${finalHeight}`
+        );
+      } else {
+        // En desktop, posicionar a la derecha de la imagen
+        const cardRect = this.aboutCard.getBoundingClientRect();
+        const desiredX = imageRect.right + 40;
+        const maxX = viewport.width - cardRect.width - 30;
+
+        cardX = Math.min(desiredX, maxX);
+
+        // Calcular Y para que no toque el header
+        const desiredY = imageRect.top;
+        cardY = Math.max(minTopMargin, desiredY);
+
+        // Asegurar que no se salga por abajo
+        const maxY = viewport.height - cardRect.height - 30;
+        cardY = Math.min(cardY, maxY);
+
+        console.log(`🖥️ Desktop positioning: X=${cardX}, Y=${cardY}`);
+      }
+
+      // Aplicar posición con valores enteros para evitar blur
+      this.aboutCard.style.left = `${Math.round(cardX)}px`;
+      this.aboutCard.style.top = `${Math.round(cardY)}px`;
+
+      // Restaurar visibilidad
+      if (!this.aboutCard.classList.contains('show')) {
+        this.aboutCard.style.visibility = '';
+        this.aboutCard.style.display = '';
+      }
+    }
+
+    showCard() {
+      if (this.isCardOpen) return;
+
+      this.isCardOpen = true;
+
+      // Calcular posición inicial
+      this.calculateCardPosition();
+
+      // Ocultar indicador visual
+      if (this.profileIndicator) {
+        this.profileIndicator.classList.add('hidden');
+      }
+
+      // Añadir clases para animación
+      this.aboutCard.classList.add('show');
+      this.aboutCard.setAttribute('aria-hidden', 'false');
+
+      if (this.isMobile) {
+        this.overlay.classList.add('show');
+        this.overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        // Recalcular posición después del render para móvil (más preciso)
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            this.calculateCardPosition();
+            console.log('📱 Posición recalculada para móvil');
+          }, 50);
+        });
+      }
+
+      // Focus management para accesibilidad
+      setTimeout(() => {
+        if (this.isMobile) {
+          this.closeButton?.focus();
+        }
+      }, 300);
+    }
+
+    hideCard(force = false) {
+      if (!this.isCardOpen && !force) return;
+
+      this.isCardOpen = false;
+
+      // Mostrar indicador visual nuevamente
+      if (this.profileIndicator) {
+        this.profileIndicator.classList.remove('hidden');
+      }
+
+      // Remover clases para animación
+      this.aboutCard.classList.remove('show');
+      this.aboutCard.setAttribute('aria-hidden', 'true');
+
+      if (this.isMobile) {
+        this.overlay.classList.remove('show');
+        this.overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+
+    toggleCard() {
+      if (this.isCardOpen) {
+        this.hideCard();
+      } else {
+        this.showCard();
+      }
+    }
   }
 
-  hideCard(force = false) {
-    if (!this.isCardOpen && !force) return;
-    
-    this.isCardOpen = false;
-    
-    // Mostrar indicador visual nuevamente
-    if (this.profileIndicator) {
-      this.profileIndicator.classList.remove('hidden');
-    }
-    
-    // Remover clases para animación
-    this.aboutCard.classList.remove('show');
-    this.aboutCard.setAttribute('aria-hidden', 'true');
-    
-    if (this.isMobile) {
-      this.overlay.classList.remove('show');
-      this.overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-
-  toggleCard() {
-    if (this.isCardOpen) {
-      this.hideCard();
-    } else {
-      this.showCard();
-    }
-  }
-}
-
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-  new HeroCardManager();
-});
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new HeroCardManager();
+  });
 </script>

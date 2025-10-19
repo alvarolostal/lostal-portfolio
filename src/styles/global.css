@@ -57,12 +57,19 @@ html.theme-loading *:after {
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color var(--animation-duration) var(--theme-transition-easing), 
-              color var(--animation-duration) var(--theme-transition-easing);
+  transition:
+    background-color var(--animation-duration) var(--theme-transition-easing),
+    color var(--animation-duration) var(--theme-transition-easing);
   overflow-x: hidden;
 }
 
@@ -76,7 +83,7 @@ body,
 .theme-toggle,
 .skill-card,
 .project-card {
-  transition: 
+  transition:
     background-color var(--animation-duration) var(--theme-transition-easing),
     color var(--animation-duration) var(--theme-transition-easing),
     border-color var(--animation-duration) var(--theme-transition-easing),
@@ -116,16 +123,28 @@ body,
 
 /* Animación para el cambio de tema */
 @keyframes themeTogglePress {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.9); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Animación de pulso para reset */
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Notificación de tema */
@@ -161,7 +180,8 @@ body,
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) scale(1);
     opacity: 0.03;
   }
@@ -185,7 +205,9 @@ body,
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
   /* Asegurar que elementos con fade-in no interfieran con el card flotante */
   position: relative;
   z-index: auto;

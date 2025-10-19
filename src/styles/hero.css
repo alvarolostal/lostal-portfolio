@@ -13,7 +13,7 @@
 }
 
 .hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 50%;
@@ -59,7 +59,7 @@
 /* Interactividad sutil de la imagen */
 .hero-image.interactive-image:hover {
   transform: scale(1.02) rotate(1deg);
-  box-shadow: 
+  box-shadow:
     0 25px 70px rgba(213, 189, 55, 0.25),
     0 0 0 1px rgba(213, 189, 55, 0.1),
     0 0 40px rgba(213, 189, 55, 0.3);
@@ -68,7 +68,7 @@
 
 .hero-image.interactive-image:focus {
   outline: none;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(213, 189, 55, 0.2),
     0 0 0 3px var(--accent-primary);
 }
@@ -87,7 +87,12 @@
     right: 0;
     bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(45deg, transparent, rgba(213, 189, 55, 0.15), transparent);
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(213, 189, 55, 0.15),
+      transparent
+    );
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -101,15 +106,30 @@
 /* Animación de brillo que se mueve por la imagen */
 @keyframes shimmer {
   0% {
-    background: linear-gradient(45deg, transparent, rgba(213, 189, 55, 0.15), transparent);
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(213, 189, 55, 0.15),
+      transparent
+    );
     transform: translateX(-100%);
   }
   50% {
-    background: linear-gradient(45deg, transparent, rgba(213, 189, 55, 0.25), transparent);
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(213, 189, 55, 0.25),
+      transparent
+    );
     transform: translateX(0%);
   }
   100% {
-    background: linear-gradient(45deg, transparent, rgba(213, 189, 55, 0.15), transparent);
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(213, 189, 55, 0.15),
+      transparent
+    );
     transform: translateX(100%);
   }
 }
@@ -137,11 +157,13 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  box-shadow: 
+  box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(213, 189, 55, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    system-ui, sans-serif;
   letter-spacing: 0.2px;
   pointer-events: none;
   animation: smooth-breathe 3s ease-in-out infinite;
@@ -149,11 +171,12 @@
 
 /* Animación más fluida y visible de "respiración" */
 @keyframes smooth-breathe {
-  0%, 100% { 
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
-  50% { 
+  50% {
     transform: scale(1.08);
     opacity: 1;
   }
@@ -185,8 +208,13 @@
 
 /* Animación suave de rebote para el indicador */
 @keyframes bounce-gentle {
-  0%, 100% { transform: scale(1.05) translateY(0); }
-  50% { transform: scale(1.1) translateY(-2px); }
+  0%,
+  100% {
+    transform: scale(1.05) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-2px);
+  }
 }
 
 /* Cursor pointer en toda el área interactiva */
@@ -229,27 +257,27 @@
     background: rgba(var(--bg-primary-rgb), 0.95);
     color: var(--text-secondary);
     border: 1px solid rgba(213, 189, 55, 0.3);
-    box-shadow: 
+    box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.06),
       0 0 0 1px rgba(213, 189, 55, 0.1);
     animation: smooth-breathe 3s ease-in-out infinite;
   }
-  
+
   .profile-indicator__text {
     display: inline-block; /* Mostrar el texto en móvil también */
     font-weight: 600;
   }
-  
+
   .profile-indicator__icon {
     font-size: 11px;
   }
-  
+
   /* Feedback táctil para móviles */
   .hero-image-wrapper:active .hero-image {
     transform: scale(0.95);
     transition: transform 0.1s ease;
   }
-  
+
   .hero-image-wrapper:active .profile-indicator {
     transform: scale(0.9);
     opacity: 0.8;
@@ -260,7 +288,7 @@
 
 /* Móvil en modo oscuro - usar colores de modo oscuro sin hover */
 @media (max-width: 480px) and (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .profile-indicator {
+  :root:not([data-theme='light']) .profile-indicator {
     background: rgba(29, 29, 31, 0.9) !important;
     color: var(--text-secondary) !important;
     border-color: rgba(66, 66, 69, 0.3) !important;
@@ -269,7 +297,7 @@
 }
 
 @media (max-width: 480px) {
-  [data-theme="dark"] .profile-indicator {
+  [data-theme='dark'] .profile-indicator {
     background: rgba(29, 29, 31, 0.9) !important;
     color: var(--text-secondary) !important;
     border-color: rgba(66, 66, 69, 0.3) !important;
@@ -279,14 +307,14 @@
 
 /* Tema oscuro */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .profile-indicator {
+  :root:not([data-theme='light']) .profile-indicator {
     background: rgba(29, 29, 31, 0.9);
     border-color: rgba(66, 66, 69, 0.3);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 }
 
-[data-theme="dark"] .profile-indicator {
+[data-theme='dark'] .profile-indicator {
   background: rgba(29, 29, 31, 0.9);
   border-color: rgba(66, 66, 69, 0.3);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -294,22 +322,29 @@
 
 /* Arreglar hover en modo oscuro - mantener fondo amarillo y texto negro */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .hero-image-wrapper:hover .profile-indicator {
+  :root:not([data-theme='light']) .hero-image-wrapper:hover .profile-indicator {
     background: var(--accent-primary) !important;
     color: #000 !important; /* Texto negro igual que en modo claro */
     border-color: transparent !important;
   }
 }
 
-[data-theme="dark"] .hero-image-wrapper:hover .profile-indicator {
+[data-theme='dark'] .hero-image-wrapper:hover .profile-indicator {
   background: var(--accent-primary) !important;
   color: #000 !important; /* Texto negro igual que en modo claro */
   border-color: transparent !important;
 }
 
 @keyframes pulse-tap {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 .hero-subtitle {
@@ -378,9 +413,11 @@
   justify-content: center;
   color: var(--text-secondary);
   font-size: 20px;
-  transition: color var(--animation-duration, 0.3s) ease, background var(--animation-duration, 0.3s) ease;
+  transition:
+    color var(--animation-duration, 0.3s) ease,
+    background var(--animation-duration, 0.3s) ease;
   /* Combinamos fade-in inicial con bounce continuo con delay para que se vea el fade-in primero */
-  animation: 
+  animation:
     fadeInUp 0.8s ease-out 0.6s both,
     bounce-dynamic 2.5s ease-in-out 1.4s infinite;
   border-radius: 50%;
@@ -413,7 +450,8 @@
 
 /* Animación de bounce más dinámica y sutil */
 @keyframes bounce-dynamic {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) scale(1);
   }
   15% {
@@ -492,7 +530,7 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 20px;
   border: 1px solid rgba(var(--text-primary-rgb, 29, 29, 31), 0.08);
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 8px 25px rgba(0, 0, 0, 0.08),
     0 0 1px rgba(0, 0, 0, 0.1);
@@ -511,20 +549,20 @@
 
 /* Tema oscuro para el card */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .about-card {
+  :root:not([data-theme='light']) .about-card {
     background: rgba(0, 0, 0, 0.85);
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 
+    box-shadow:
       0 20px 60px rgba(0, 0, 0, 0.5),
       0 8px 25px rgba(0, 0, 0, 0.3),
       0 0 1px rgba(255, 255, 255, 0.1);
   }
 }
 
-[data-theme="dark"] .about-card {
+[data-theme='dark'] .about-card {
   background: rgba(0, 0, 0, 0.85);
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.5),
     0 8px 25px rgba(0, 0, 0, 0.3),
     0 0 1px rgba(255, 255, 255, 0.1);
@@ -734,18 +772,18 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme='light']) {
     --bg-primary-rgb: 0, 0, 0;
     --text-primary-rgb: 245, 245, 247;
   }
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg-primary-rgb: 0, 0, 0;
   --text-primary-rgb: 245, 245, 247;
 }
 
-[data-theme="light"] {
+[data-theme='light'] {
   --bg-primary-rgb: 255, 255, 255;
   --text-primary-rgb: 29, 29, 31;
 }

@@ -168,7 +168,7 @@ section {
 }
 
 .timeline-item::before {
-  content: "";
+  content: '';
   display: none;
 }
 
@@ -182,7 +182,9 @@ section {
   border-radius: 14px;
   border: 1px solid var(--border);
   box-shadow: 0 8px 24px var(--shadow);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
 .card:hover {
@@ -284,7 +286,7 @@ section {
 }
 
 .timeline-list li::before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--accent-primary);
@@ -683,11 +685,11 @@ section {
   .project-image-container {
     flex: 0 0 300px;
   }
-  
+
   .project-content {
     padding: 28px;
   }
-  
+
   .project-title {
     font-size: 20px;
   }
@@ -699,21 +701,21 @@ section {
     flex-direction: column;
     min-height: auto;
   }
-  
+
   .project-image-container {
     flex: none;
     aspect-ratio: 16/10;
   }
-  
+
   /* Ocultar overlay y actions de desktop en móvil */
   .project-overlay {
     display: none;
   }
-  
+
   .project-actions {
     display: none;
   }
-  
+
   .project-mobile-actions {
     display: flex;
   }
@@ -725,15 +727,15 @@ section {
   .project-title {
     font-size: 20px;
   }
-  
+
   .project-description {
     font-size: 15px;
   }
-  
+
   .highlights-list li {
     font-size: 14px;
   }
-  
+
   .project-tech {
     margin-bottom: 0;
   }
@@ -744,12 +746,12 @@ section {
   .project-mobile-actions {
     display: none !important;
   }
-  
+
   /* Ocultar overlay en desktop, mostrar actions */
   .project-overlay {
     display: none !important;
   }
-  
+
   .project-actions {
     display: flex;
   }
@@ -771,7 +773,7 @@ section {
   .tech-tags {
     gap: 6px;
   }
-  
+
   .mobile-btn {
     font-size: 12px !important;
     padding: 8px 12px !important;
@@ -783,11 +785,11 @@ section {
   .section-header {
     margin-bottom: 40px;
   }
-  
+
   .experience-grid {
     gap: 40px;
   }
-  
+
   .column-header {
     margin-bottom: 28px;
   }
@@ -798,20 +800,20 @@ section {
     padding-top: 60px;
     padding-bottom: 60px;
   }
-  
+
   #journey {
     padding-top: 48px;
     padding-bottom: 48px;
   }
-  
+
   .section-header {
     margin-bottom: 32px;
   }
-  
+
   .experience-grid {
     gap: 32px;
   }
-  
+
   .column-header {
     margin-bottom: 24px;
   }
