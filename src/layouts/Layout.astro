@@ -329,14 +329,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Font Awesome - Carga optimizada con preload -->
     <link
       rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="/assets/fontawesome/all.min.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('fonts-loaded')"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        href="/assets/fontawesome/all.min.css"
       />
     </noscript>
   </head>
