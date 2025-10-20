@@ -15,6 +15,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Mejorar la seguridad y rendimiento -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- DNS Prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -153,7 +165,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Google tag (gtag.js) - Carga optimizada -->
     <script is:inline>
-      // Cargar GA4 de forma asíncrona después del load
+      // Cargar GA4 de forma asíncrona después del load y con configuración de privacidad
       window.addEventListener('load', function() {
         // Crear y cargar el script de GA4
         const gaScript = document.createElement('script');
@@ -161,14 +173,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB';
         document.head.appendChild(gaScript);
         
-        // Configurar GA4 inmediatamente (no necesita esperar a que cargue el script)
+        // Configurar GA4 con opciones de privacidad
         window.dataLayer = window.dataLayer || [];
         function gtag() {
           dataLayer.push(arguments);
         }
         window.gtag = gtag;
         gtag('js', new Date());
-        gtag('config', 'G-0Q34SCCETB');
+        gtag('config', 'G-0Q34SCCETB', {
+          // Configuración de privacidad mejorada
+          anonymize_ip: true,
+          cookie_flags: 'SameSite=None;Secure',
+          allow_google_signals: false,
+          allow_ad_personalization_signals: false
+        });
       });
     </script>
 
@@ -239,15 +257,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       })();
     </script>
 
-    <!-- Fonts - Carga optimizada con font-display: swap -->
+    <!-- Fonts - Carga crítica optimizada -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Fuentes críticas con swap para mostrar texto inmediatamente -->
+    
+    <!-- Cargar fuentes críticas de forma asíncrona para no bloquear renderizado -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <!-- Fuentes adicionales cargadas de forma asíncrona con swap -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    
+    <!-- Fuentes adicionales cargadas de forma completamente asíncrona -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
       rel="preload"
@@ -261,43 +289,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       />
     </noscript>
 
-    <!-- Font Awesome - Carga optimizada con font-display -->
+    <!-- Font Awesome - Carga completamente asíncrona y optimizada -->
     <style>
-      /* Preload de Font Awesome con font-display: swap */
-      @font-face {
-        font-family: "Font Awesome 6 Free";
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2") format("woff2");
-      }
-      @font-face {
-        font-family: "Font Awesome 6 Brands";
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2") format("woff2");
-      }
-      /* Fallback con fuentes del sistema mientras cargan los iconos */
+      /* Fallback básico con fuentes del sistema mientras cargan los iconos */
       .fa, .fas, .far, .fab {
-        font-family: "Font Awesome 6 Free", Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-display: swap;
+        /* Ocultar temporalmente hasta que carguen las fuentes reales */
+        visibility: hidden;
       }
-      .fab {
-        font-family: "Font Awesome 6 Brands", Arial, sans-serif;
+      
+      /* Una vez que las fuentes están cargadas, mostrar los iconos */
+      .fonts-loaded .fa, .fonts-loaded .fas, .fonts-loaded .far, .fonts-loaded .fab {
+        font-family: "Font Awesome 6 Free", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        visibility: visible;
+      }
+      .fonts-loaded .fab {
+        font-family: "Font Awesome 6 Brands", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      }
+      .fonts-loaded .far {
+        font-weight: 400;
+      }
+      .fonts-loaded .fas {
+        font-weight: 900;
       }
     </style>
-    <link
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
-    </noscript>
+    
+    <!-- Carga asíncrona completa de Font Awesome -->
+    <script is:inline>
+      // Cargar Font Awesome después del load para no bloquear el renderizado inicial
+      window.addEventListener('load', function() {
+        const fontAwesomeLink = document.createElement('link');
+        fontAwesomeLink.rel = 'stylesheet';
+        fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        fontAwesomeLink.onload = function() {
+          // Marcar que las fuentes están cargadas
+          document.documentElement.classList.add('fonts-loaded');
+        };
+        document.head.appendChild(fontAwesomeLink);
+      });
+    </script>
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
