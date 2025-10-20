@@ -236,7 +236,8 @@
 
         // Cache header height to avoid repeated DOM queries
         if (!this.cachedHeaderHeight) {
-          const header = document.querySelector('nav') || document.querySelector('header');
+          const header =
+            document.querySelector('nav') || document.querySelector('header');
           this.cachedHeaderHeight = header ? header.offsetHeight : 80;
         }
         const minTopMargin = this.cachedHeaderHeight + 20;

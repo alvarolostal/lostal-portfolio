@@ -7,7 +7,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 **Portfolio personal moderno y minimalista** desarrollado con Astro  
-*Mostrando mi experiencia como Ingeniero Informático especializado en Desarrollo Web Frontend*
+_Mostrando mi experiencia como Ingeniero Informático especializado en Desarrollo Web Frontend_
 
 [🌐 Ver Portfolio](https://lostal.dev)
 
@@ -23,21 +23,24 @@
 🌓 **Tema Inteligente** → Adaptación automática al tema del sistema + toggle manual  
 🎭 **Animaciones Fluidas** → Transiciones suaves y efectos visuales  
 🔍 **SEO Optimizado** → Metadatos, sitemap y estructura semántica  
-♿ **Accesible** → Cumple estándares de accesibilidad web  
+♿ **Accesible** → Cumple estándares de accesibilidad web
 
 ## 🛠️ Stack Tecnológico
 
 ### Core
+
 - **[Astro](https://astro.build/)** - Framework web de nueva generación
 - **TypeScript** - Tipado estático para JavaScript
 - **CSS3** - Estilos modernos con CSS Grid y Flexbox
 
 ### Herramientas de Desarrollo
+
 - **ESLint** - Análisis estático de código
 - **Prettier** - Formateo automático de código
 - **AOS Library** - Animaciones on-scroll
 
 ### Integraciones
+
 - **Sitemap** - Generación automática de sitemap.xml
 - **Intersection Observer** - Detección de elementos en viewport
 
@@ -89,7 +92,7 @@ Las contribuciones son bienvenidas. Si tienes ideas para mejorar el proyecto:
 <div align="center">
 
 **Álvaro Lostal**  
-*Ingeniero Informático | Frontend Developer*
+_Ingeniero Informático | Frontend Developer_
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-lostal.dev-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-alvarolostal-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alvarolostal)

@@ -37,11 +37,13 @@ nav.scrolled {
   transition: all 0.3s ease;
   letter-spacing: -1px;
   font-family:
-    'Poppins',
-    'Inter',
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    Arial,
     sans-serif;
   background: linear-gradient(
     135deg,

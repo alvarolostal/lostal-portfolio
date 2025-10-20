@@ -17,8 +17,11 @@ body,
 }
 
 /* Optimización para Font Awesome - prevenir iconos rotos */
-.fa, .fas, .far, .fab::before {
-  font-family: "Font Awesome 7 Free", "Font Awesome 7 Brands", monospace;
+.fa,
+.fas,
+.far,
+.fab::before {
+  font-family: 'Font Awesome 7 Free', 'Font Awesome 7 Brands', monospace;
   /* Fallback a monospace para mantener dimensiones consistentes */
 }
 

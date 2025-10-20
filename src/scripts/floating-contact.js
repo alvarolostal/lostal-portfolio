@@ -7,14 +7,14 @@ class FloatingContactWidget {
     this.projectsSection = null;
     this.isVisible = false;
     this.isAnimating = false;
-    
+
     // Cache de posiciones para evitar reflows
     this.cachedPositions = {
       projectsTop: 0,
       contactTop: 0,
-      lastUpdate: 0
+      lastUpdate: 0,
     };
-    
+
     // Throttling para scroll
     this.ticking = false;
 
@@ -52,9 +52,13 @@ class FloatingContactWidget {
     });
 
     // Actualizar cache en resize
-    window.addEventListener('resize', () => {
-      this.updateCachedPositions();
-    }, { passive: true });
+    window.addEventListener(
+      'resize',
+      () => {
+        this.updateCachedPositions();
+      },
+      { passive: true }
+    );
 
     // Evaluar estado inicial
     this.handleScroll();
@@ -72,17 +76,17 @@ class FloatingContactWidget {
     const projectsRect = this.projectsSection.getBoundingClientRect();
     const contactRect = this.contactSection.getBoundingClientRect();
     const scrollY = window.scrollY;
-    
+
     this.cachedPositions = {
       projectsTop: projectsRect.top + scrollY,
       contactTop: contactRect.top + scrollY,
-      lastUpdate: Date.now()
+      lastUpdate: Date.now(),
     };
   }
 
   handleScroll() {
     this.ticking = false;
-    
+
     if (this.isAnimating) return;
 
     // Actualizar cache si es muy antigua (más de 5 segundos)
