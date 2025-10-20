@@ -105,6 +105,7 @@
       this.profileIndicator = document.querySelector('.profile-indicator');
       this.isCardOpen = false;
       this.isMobile = window.innerWidth <= 768;
+      this.cachedHeaderHeight = null; // Cache para evitar reflows
 
       this.init();
     }
@@ -228,75 +229,64 @@
     calculateCardPosition() {
       if (!this.heroImage || !this.aboutCard) return;
 
-      // Asegurar que el card esté visible para obtener dimensiones correctas
-      if (!this.aboutCard.classList.contains('show')) {
-        this.aboutCard.style.visibility = 'hidden';
-        this.aboutCard.style.display = 'block';
-      }
+      // Usar requestAnimationFrame para agrupar lecturas de DOM
+      requestAnimationFrame(() => {
+        // Batch DOM reads to prevent multiple reflows
+        const imageRect = this.heroImage.getBoundingClientRect();
+        const viewport = {
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
 
-      const imageRect = this.heroImage.getBoundingClientRect();
-      const viewport = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
+        // Cache header height to avoid repeated DOM queries
+        if (!this.cachedHeaderHeight) {
+          const header = document.querySelector('nav') || document.querySelector('header');
+          this.cachedHeaderHeight = header ? header.offsetHeight : 80;
+        }
+        const minTopMargin = this.cachedHeaderHeight + 20;
 
-      // Obtener altura del header
-      const header =
-        document.querySelector('nav') || document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 80;
-      const minTopMargin = headerHeight + 20;
+        let cardX, cardY;
 
-      let cardX, cardY;
+        if (this.isMobile || viewport.width <= 768) {
+          // En móvil: centrado perfecto con dimensiones cacheadas
+          const cardWidth = 360; // Usar dimensión fija para evitar reflows
+          const cardHeight = 400;
 
-      if (this.isMobile || viewport.width <= 768) {
-        // En móvil: centrado perfecto con dimensiones reales del card
-        const cardWidth = this.aboutCard.scrollWidth || 360; // fallback width
-        const cardHeight = this.aboutCard.scrollHeight || 400; // fallback height
+          // Centrar horizontalmente con márgenes seguros
+          const margins = 20;
+          const availableWidth = viewport.width - margins * 2;
+          const finalWidth = Math.min(cardWidth, availableWidth);
 
-        // Centrar horizontalmente con márgenes seguros
-        const margins = 20; // márgenes mínimos
-        const availableWidth = viewport.width - margins * 2;
-        const finalWidth = Math.min(cardWidth, availableWidth);
+          cardX = (viewport.width - finalWidth) / 2;
 
-        cardX = (viewport.width - finalWidth) / 2;
+          // Centrar verticalmente considerando el header
+          const availableHeight = viewport.height - minTopMargin - margins;
+          const finalHeight = Math.min(cardHeight, availableHeight);
 
-        // Centrar verticalmente considerando el header
-        const availableHeight = viewport.height - minTopMargin - margins;
-        const finalHeight = Math.min(cardHeight, availableHeight);
+          cardY = minTopMargin + (availableHeight - finalHeight) / 2;
+        } else {
+          // En desktop, posicionar a la derecha de la imagen
+          const cardWidth = 400; // Usar dimensión fija
+          const desiredX = imageRect.right + 40;
+          const maxX = viewport.width - cardWidth - 30;
 
-        cardY = minTopMargin + (availableHeight - finalHeight) / 2;
+          cardX = Math.min(desiredX, maxX);
 
-        console.log(
-          `📱 Mobile positioning: X=${cardX}, Y=${cardY}, W=${finalWidth}, H=${finalHeight}`
-        );
-      } else {
-        // En desktop, posicionar a la derecha de la imagen
-        const cardRect = this.aboutCard.getBoundingClientRect();
-        const desiredX = imageRect.right + 40;
-        const maxX = viewport.width - cardRect.width - 30;
+          // Calcular Y para que no toque el header
+          const desiredY = imageRect.top;
+          cardY = Math.max(minTopMargin, desiredY);
 
-        cardX = Math.min(desiredX, maxX);
+          // Asegurar que no se salga por abajo
+          const maxY = viewport.height - 400 - 30; // Usar altura fija
+          cardY = Math.min(cardY, maxY);
+        }
 
-        // Calcular Y para que no toque el header
-        const desiredY = imageRect.top;
-        cardY = Math.max(minTopMargin, desiredY);
-
-        // Asegurar que no se salga por abajo
-        const maxY = viewport.height - cardRect.height - 30;
-        cardY = Math.min(cardY, maxY);
-
-        console.log(`🖥️ Desktop positioning: X=${cardX}, Y=${cardY}`);
-      }
-
-      // Aplicar posición con valores enteros para evitar blur
-      this.aboutCard.style.left = `${Math.round(cardX)}px`;
-      this.aboutCard.style.top = `${Math.round(cardY)}px`;
-
-      // Restaurar visibilidad
-      if (!this.aboutCard.classList.contains('show')) {
-        this.aboutCard.style.visibility = '';
-        this.aboutCard.style.display = '';
-      }
+        // Batch DOM writes
+        requestAnimationFrame(() => {
+          this.aboutCard.style.left = `${Math.round(cardX)}px`;
+          this.aboutCard.style.top = `${Math.round(cardY)}px`;
+        });
+      });
     }
 
     showCard() {

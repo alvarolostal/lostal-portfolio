@@ -239,15 +239,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       })();
     </script>
 
-    <!-- Fonts - Carga optimizada -->
+    <!-- Fonts - Carga optimizada con font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Fuentes críticas para evitar FOUT -->
+    <!-- Fuentes críticas con swap para mostrar texto inmediatamente -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Fuentes adicionales cargadas de forma asíncrona -->
+    <!-- Fuentes adicionales cargadas de forma asíncrona con swap -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
       rel="preload"
@@ -261,7 +261,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       />
     </noscript>
 
-    <!-- Font Awesome - Carga asíncrona -->
+    <!-- Font Awesome - Carga optimizada con font-display -->
+    <style>
+      /* Preload de Font Awesome con font-display: swap */
+      @font-face {
+        font-family: "Font Awesome 6 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Font Awesome 6 Brands";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2") format("woff2");
+      }
+      /* Fallback con fuentes del sistema mientras cargan los iconos */
+      .fa, .fas, .far, .fab {
+        font-family: "Font Awesome 6 Free", Arial, sans-serif;
+      }
+      .fab {
+        font-family: "Font Awesome 6 Brands", Arial, sans-serif;
+      }
+    </style>
     <link
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -284,6 +308,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <style is:global>
   @import '../styles/variables.css';
   @import '../styles/global.css';
+  @import '../styles/font-optimization.css';
   @import '../styles/navigation.css';
   @import '../styles/hero.css';
   @import '../styles/sections.css';

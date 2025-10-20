@@ -1,4 +1,4 @@
-// src/scripts/floating-contact.js - PEEK BEHAVIOR CON DETECCIÓN EXACTA
+// src/scripts/floating-contact.js - OPTIMIZADO PARA PERFORMANCE
 
 class FloatingContactWidget {
   constructor() {
@@ -7,6 +7,16 @@ class FloatingContactWidget {
     this.projectsSection = null;
     this.isVisible = false;
     this.isAnimating = false;
+    
+    // Cache de posiciones para evitar reflows
+    this.cachedPositions = {
+      projectsTop: 0,
+      contactTop: 0,
+      lastUpdate: 0
+    };
+    
+    // Throttling para scroll
+    this.ticking = false;
 
     // Solo inicializar en desktop
     if (!this.isMobile()) {
@@ -33,24 +43,58 @@ class FloatingContactWidget {
       return;
     }
 
-    // Setup scroll listener para detectar posición exacta
-    window.addEventListener('scroll', () => this.handleScroll(), {
+    // Calcular posiciones iniciales
+    this.updateCachedPositions();
+
+    // Setup scroll listener optimizado
+    window.addEventListener('scroll', () => this.requestTick(), {
       passive: true,
     });
+
+    // Actualizar cache en resize
+    window.addEventListener('resize', () => {
+      this.updateCachedPositions();
+    }, { passive: true });
 
     // Evaluar estado inicial
     this.handleScroll();
   }
 
+  requestTick() {
+    if (!this.ticking) {
+      requestAnimationFrame(() => this.handleScroll());
+      this.ticking = true;
+    }
+  }
+
+  updateCachedPositions() {
+    // Usar getBoundingClientRect() y calcular una sola vez
+    const projectsRect = this.projectsSection.getBoundingClientRect();
+    const contactRect = this.contactSection.getBoundingClientRect();
+    const scrollY = window.scrollY;
+    
+    this.cachedPositions = {
+      projectsTop: projectsRect.top + scrollY,
+      contactTop: contactRect.top + scrollY,
+      lastUpdate: Date.now()
+    };
+  }
+
   handleScroll() {
+    this.ticking = false;
+    
     if (this.isAnimating) return;
+
+    // Actualizar cache si es muy antigua (más de 5 segundos)
+    if (Date.now() - this.cachedPositions.lastUpdate > 5000) {
+      this.updateCachedPositions();
+    }
 
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
 
-    // Posiciones de las secciones
-    const projectsTop = this.projectsSection.offsetTop;
-    const contactTop = this.contactSection.offsetTop;
+    // Usar posiciones cacheadas para evitar reflows
+    const { projectsTop, contactTop } = this.cachedPositions;
 
     // LÓGICA EXACTA:
     // 1. Mostrar después de proyectos
