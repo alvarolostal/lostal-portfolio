@@ -302,26 +302,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Font Awesome - Carga completamente asíncrona y optimizada -->
     <style>
-      /* Fallback básico con fuentes del sistema mientras cargan los iconos */
+      /* Font Awesome siempre visible, sin fallback ni ocultar */
       .fa, .fas, .far, .fab {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-        font-display: swap;
-        /* Ocultar temporalmente hasta que carguen las fuentes reales */
-        visibility: hidden;
+        font-family: "Font Awesome 7 Free", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       }
-      
-      /* Una vez que las fuentes están cargadas, mostrar los iconos */
-      .fonts-loaded .fa, .fonts-loaded .fas, .fonts-loaded .far, .fonts-loaded .fab {
-        font-family: "Font Awesome 6 Free", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-        visibility: visible;
+      .fab {
+        font-family: "Font Awesome 7 Brands", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       }
-      .fonts-loaded .fab {
-        font-family: "Font Awesome 6 Brands", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      }
-      .fonts-loaded .far {
+      .far {
         font-weight: 400;
       }
-      .fonts-loaded .fas {
+      .fas {
         font-weight: 900;
       }
     </style>
