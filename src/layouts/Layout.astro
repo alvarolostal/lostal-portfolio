@@ -21,11 +21,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     
-    <!-- DNS Prefetch para recursos externos -->
+    <!-- DNS Prefetch y Preconnect para recursos externos -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    
+    <!-- Preconnect para cdnjs.cloudflare.com (Font Awesome) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    
+    <!-- Resource hints para Google Analytics -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -163,30 +170,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </script>
 
-    <!-- Google tag (gtag.js) - Carga optimizada -->
+    <!-- Google tag (gtag.js) - Carga optimizada con timeout -->
     <script is:inline>
-      // Cargar GA4 de forma asíncrona después del load y con configuración de privacidad
+      // Cargar GA4 de forma asíncrona con delay para no competir con recursos críticos
       window.addEventListener('load', function() {
-        // Crear y cargar el script de GA4
-        const gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB';
-        document.head.appendChild(gaScript);
-        
-        // Configurar GA4 con opciones de privacidad
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'G-0Q34SCCETB', {
-          // Configuración de privacidad mejorada
-          anonymize_ip: true,
-          cookie_flags: 'SameSite=None;Secure',
-          allow_google_signals: false,
-          allow_ad_personalization_signals: false
-        });
+        // Esperar un poco para que se carguen los recursos críticos primero
+        setTimeout(function() {
+          // Crear y cargar el script de GA4
+          const gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB';
+          document.head.appendChild(gaScript);
+          
+          // Configurar GA4 con opciones de privacidad
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-0Q34SCCETB', {
+            // Configuración de privacidad mejorada
+            anonymize_ip: true,
+            cookie_flags: 'SameSite=Lax;Secure',
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
+        }, 1000); // Delay de 1 segundo
       });
     </script>
 
@@ -261,28 +271,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Cargar fuentes críticas de forma asíncrona para no bloquear renderizado -->
+    <!-- Preload de fuentes críticas más importantes -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
+    
+    <!-- Fuentes adicionales cargadas después del evento load -->
+    <script is:inline>
+      window.addEventListener('load', function() {
+        const additionalFonts = document.createElement('link');
+        additionalFonts.rel = 'stylesheet';
+        additionalFonts.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap';
+        document.head.appendChild(additionalFonts);
+      });
+    </script>
+    
     <noscript>
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
-    </noscript>
-    
-    <!-- Fuentes adicionales cargadas de forma completamente asíncrona -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
@@ -315,20 +326,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </style>
     
-    <!-- Carga asíncrona completa de Font Awesome -->
-    <script is:inline>
-      // Cargar Font Awesome después del load para no bloquear el renderizado inicial
-      window.addEventListener('load', function() {
-        const fontAwesomeLink = document.createElement('link');
-        fontAwesomeLink.rel = 'stylesheet';
-        fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-        fontAwesomeLink.onload = function() {
-          // Marcar que las fuentes están cargadas
-          document.documentElement.classList.add('fonts-loaded');
-        };
-        document.head.appendChild(fontAwesomeLink);
-      });
-    </script>
+    <!-- Font Awesome - Carga optimizada con preload -->
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet';document.documentElement.classList.add('fonts-loaded')"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      />
+    </noscript>
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
