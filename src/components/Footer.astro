@@ -11,7 +11,17 @@
       <a href="#contact" class="footer-link">Contacto</a>
     </div>
     <p class="footer-text">
-      © 2025 Álvaro Lostal. Hecho con ❤️ en Santander, España.
+      © <span id="current-year">2025</span> Álvaro Lostal. Hecho con ❤️ en Santander, España.
     </p>
   </div>
 </footer>
+
+<script>
+  // Actualizar el año automáticamente
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear().toString();
+    }
+  });
+</script>

@@ -20,16 +20,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- SEO Meta Tags -->
     <meta name="author" content="Álvaro Lostal" />
-    <meta
-      name="keywords"
-      content="Álvaro Lostal, Desarrollador Web, Ingeniero Informático, Desarrollo Web, Frameworks modernos, Tecnologías web actuales, UX/UI Design, Portfolio, Santander, España, Diseño Web Responsivo, Optimización Web, SEO, Accesibilidad Web"
-    />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="es" />
     <meta name="geo.region" content="ES-CB" />
     <meta name="geo.placename" content="Santander, Cantabria, España" />
-    <meta name="geo.position" content="43.4623;-3.8099" />
-    <meta name="ICBM" content="43.4623, -3.8099" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -113,7 +107,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "inLanguage": "es-ES",
             "copyrightYear": "2025",
             "datePublished": "2024-01-01",
-            "dateModified": "2025-10-19"
+            "dateModified": "2025-10-20"
           },
           {
             "@type": "ProfessionalService",
@@ -157,17 +151,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB"
-    ></script>
+    <!-- Google tag (gtag.js) - Carga optimizada -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-0Q34SCCETB');
+      // Cargar GA4 de forma asíncrona después del load
+      window.addEventListener('load', function() {
+        // Crear y cargar el script de GA4
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB';
+        document.head.appendChild(gaScript);
+        
+        // Configurar GA4 inmediatamente (no necesita esperar a que cargue el script)
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-0Q34SCCETB');
+      });
     </script>
 
     <!-- Favicon - Configuración completa con transparencia -->
@@ -237,19 +239,41 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       })();
     </script>
 
-    <!-- Fonts -->
+    <!-- Fonts - Carga optimizada -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fuentes críticas para evitar FOUT -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Fuentes adicionales cargadas de forma asíncrona -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome - Carga asíncrona -->
     <link
-      rel="stylesheet"
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      />
+    </noscript>
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
