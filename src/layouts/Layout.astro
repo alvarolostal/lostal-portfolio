@@ -1,5 +1,4 @@
 ---
-// src/layouts/Layout.astro
 interface Props {
   title: string;
   description: string;
@@ -16,35 +15,32 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Mejorar la seguridad y rendimiento -->
+  <!-- Seguridad y rendimiento -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- DNS Prefetch y Preconnect para recursos externos -->
+  <!-- DNS Prefetch para recursos externos -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
-    <!-- Preconnect para cdnjs.cloudflare.com (Font Awesome) -->
-      <!-- <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin /> -->
 
-    <!-- Resource hints para Google Analytics -->
+  <!-- Resource hints Google Analytics -->
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
-      <!-- <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin /> -->
 
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- SEO Meta Tags -->
+  <!-- SEO Meta Tags -->
     <meta name="author" content="Álvaro Lostal" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="es" />
     <meta name="geo.region" content="ES-CB" />
     <meta name="geo.placename" content="Santander, Cantabria, España" />
 
-    <!-- Open Graph -->
+  <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -53,7 +49,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
 
-    <!-- Twitter Cards -->
+  <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -62,10 +58,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       content="https://lostal.dev/assets/alvaro.webp"
     />
 
-    <!-- Canonical URL -->
+  <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Schema.org JSON-LD -->
+  <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -165,9 +161,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </script>
 
-    <!-- Google tag (gtag.js) - Carga optimizada con timeout -->
+  <!-- Google tag (gtag.js) optimizada -->
     <script is:inline>
-      // Cargar GA4 de forma asíncrona con delay para no competir con recursos críticos
+  // Cargar GA4 de forma asíncrona con delay
       window.addEventListener('load', function () {
         // Esperar un poco para que se carguen los recursos críticos primero
         setTimeout(function () {
@@ -186,21 +182,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           window.gtag = gtag;
           gtag('js', new Date());
           gtag('config', 'G-0Q34SCCETB', {
-            // Configuración de privacidad mejorada
+            // Privacidad mejorada
             anonymize_ip: true,
             cookie_flags: 'SameSite=Lax;Secure',
             allow_google_signals: false,
             allow_ad_personalization_signals: false,
           });
-        }, 1000); // Delay de 1 segundo
+  }, 1000); // Delay de 1 segundo
       });
     </script>
 
-    <!-- Favicon - Configuración completa con transparencia -->
-    <!-- SVG para navegadores modernos (vector, transparente, perfecto) -->
+  <!-- Favicons -->
     <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
 
-    <!-- ICO para Google Search y compatibilidad legacy -->
     <link
       rel="icon"
       href="/assets/favicons/favicon.ico"
@@ -208,7 +202,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       type="image/x-icon"
     />
 
-    <!-- PNG fallbacks transparentes en orden de preferencia -->
     <link
       rel="icon"
       href="/assets/favicons/favicon-32x32.png"
@@ -222,19 +215,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       type="image/png"
     />
 
-    <!-- Apple Touch Icon para iOS -->
     <link
       rel="apple-touch-icon"
       href="/assets/favicons/apple-touch-icon.png"
       sizes="180x180"
     />
 
-    <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Font Awesome - Carga completamente asíncrona y optimizada -->
+  <!-- Font Awesome optimizada -->
     <style>
-      /* Font Awesome siempre visible, sin fallback ni ocultar */
+  /* Font Awesome visible, sin fallback ni ocultar */
       .fa,
       .fas,
       .far,
@@ -264,7 +255,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </style>
 
-    <!-- Font Awesome - Carga optimizada con preload -->
+  <!-- Font Awesome preload -->
     <link
       rel="preload"
       href="/assets/fontawesome/all.min.css"
@@ -276,7 +267,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </noscript>
   </head>
   <body>
-    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+  <a href="#main" class="skip-link">Saltar al contenido principal</a>
     <slot />
   </body>
 </html>
