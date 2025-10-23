@@ -65,15 +65,16 @@ El proyecto está estructurado para facilitar la personalización:
 ```
 📁 lostal-portfolio/
 ├── 📁 public/           # Archivos estáticos
-│   ├── 🤖 robots.txt
-│   └── 🖼️ assets/
+│   ├── robots.txt
+│   ├── favicon.ico
+│   └── assets/
 ├── 📁 src/
-│   ├── 🧩 components/   # Componentes Astro reutilizables
-│   ├── 🎨 styles/       # Hojas de estilo CSS
-│   ├── 📜 scripts/      # JavaScript interactivo
-│   ├── 🏗️ layouts/      # Layouts base
-│   └── 📄 pages/        # Páginas del sitio
-└── ⚙️ astro.config.mjs  # Configuración de Astro
+│   ├── components/   # Componentes Astro reutilizables
+│   ├── styles/       # Hojas de estilo CSS
+│   ├── scripts/      # JavaScript interactivo
+│   ├── layouts/      # Layouts base
+│   └── pages/        # Páginas del sitio
+└── astro.config.mjs  # Configuración de Astro
 ```
 
 ## 🤝 Contribuciones
