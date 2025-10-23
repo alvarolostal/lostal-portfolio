@@ -1,4 +1,4 @@
-# 🚀 Portfolio de Álvaro Lostal
+# 🗃️ Portfolio de Álvaro Lostal
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 **Portfolio personal moderno y minimalista** desarrollado con Astro  
-_Mostrando mi experiencia como Ingeniero Informático especializado en Desarrollo Web Frontend_
+_Mostrando mi experiencia como Ingeniero Informático especializado en Desarrollo Web_
 
 [🌐 Ver Portfolio](https://lostal.dev)
 
@@ -15,52 +15,33 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 
 ---
 
-## ✨ Características
+## Características
 
-🎨 **Diseño Elegante** → Interfaz minimalista y moderna  
-⚡ **Alto Rendimiento** → Optimizado con Astro para máxima velocidad  
-📱 **Totalmente Responsivo** → Perfecto en todos los dispositivos  
-🌓 **Tema Inteligente** → Adaptación automática al tema del sistema + toggle manual  
-🎭 **Animaciones Fluidas** → Transiciones suaves y efectos visuales  
-🔍 **SEO Optimizado** → Metadatos, sitemap y estructura semántica  
-♿ **Accesible** → Cumple estándares de accesibilidad web
+🖥️ **Diseño elegante**: Interfaz minimalista y moderna  
+**Portfolio personal moderno y minimalista** desarrollado con Astro  
+📱 **Responsivo**: Adaptado a todos los dispositivos  
+🌓 **Tema inteligente**: Adaptación automática al tema del sistema y toggle manual  
+💡 **Animaciones fluidas**: Transiciones suaves y efectos visuales  
+🌐 **SEO optimizado**: Metadatos, sitemap y estructura semántica  
+♿ **Accesible**: Cumple estándares de accesibilidad web
 
 ## 🛠️ Stack Tecnológico
 
-### Core
+| Tecnología / Herramienta | Badge | Descripción |
+|-------------------------|-------|-------------|
+| Astro                   | ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white) | Framework web moderno, rápido y orientado a componentes |
+| TypeScript              | ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) | Tipado estático para JavaScript |
+| CSS3                    | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | Estilos modernos con CSS Grid y Flexbox |
 
-- **[Astro](https://astro.build/)** - Framework web de nueva generación
-- **TypeScript** - Tipado estático para JavaScript
-- **CSS3** - Estilos modernos con CSS Grid y Flexbox
+## Secciones
 
-### Herramientas de Desarrollo
+- **🖼️ Hero**: Presentación principal con imagen interactiva
+- **📁 Proyectos**: Showcase de trabajos destacados
+- **🎓 Journey**: Trayectoria profesional y educativa
+- **🛠️ Skills**: Tecnologías y herramientas dominadas
+- **✉️ Contacto**: Formulario y canales de comunicación
 
-- **ESLint** - Análisis estático de código
-- **Prettier** - Formateo automático de código
-- **AOS Library** - Animaciones on-scroll
-
-### Integraciones
-
-- **Sitemap** - Generación automática de sitemap.xml
-- **Intersection Observer** - Detección de elementos en viewport
-
-## 🎯 Secciones
-
-- **🏠 Hero** - Presentación principal con imagen interactiva
-- **📂 Proyectos** - Showcase de trabajos destacados
-- **🛤️ Journey** - Trayectoria profesional y educativa
-- **⚡ Skills** - Tecnologías y herramientas dominadas
-- **📬 Contacto** - Formulario y canales de comunicación
-
-## 🎨 Personalización
-
-El proyecto está estructurado para facilitar la personalización:
-
-- **Estilos**: Modifica las variables CSS en `src/styles/variables.css`
-- **Contenido**: Actualiza los componentes en `src/components/`
-- **Configuración**: Ajusta `astro.config.mjs` según tus necesidades
-
-## 🧱 Estructura del Proyecto
+## Estructura
 
 ```
 📁 lostal-portfolio/
@@ -77,26 +58,16 @@ El proyecto está estructurado para facilitar la personalización:
 └── astro.config.mjs  # Configuración de Astro
 ```
 
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Si tienes ideas para mejorar el proyecto:
-
-1. Haz fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📞 Contacto
+---
 
 <div align="center">
 
 **Álvaro Lostal**  
 _Ingeniero Informático | Frontend Developer_
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-lostal.dev-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-lostal.dev-d5bd37?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-alvarolostal-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alvarolostal)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Álvaro%20Lostal-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/alvarolostal)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Álvaro%20Lostal-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/alvarolostal)
 
 </div>
 
