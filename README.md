@@ -66,7 +66,6 @@ El proyecto está estructurado para facilitar la personalización:
 📁 lostal-portfolio/
 ├── 📁 public/           # Archivos estáticos
 │   ├── 🤖 robots.txt
-│   ├── 🌐 site.webmanifest
 │   └── 🖼️ assets/
 ├── 📁 src/
 │   ├── 🧩 components/   # Componentes Astro reutilizables
