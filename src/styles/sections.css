@@ -215,10 +215,11 @@ section {
 
 .timeline-logo img,
 .timeline-logo svg {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  /* Fill the wrapper and keep aspect ratio; object-fit ensures the logo scales up to occupy space
+     without distortion. This helps SVGs whose artwork doesn't fill their internal viewBox. */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 
