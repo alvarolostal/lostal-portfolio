@@ -1,10 +1,8 @@
 ---
-interface Props {
-  title: string;
-  description: string;
-}
-
-const { title, description } = Astro.props;
+const title = (Astro.props && Astro.props.title) || 'Álvaro Lostal - Portfolio';
+const description =
+  (Astro.props && Astro.props.description) ||
+  'Portfolio profesional de Álvaro Lostal, desarrollador frontend e ingeniero informático.';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -26,18 +24,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
-    <!-- Resource hints Google Analytics -->
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
-
     <title>{title}</title>
     <meta name="description" content={description} />
-
-    <!-- SEO Meta Tags -->
-    <meta name="author" content="Álvaro Lostal" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="es" />
-    <meta name="geo.region" content="ES-CB" />
-    <meta name="geo.placename" content="Santander, Cantabria, España" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -51,205 +39,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content="https://lostal.dev/assets/projects/azulejos.jpg"
-    />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://lostal.dev/#person",
-            "name": "Álvaro Lostal",
-            "givenName": "Álvaro",
-            "familyName": "Lostal",
-            "jobTitle": ["Desarrollador Frontend", "Ingeniero Informático"],
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "Cantabria",
-              "addressCountry": "ES"
-            },
-            "email": "alvarolostal04@gmail.com",
-            "sameAs": [
-              "https://github.com/alvarolostal",
-              "https://linkedin.com/in/alvarolostal"
-            ],
-            "knowsAbout": [
-              "Desarrollo Web Frontend",
-              "Frameworks modernos",
-              "Tecnologías web actuales",
-              "Diseño Web Responsivo",
-              "UX/UI Design",
-              "Optimización Web",
-              "SEO",
-              "Accesibilidad Web"
-            ],
-            "alumniOf": {
-              "@type": "EducationalOrganization",
-              "name": "Universidad Europea del Atlántico",
-              "description": "Grado en Ingeniería Informática"
-            },
-            "hasCredential": {
-              "@type": "EducationalOccupationalCredential",
-              "name": "B2 First (FCE)",
-              "credentialCategory": "Cambridge Assessment English",
-              "dateCreated": "2021-01-01"
-            }
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://lostal.dev/#website",
-            "url": "https://lostal.dev",
-            "name": "Álvaro Lostal - Desarrollador Frontend & Ingeniero Informático",
-            "description": "Portfolio profesional de Álvaro Lostal, Desarrollador Web e Ingeniero Informático. Diseño de interfaces modernas con frameworks y tecnologías actuales",
-            "publisher": {
-              "@id": "https://lostal.dev/#person"
-            },
-            "inLanguage": "es-ES",
-            "copyrightYear": 2025,
-            "datePublished": "2024-01-01",
-            "dateModified": "2025-10-20"
-          },
-          {
-            "@type": "ProfessionalService",
-            "@id": "https://lostal.dev/#service",
-            "name": "Álvaro Lostal - Desarrollo Web Frontend",
-            "description": "Servicios de desarrollo web frontend, diseño de interfaces y consultoría técnica",
-            "provider": {
-              "@id": "https://lostal.dev/#person"
-            },
-            "areaServed": {
-              "@type": "Country",
-              "name": "España"
-            },
-            "serviceType": [
-              "Desarrollo Web Frontend",
-              "Diseño UX/UI",
-              "Consultoría Técnica",
-              "Optimización Web"
-            ]
-          },
-          {
-            "@type": "CreativeWork",
-            "@id": "https://lostal.dev/#project-vivenza",
-            "name": "Rediseño Vivenza Expo",
-            "description": "Rediseño completo de la landing page de Vivenza Expo, aplicando principios de diseño moderno",
-            "creator": {
-              "@id": "https://lostal.dev/#person"
-            },
-            "dateCreated": "2024-01-01",
-            "genre": "Desarrollo Web",
-            "keywords": [
-              "Rediseño Web",
-              "Frameworks modernos",
-              "Tecnologías web actuales",
-              "Diseño Responsivo"
-            ],
-            "url": "https://vivenza.netlify.app/",
-            "isBasedOn": "https://vivenzaexpo.es/"
-          }
-        ]
-      }
-    </script>
-
-    <!-- Google tag (gtag.js) optimizada -->
-    <script is:inline>
-      // Cargar GA4 de forma asíncrona con delay
-      window.addEventListener('load', function () {
-        // Esperar un poco para que se carguen los recursos críticos primero
-        setTimeout(function () {
-          // Crear y cargar el script de GA4
-          const gaScript = document.createElement('script');
-          gaScript.async = true;
-          gaScript.src =
-            'https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB';
-          document.head.appendChild(gaScript);
-
-          // Configurar GA4 con opciones de privacidad
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-0Q34SCCETB', {
-            // Privacidad mejorada
-            anonymize_ip: true,
-            cookie_flags: 'SameSite=Lax;Secure',
-            allow_google_signals: false,
-            allow_ad_personalization_signals: false,
-          });
-        }, 1000); // Delay de 1 segundo
-      });
-    </script>
-
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
-
-    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
-
-    <link
-      rel="icon"
-      href="/assets/favicons/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      href="/assets/favicons/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png"
-    />
-
-    <link
-      rel="apple-touch-icon"
-      href="/assets/favicons/apple-touch-icon.png"
-      sizes="180x180"
-    />
-
-    <!-- Font Awesome optimizada -->
-    <style>
-      /* Font Awesome visible, sin fallback ni ocultar */
-      .fa,
-      .fas,
-      .far,
-      .fab {
-        font-family:
-          'Font Awesome 7 Free',
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe UI',
-          Arial,
-          sans-serif;
-      }
-      .fab {
-        font-family:
-          'Font Awesome 7 Brands',
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe UI',
-          Arial,
-          sans-serif;
-      }
-      .far {
-        font-weight: 400;
-      }
-      .fas {
-        font-weight: 900;
-      }
-    </style>
-
     <!-- Font Awesome preload -->
     <link
       rel="preload"
@@ -260,28 +49,38 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <noscript>
       <link rel="stylesheet" href="/assets/fontawesome/all.min.css" />
     </noscript>
+
+    <!-- Inline theme setter (very small) -->
+    <script>
+      try {
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute(
+          'data-theme',
+          prefersDark ? 'dark' : 'light'
+        );
+      } catch (e) {
+        // no-op
+      }
+    </script>
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
     <slot />
+
+    <!-- Deferred loader moved to external file for reliability and easier debugging -->
+    <script defer src="/scripts/deferred-loader.js"></script>
+
+    <style is:global>
+      @import '../styles/variables.css';
+      @import '../styles/global.css';
+      @import '../styles/font-optimization.css';
+      @import '../styles/navigation.css';
+      @import '../styles/hero.css';
+      @import '../styles/sections.css';
+      @import '../styles/components.css';
+      @import '../styles/floating-contact.css';
+    </style>
   </body>
 </html>
-
-<style is:global>
-  @import '../styles/variables.css';
-  @import '../styles/global.css';
-  @import '../styles/font-optimization.css';
-  @import '../styles/navigation.css';
-  @import '../styles/hero.css';
-  @import '../styles/sections.css';
-  @import '../styles/components.css';
-  @import '../styles/floating-contact.css';
-</style>
-
-<script>
-  import '../scripts/theme.js';
-  import '../scripts/navigation.js';
-  import '../scripts/animations.js';
-  import '../scripts/auto-scroll.js';
-  import '../scripts/floating-contact.js';
-</script>
