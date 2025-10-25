@@ -64,12 +64,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         // no-op
       }
     </script>
-    <!-- Favicons -->
+    <!-- Favicons: configuración equilibrada y común en sitios de portfolio -->
+    <!-- Raíz .ico (soporte legacy y fallback) -->
     <link rel="icon" href="/favicon.ico" />
+    <!-- SVG fuente (alta calidad, navegadores que lo soportan) -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg" />
+    <!-- PNGs para navegadores/servicios que prefieren bitmap, tamaños comunes -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
+    <!-- iOS touch icon -->
     <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <!-- Manifest (opcional pero útil para PWA / Android / coherencia) -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
