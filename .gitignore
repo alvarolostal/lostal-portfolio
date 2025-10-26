@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# don't track generated public scripts (built from src/scripts via esbuild)
+public/scripts/
