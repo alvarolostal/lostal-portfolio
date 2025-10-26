@@ -90,15 +90,8 @@ function applyTheme(theme, source = 'system') {
   themeChangeInProgress = true;
   const device = getDeviceInfo();
 
-  // Log para debugging en desarrollo
-  if (
-    window.location.hostname === 'localhost' ||
-    window.location.hostname === '127.0.0.1'
-  ) {
-    console.log(
-      `🎨 Aplicando tema: ${theme} (${source}) - Dispositivo: ${device.operatingSystem} ${device.deviceType}`
-    );
-  }
+  // Desarrollo: no imprimir logs en la consola del usuario
+  // (la información de depuración se mantiene accesible vía window.themeDebug)
 
   // Optimización para móviles: aplicar tema sin transiciones si es necesario
   if (device.isMobile && source === 'system') {

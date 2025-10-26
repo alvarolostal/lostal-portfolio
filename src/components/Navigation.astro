@@ -11,6 +11,28 @@
       </ul>
 
       <div class="nav-actions">
+        <!-- Language menu: emoji/flag-only button that shows a mini popover on hover/click -->
+        <div class="lang-menu">
+          <button class="lang-btn" id="langBtn" data-lang="es" aria-haspopup="true" aria-expanded="false" aria-controls="langPopover" aria-label="Idioma: Español" title="Español">
+            <i class="fas fa-language" id="langIcon" aria-hidden="true"></i>
+          </button>
+
+          <ul class="lang-popover" id="langPopover" role="menu" aria-labelledby="langBtn">
+            <li class="lang-item" role="menuitem">
+              <button type="button" data-lang="es">
+                <img src="/assets/flags/es.svg" alt="" />
+                <span class="lang-label">Español</span>
+              </button>
+            </li>
+            <li class="lang-item" role="menuitem">
+              <button type="button" data-lang="en">
+                <img src="/assets/flags/us.svg" alt="" />
+                <span class="lang-label">English</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
         <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
           <i class="fas fa-lightbulb" id="themeIcon"></i>
         </button>

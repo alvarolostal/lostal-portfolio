@@ -123,7 +123,6 @@ class FloatingContactWidget {
     this.isAnimating = true;
     this.isVisible = true;
 
-    console.log('Mostrando widget con deslizamiento');
 
     // Remover clases de animación previa
     this.widget.classList.remove('slide-down');
@@ -147,7 +146,6 @@ class FloatingContactWidget {
     this.isAnimating = true;
     this.isVisible = false;
 
-    console.log('Ocultando widget con deslizamiento');
 
     // Remover clases de animación previa
     this.widget.classList.remove('slide-up');

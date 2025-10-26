@@ -206,9 +206,6 @@
       if (wasMobile !== this.isMobile) {
         this.hideCard(true); // Force hide without animation
         this.bindEvents(); // Re-bind events for new device type
-        console.log(
-          `📱 Cambio de dispositivo: ${this.isMobile ? 'móvil' : 'desktop'}`
-        );
       }
 
       if (this.isCardOpen) {
@@ -313,7 +310,6 @@
         requestAnimationFrame(() => {
           setTimeout(() => {
             this.calculateCardPosition();
-            console.log('📱 Posición recalculada para móvil');
           }, 50);
         });
       }

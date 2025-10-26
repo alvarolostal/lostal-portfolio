@@ -1,9 +1,6 @@
-// src/scripts/navigation.js
-// Navbar scroll effect
 const navbar = document.getElementById('navbar');
 const scrollDown = document.getElementById('scrollDown');
-
-// Detectar si es un dispositivo táctil
+// detector táctil
 function isTouchDevice() {
   return (
     'ontouchstart' in window ||
@@ -15,37 +12,22 @@ function isTouchDevice() {
 
 window.addEventListener('scroll', () => {
   const scrollPosition = window.pageYOffset;
-
-  // Navbar effect
   if (navbar) {
     if (isTouchDevice()) {
-      // En dispositivos táctiles: mostrar navbar solo al llegar a la sección "about"
       const aboutSection = document.getElementById('about');
       if (aboutSection) {
-        const aboutPosition = aboutSection.offsetTop - 100; // Offset para que aparezca un poco antes
-        if (scrollPosition >= aboutPosition) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+        const aboutPosition = aboutSection.offsetTop - 100;
+        if (scrollPosition >= aboutPosition) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
       }
     } else {
-      // En ordenador: comportamiento actual (al hacer scroll mínimo)
-      if (scrollPosition > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      if (scrollPosition > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
     }
   }
-
-  // Scroll down arrow visibility
   if (scrollDown) {
-    if (scrollPosition > 100) {
-      scrollDown.classList.add('hidden');
-    } else {
-      scrollDown.classList.remove('hidden');
-    }
+    if (scrollPosition > 100) scrollDown.classList.add('hidden');
+    else scrollDown.classList.remove('hidden');
   }
 });
 
@@ -58,30 +40,101 @@ if (mobileMenuBtn && mobileMenu) {
   mobileMenuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     mobileMenuBtn.classList.toggle('active');
-
-    // Add a subtle vibration on mobile devices
-    if (navigator.vibrate) {
-      navigator.vibrate(50);
-    }
+    if (navigator.vibrate) navigator.vibrate(50);
   });
 }
 
 mobileLinks.forEach(link => {
   link.addEventListener('click', () => {
-    // Notificar al auto-scroll que se está realizando navegación manual
-    if (window.setManualNavigation) {
-      window.setManualNavigation(true);
-    }
-
-    if (mobileMenu) {
-      mobileMenu.classList.remove('active');
-    }
-
-    if (mobileMenuBtn) {
-      mobileMenuBtn.classList.remove('active');
-    }
+    if (window.setManualNavigation) window.setManualNavigation(true);
+    if (mobileMenu) mobileMenu.classList.remove('active');
+    if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
   });
 });
+
+const langBtn = document.getElementById('langBtn');
+const langPopover = document.getElementById('langPopover');
+const langMenu = document.querySelector('.lang-menu');
+const langIcon = document.getElementById('langIcon');
+if (langMenu) langMenu.dataset.ready = "0";
+if (langBtn && langPopover && langMenu) {
+  const closeMenu = () => { langBtn.setAttribute('aria-expanded', 'false'); langMenu.classList.remove('open'); };
+  const openMenu = () => { langBtn.setAttribute('aria-expanded', 'true'); langMenu.classList.add('open'); };
+
+  const setLanguage = (lang) => {
+    langBtn.setAttribute('data-lang', lang);
+    if (lang === 'es') { langBtn.setAttribute('aria-label', 'Idioma: Español'); langBtn.title = 'Español'; }
+    else { langBtn.setAttribute('aria-label', 'Language: English'); langBtn.title = 'English'; }
+    try { localStorage.setItem('siteLang', lang); } catch { }
+    window.dispatchEvent(new CustomEvent('localeChange', { detail: { lang } }));
+  };
+
+  const selectNextLanguage = () => {
+    const current = langBtn.getAttribute('data-lang') || 'es';
+    const next = current === 'es' ? 'en' : 'es';
+    setLanguage(next);
+    try { if (typeof langBtn.focus === 'function') langBtn.focus(); } catch(e){ }
+    closeMenu();
+    if (navigator.vibrate) navigator.vibrate(20);
+  };
+
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (langIcon) {
+      langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked');
+      clearTimeout(langIcon._langAnimTimeout);
+      langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 320);
+    }
+    selectNextLanguage();
+  });
+
+  if (langIcon) {
+    langIcon.addEventListener('animationend', (e) => {
+      if (e.animationName && (e.animationName.indexOf('lang-click-bounce-icon') >= 0 || e.animationName === 'lang-click-bounce-icon')) {
+        langIcon.classList.remove('clicked'); clearTimeout(langIcon._langAnimTimeout);
+      }
+    });
+  }
+  langBtn.addEventListener('animationend', (e) => { if (e.animationName && (e.animationName.indexOf('lang-click-bounce-icon') >= 0 || e.animationName === 'lang-click-bounce-icon')) langBtn.classList.remove('clicked'); });
+
+  langBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); const first = langPopover.querySelector('button[data-lang]'); first && first.focus(); openMenu(); }
+    else if (e.key === 'Escape') { closeMenu(); langBtn.focus(); }
+    else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      if (langIcon) { langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked'); clearTimeout(langIcon._langAnimTimeout); langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 320); }
+      else { langBtn.classList.remove('clicked'); void langBtn.offsetWidth; langBtn.classList.add('clicked'); }
+      selectNextLanguage();
+    }
+  });
+
+  document.addEventListener('click', (e) => { if (!langMenu.contains(e.target)) closeMenu(); });
+
+  langPopover.querySelectorAll('button[data-lang]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); const selected = btn.getAttribute('data-lang'); if (langIcon) { langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked'); clearTimeout(langIcon._langAnimTimeout); langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 320); } else { langBtn.classList.remove('clicked'); void langBtn.offsetWidth; langBtn.classList.add('clicked'); } setLanguage(selected); try { if (typeof langBtn.focus === 'function') langBtn.focus(); } catch(e){ } closeMenu(); });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); const selected = btn.getAttribute('data-lang'); setLanguage(selected); closeMenu(); return; }
+      const items = Array.from(langPopover.querySelectorAll('button[data-lang]'));
+      const idx = items.indexOf(btn);
+      if (e.key === 'ArrowDown') { e.preventDefault(); const next = items[(idx + 1) % items.length]; next && next.focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); const prev = items[(idx - 1 + items.length) % items.length]; prev && prev.focus(); }
+      else if (e.key === 'Home') { e.preventDefault(); items[0] && items[0].focus(); }
+      else if (e.key === 'End') { e.preventDefault(); items[items.length - 1] && items[items.length - 1].focus(); }
+      else if (e.key === 'Escape') { e.preventDefault(); closeMenu(); langBtn.focus(); }
+    });
+  });
+
+  (function initLang() {
+    let initial = 'es';
+    try { const stored = localStorage.getItem('siteLang'); if (stored) initial = stored; else if (langBtn.getAttribute('data-lang')) initial = langBtn.getAttribute('data-lang'); } catch { if (langBtn.getAttribute('data-lang')) initial = langBtn.getAttribute('data-lang'); }
+    setLanguage(initial);
+    try { closeMenu(); } catch (e) { }
+    try { if (typeof langBtn.blur === 'function') langBtn.blur(); } catch (e) { }
+    try { langIcon && langIcon.classList.remove('clicked'); } catch (e) { }
+    try { langBtn && langBtn.classList.remove('clicked'); } catch (e) { }
+    try { setTimeout(() => { langMenu.dataset.ready = "1"; }, 50); } catch (e) { }
+  })();
+}
 
 // Smooth scroll mejorado
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -92,7 +145,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     // Tratamiento especial para el logo AL
     if (href === '#top') {
-      console.log('🏠 Click en logo AL detectado');
 
       // Notificar al auto-scroll
       if (window.setManualNavigation) {

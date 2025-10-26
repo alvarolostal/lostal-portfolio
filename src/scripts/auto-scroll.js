@@ -14,11 +14,9 @@ class AutoScrollManager {
     this.isTouchDevice = this.detectTouchDevice();
 
     if (this.isTouchDevice) {
-      console.log('🚫 Auto-scroll deshabilitado en dispositivo táctil');
+      // Auto-scroll disabled on touch devices
       return;
     }
-
-    console.log('✅ Auto-scroll habilitado para dispositivo de escritorio');
     this.init();
   }
 
@@ -45,11 +43,10 @@ class AutoScrollManager {
 
   delayedInit() {
     // Inicialización más rápida para mejor responsividad
-    setTimeout(() => {
-      this.isInitialized = true;
-      this.bindEvents();
-      console.log('✅ Auto-scroll inicializado y listo');
-    }, 300); // Reducido para ser más responsivo
+      setTimeout(() => {
+        this.isInitialized = true;
+        this.bindEvents();
+      }, 300); // Reducido para ser más responsivo
   }
 
   bindEvents() {
@@ -75,19 +72,16 @@ class AutoScrollManager {
     document.addEventListener('keydown', e => this.handleKeyNavigation(e));
     document.addEventListener('click', e => this.handleLinkClick(e));
 
-    console.log('🎯 Event listeners configurados con máxima prioridad');
+    // Event listeners configured
   }
 
   autoScrollToProjects() {
     const projectsSection = document.getElementById('projects');
     if (!projectsSection || this.hasTriggeredAutoScroll) {
-      console.log(
-        '❌ Auto-scroll bloqueado: sección no encontrada o ya ejecutado'
-      );
+      // Auto-scroll blocked: section not found or already executed
       return;
     }
 
-    console.log('🚀 Iniciando auto-scroll hacia Projects');
 
     this.isAutoScrolling = true;
     this.hasTriggeredAutoScroll = true;
@@ -107,18 +101,16 @@ class AutoScrollManager {
     });
 
     // Resetear flags después de completar el scroll
-    this.scrollTimeout = setTimeout(() => {
-      this.isAutoScrolling = false;
-      console.log('✅ Auto-scroll completado');
+      this.scrollTimeout = setTimeout(() => {
+        this.isAutoScrolling = false;
 
-      // Permitir reactivación si se vuelve al top
-      setTimeout(() => {
-        if (window.scrollY < 100) {
-          this.hasTriggeredAutoScroll = false;
-          console.log('🔄 Auto-scroll habilitado nuevamente');
-        }
-      }, 500);
-    }, 1200);
+        // Permitir reactivación si se vuelve al top
+        setTimeout(() => {
+          if (window.scrollY < 100) {
+            this.hasTriggeredAutoScroll = false;
+          }
+        }, 500);
+      }, 1200);
   }
 
   clearTimeouts() {
@@ -139,14 +131,12 @@ class AutoScrollManager {
 
     // Resetear el flag si volvemos muy cerca del top
     if (currentScrollY < 50 && this.hasTriggeredAutoScroll) {
-      this.hasTriggeredAutoScroll = false;
-      this.consecutiveScrollDown = 0;
-      console.log('🔄 Reset: volviendo al top');
+  this.hasTriggeredAutoScroll = false;
+  this.consecutiveScrollDown = 0;
 
       // Resetear también la navegación manual cuando llegamos al top
       if (this.isManualNavigation) {
-        this.isManualNavigation = false;
-        console.log('🔄 Reset navegación manual al llegar al top');
+    this.isManualNavigation = false;
       }
     }
 
@@ -166,7 +156,6 @@ class AutoScrollManager {
       // Si está en navegación manual, resetearla si estamos en el top
       if (this.isManualNavigation && currentScrollY < 80) {
         this.isManualNavigation = false;
-        console.log('🔄 Reseteando navegación manual desde el top');
       }
 
       // Si aún está en navegación manual, no hacer auto-scroll
@@ -174,7 +163,7 @@ class AutoScrollManager {
         return;
       }
 
-      console.log('🛑 Wheel interceptado - INMEDIATO auto-scroll');
+  // Wheel intercepted - trigger immediate auto-scroll
 
       // Prevenir COMPLETAMENTE el scroll natural
       e.preventDefault();
@@ -190,7 +179,7 @@ class AutoScrollManager {
   executeImmediateAutoScroll() {
     const projectsSection = document.getElementById('projects');
     if (!projectsSection) {
-      console.log('❌ Sección projects no encontrada');
+      // Section not found
       return;
     }
 
@@ -198,7 +187,7 @@ class AutoScrollManager {
     this.isAutoScrolling = true;
     this.hasTriggeredAutoScroll = true;
 
-    console.log('� EJECUTANDO auto-scroll INMEDIATO');
+  // Ejecutando auto-scroll inmediato
 
     // Limpiar timeouts
     this.clearTimeouts();
@@ -216,7 +205,6 @@ class AutoScrollManager {
     // Reset más rápido para mejor responsividad
     this.scrollTimeout = setTimeout(() => {
       this.isAutoScrolling = false;
-      console.log('✅ Auto-scroll INMEDIATO completado');
     }, 800);
   }
 
@@ -255,11 +243,11 @@ class AutoScrollManager {
     const target = e.target.closest('a[href^="#"]');
     if (target) {
       const href = target.getAttribute('href');
-      console.log(`🔗 Click en enlace interno detectado: ${href}`);
+  // Click en enlace interno detectado
 
       // Si es click en el logo (AL) que va al top
       if (href === '#top') {
-        console.log('🏠 Click en logo AL - preparando para auto-scroll');
+  // Click en logo AL - preparando para auto-scroll
         this.setManualNavigation(true);
 
         // Después de que termine el scroll al top, resetear flags más rápido
@@ -267,7 +255,6 @@ class AutoScrollManager {
           if (window.scrollY < 100) {
             this.hasTriggeredAutoScroll = false;
             this.isManualNavigation = false;
-            console.log('🔄 Reset rápido después de click en logo');
           }
         }, 800);
       } else {
@@ -277,8 +264,7 @@ class AutoScrollManager {
   }
 
   setManualNavigation(isManual) {
-    this.isManualNavigation = isManual;
-    console.log(`Navegación manual: ${isManual ? 'activada' : 'desactivada'}`);
+  this.isManualNavigation = isManual;
 
     if (isManual) {
       this.clearTimeouts();
@@ -288,7 +274,6 @@ class AutoScrollManager {
 
       setTimeout(() => {
         this.isManualNavigation = false;
-        console.log('Navegación manual desactivada automáticamente');
       }, resetTime);
     }
   }
@@ -310,7 +295,6 @@ window.resetAutoScroll = function () {
     autoScrollManager.hasTriggeredAutoScroll = false;
     autoScrollManager.isManualNavigation = false;
     autoScrollManager.consecutiveScrollDown = 0;
-    console.log('🔄 Auto-scroll reseteado manualmente');
   }
 };
 
@@ -318,11 +302,8 @@ window.resetAutoScroll = function () {
 function initAutoScrollManager() {
   // Evitar doble inicialización
   if (autoScrollManager) {
-    console.log('⚠️ Auto-scroll ya inicializado');
     return;
   }
-
-  console.log('🚀 Inicializando Auto-scroll Manager');
   autoScrollManager = new AutoScrollManager();
 }
 
