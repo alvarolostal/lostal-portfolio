@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import vivenzaImg from '../assets/projects/vivenza-preview.webp';
+import vivenzaImg from '../assets/projects/vivenza-preview.png';
 ---
 
 <section id="projects">
@@ -21,11 +21,12 @@ import vivenzaImg from '../assets/projects/vivenza-preview.webp';
             <Image
               src={vivenzaImg}
               alt="Captura de pantalla del rediseño de Vivenza Expo mostrando diseño moderno y responsivo con mejoras en UX/UI"
-              widths={[400, 800]}
-              sizes="(max-width: 600px) 100vw, 400px"
+              widths={[1200, 1600, 2000]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 900px, 1200px"
               class="project-image"
               loading="lazy"
               decoding="async"
+              quality={95}
             />
             <!-- Overlay para desktop (hover) -->
             <div class="project-overlay">
