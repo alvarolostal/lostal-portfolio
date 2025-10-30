@@ -123,7 +123,6 @@ class FloatingContactWidget {
     this.isAnimating = true;
     this.isVisible = true;
 
-
     // Remover clases de animación previa
     this.widget.classList.remove('slide-down');
 
@@ -145,7 +144,6 @@ class FloatingContactWidget {
 
     this.isAnimating = true;
     this.isVisible = false;
-
 
     // Remover clases de animación previa
     this.widget.classList.remove('slide-up');

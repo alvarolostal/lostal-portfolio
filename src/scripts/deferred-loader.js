@@ -6,7 +6,7 @@
     '/scripts/animations.js',
     '/scripts/auto-scroll.js',
     '/scripts/floating-contact.js',
-    '/scripts/theme.js'
+    '/scripts/theme.js',
   ];
 
   function loadScript(src) {

@@ -42,7 +42,7 @@ async function buildAll() {
         sourcemap: false,
         define: { 'process.env.NODE_ENV': '"production"' },
         legalComments: 'none',
-        charset: 'utf8'
+        charset: 'utf8',
       });
       console.log('Built', outfile);
     } catch (err) {
@@ -62,14 +62,21 @@ const watch = args.includes('--watch');
     await buildAll();
     // use chokidar if installed (more reliable across platforms)
     if (chokidar) {
-      const watcher = chokidar.watch(SRC_DIR, { ignoreInitial: true, awaitWriteFinish: { stabilityThreshold: 200, pollInterval: 50 } });
+      const watcher = chokidar.watch(SRC_DIR, {
+        ignoreInitial: true,
+        awaitWriteFinish: { stabilityThreshold: 200, pollInterval: 50 },
+      });
       let timer = null;
       const onChange = (evt, filename) => {
         if (!filename) return;
         if (!filename.endsWith('.js')) return;
         clearTimeout(timer);
         timer = setTimeout(() => {
-          console.log('Change detected in', filename, '- rebuilding scripts...');
+          console.log(
+            'Change detected in',
+            filename,
+            '- rebuilding scripts...'
+          );
           buildAll().catch(err => console.error('Rebuild failed:', err));
         }, 150);
       };
@@ -87,7 +94,11 @@ const watch = args.includes('--watch');
         if (!filename.endsWith('.js')) return;
         clearTimeout(timer);
         timer = setTimeout(() => {
-          console.log('Change detected in', filename, '- rebuilding scripts...');
+          console.log(
+            'Change detected in',
+            filename,
+            '- rebuilding scripts...'
+          );
           buildAll().catch(err => console.error('Rebuild failed:', err));
         }, 150);
       });
@@ -97,4 +108,7 @@ const watch = args.includes('--watch');
   } else {
     await buildAll();
   }
-})().catch(err => { console.error(err); process.exit(1); });
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

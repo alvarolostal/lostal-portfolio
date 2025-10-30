@@ -43,10 +43,10 @@ class AutoScrollManager {
 
   delayedInit() {
     // Inicialización más rápida para mejor responsividad
-      setTimeout(() => {
-        this.isInitialized = true;
-        this.bindEvents();
-      }, 300); // Reducido para ser más responsivo
+    setTimeout(() => {
+      this.isInitialized = true;
+      this.bindEvents();
+    }, 300); // Reducido para ser más responsivo
   }
 
   bindEvents() {
@@ -82,7 +82,6 @@ class AutoScrollManager {
       return;
     }
 
-
     this.isAutoScrolling = true;
     this.hasTriggeredAutoScroll = true;
 
@@ -101,16 +100,16 @@ class AutoScrollManager {
     });
 
     // Resetear flags después de completar el scroll
-      this.scrollTimeout = setTimeout(() => {
-        this.isAutoScrolling = false;
+    this.scrollTimeout = setTimeout(() => {
+      this.isAutoScrolling = false;
 
-        // Permitir reactivación si se vuelve al top
-        setTimeout(() => {
-          if (window.scrollY < 100) {
-            this.hasTriggeredAutoScroll = false;
-          }
-        }, 500);
-      }, 1200);
+      // Permitir reactivación si se vuelve al top
+      setTimeout(() => {
+        if (window.scrollY < 100) {
+          this.hasTriggeredAutoScroll = false;
+        }
+      }, 500);
+    }, 1200);
   }
 
   clearTimeouts() {
@@ -131,12 +130,12 @@ class AutoScrollManager {
 
     // Resetear el flag si volvemos muy cerca del top
     if (currentScrollY < 50 && this.hasTriggeredAutoScroll) {
-  this.hasTriggeredAutoScroll = false;
-  this.consecutiveScrollDown = 0;
+      this.hasTriggeredAutoScroll = false;
+      this.consecutiveScrollDown = 0;
 
       // Resetear también la navegación manual cuando llegamos al top
       if (this.isManualNavigation) {
-    this.isManualNavigation = false;
+        this.isManualNavigation = false;
       }
     }
 
@@ -163,7 +162,7 @@ class AutoScrollManager {
         return;
       }
 
-  // Wheel intercepted - trigger immediate auto-scroll
+      // Wheel intercepted - trigger immediate auto-scroll
 
       // Prevenir COMPLETAMENTE el scroll natural
       e.preventDefault();
@@ -187,7 +186,7 @@ class AutoScrollManager {
     this.isAutoScrolling = true;
     this.hasTriggeredAutoScroll = true;
 
-  // Ejecutando auto-scroll inmediato
+    // Ejecutando auto-scroll inmediato
 
     // Limpiar timeouts
     this.clearTimeouts();
@@ -243,11 +242,11 @@ class AutoScrollManager {
     const target = e.target.closest('a[href^="#"]');
     if (target) {
       const href = target.getAttribute('href');
-  // Click en enlace interno detectado
+      // Click en enlace interno detectado
 
       // Si es click en el logo (AL) que va al top
       if (href === '#top') {
-  // Click en logo AL - preparando para auto-scroll
+        // Click en logo AL - preparando para auto-scroll
         this.setManualNavigation(true);
 
         // Después de que termine el scroll al top, resetear flags más rápido
@@ -264,7 +263,7 @@ class AutoScrollManager {
   }
 
   setManualNavigation(isManual) {
-  this.isManualNavigation = isManual;
+    this.isManualNavigation = isManual;
 
     if (isManual) {
       this.clearTimeouts();

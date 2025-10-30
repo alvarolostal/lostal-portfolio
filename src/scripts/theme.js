@@ -9,50 +9,32 @@ const systemThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 let deviceInfo = null; // Cache de información del dispositivo
 let themeChangeInProgress = false; // Prevenir cambios concurrentes
 
-// Función para detectar el tipo de dispositivo y sistema operativo (solo una vez)
+// Función para detectar características del dispositivo (feature detection)
 function getDeviceInfo() {
-  if (deviceInfo) return deviceInfo; // Usar cache
+  if (deviceInfo) return deviceInfo; // usar cache
 
-  const userAgent = navigator.userAgent.toLowerCase();
-  const platform = navigator.platform.toLowerCase();
+  // Detectar si tiene pantalla táctil moderna
+  const maxTouchPoints = navigator.maxTouchPoints || 0;
+  const hasTouchAPI = maxTouchPoints > 0;
+  const pointerCoarse =
+    window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
-  let deviceType = 'desktop';
-  let operatingSystem = 'unknown';
+  const touchScreen = hasTouchAPI || pointerCoarse || 'ontouchstart' in window;
 
-  // Detectar sistema operativo
-  if (/iphone|ipad|ipod/.test(userAgent)) {
-    operatingSystem = /ipad/.test(userAgent) ? 'ipados' : 'ios';
-    deviceType = /ipad/.test(userAgent) ? 'tablet' : 'mobile';
-  } else if (/android/.test(userAgent)) {
-    operatingSystem = 'android';
-    deviceType = /mobile/.test(userAgent) ? 'mobile' : 'tablet';
-  } else if (/windows phone/.test(userAgent)) {
-    operatingSystem = 'windows_mobile';
-    deviceType = 'mobile';
-  } else if (/windows/.test(userAgent) || /win32|win64/.test(platform)) {
-    operatingSystem = 'windows';
-  } else if (/macintosh|mac os x/.test(userAgent)) {
-    operatingSystem = 'macos';
-  } else if (/linux/.test(userAgent)) {
-    operatingSystem = 'linux';
-  } else if (/cros/.test(userAgent)) {
-    operatingSystem = 'chromeos';
-  }
+  // Determinar tipo de dispositivo de forma simple y robusta
+  const isSmallWidth = window.innerWidth <= 768;
+  const isTabletWidth = window.innerWidth > 768 && window.innerWidth <= 1024;
 
-  // Refinar detección de tipo de dispositivo
-  if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) {
-    deviceType = 'mobile';
-  } else if (
-    /ipad|tablet/.test(userAgent) ||
-    (window.innerWidth <= 1024 && 'ontouchstart' in window)
-  ) {
-    deviceType = 'tablet';
-  }
+  const deviceType = isSmallWidth
+    ? 'mobile'
+    : isTabletWidth
+      ? 'tablet'
+      : 'desktop';
 
   deviceInfo = {
     deviceType,
-    operatingSystem,
-    touchScreen: 'ontouchstart' in window,
+    operatingSystem: navigator.platform || 'unknown',
+    touchScreen,
     orientation: typeof window.orientation !== 'undefined',
     isMobile: deviceType === 'mobile' || deviceType === 'tablet',
   };
@@ -233,45 +215,17 @@ if (themeToggle) {
 
 // Función para mostrar notificaciones de tema
 function showThemeNotification(message) {
-  let notification = document.getElementById('theme-notification');
+  const notification = document.getElementById('theme-notification');
+  if (!notification) return; // si no existe, no hacemos nada
 
-  if (!notification) {
-    notification = document.createElement('div');
-    notification.id = 'theme-notification';
-    notification.style.cssText = `
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      padding: 12px 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-size: 14px;
-      z-index: 10000;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-lg);
-      backdrop-filter: blur(10px);
-      max-width: 300px;
-      font-family: inherit;
-    `;
-    document.body.appendChild(notification);
-  }
-
+  // Actualizar texto y mostrar mediante clase
   notification.textContent = message;
+  notification.classList.add('is-visible');
 
-  // Mostrar notificación
-  setTimeout(() => {
-    notification.style.opacity = '1';
-    notification.style.transform = 'translateX(0)';
-  }, 10);
-
-  // Ocultar después de 3 segundos
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    notification.style.transform = 'translateX(100%)';
+  // Ocultar después de 3s
+  window.clearTimeout(notification._hideTimeout);
+  notification._hideTimeout = setTimeout(() => {
+    notification.classList.remove('is-visible');
   }, 3000);
 }
 
@@ -336,9 +290,13 @@ window.addEventListener('beforeunload', () => {
     systemThemeMediaQuery.removeListener(handleSystemThemeChange);
   }
 
+  // Limpiar cualquier timeout pendiente de la notificación y esconderla.
   const notification = document.getElementById('theme-notification');
   if (notification) {
-    notification.remove();
+    if (notification._hideTimeout) {
+      window.clearTimeout(notification._hideTimeout);
+    }
+    notification.classList.remove('is-visible');
   }
 });
 

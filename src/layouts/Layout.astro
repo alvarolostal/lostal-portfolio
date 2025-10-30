@@ -4,6 +4,9 @@ const description =
   (Astro.props && Astro.props.description) ||
   'Portfolio profesional de Álvaro Lostal, desarrollador frontend e ingeniero informático.';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage =
+  (Astro.props && Astro.props.ogImage) ||
+  'https://lostal.dev/assets/projects/azulejos.jpg';
 ---
 
 <!doctype html>
@@ -32,10 +35,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
-    <meta
-      property="og:image"
-      content="https://lostal.dev/assets/projects/azulejos.jpg"
-    />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
 
@@ -70,8 +70,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- SVG fuente (alta calidad, navegadores que lo soportan) -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg" />
     <!-- PNGs para navegadores/servicios que prefieren bitmap, tamaños comunes -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicons/favicon-16x16.png"
+    />
     <!-- iOS touch icon -->
     <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
     <!-- Manifest (opcional pero útil para PWA / Android / coherencia) -->
@@ -80,6 +90,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Elemento para notificaciones relacionadas con el tema (controlado por theme.js) -->
+    <div id="theme-notification" class="theme-notification" aria-hidden="true">
+    </div>
     <slot />
 
     <!-- Deferred loader moved to external file for reliability and easier debugging -->

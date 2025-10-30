@@ -56,16 +56,29 @@ const langBtn = document.getElementById('langBtn');
 const langPopover = document.getElementById('langPopover');
 const langMenu = document.querySelector('.lang-menu');
 const langIcon = document.getElementById('langIcon');
-if (langMenu) langMenu.dataset.ready = "0";
+if (langMenu) langMenu.dataset.ready = '0';
 if (langBtn && langPopover && langMenu) {
-  const closeMenu = () => { langBtn.setAttribute('aria-expanded', 'false'); langMenu.classList.remove('open'); };
-  const openMenu = () => { langBtn.setAttribute('aria-expanded', 'true'); langMenu.classList.add('open'); };
+  const closeMenu = () => {
+    langBtn.setAttribute('aria-expanded', 'false');
+    langMenu.classList.remove('open');
+  };
+  const openMenu = () => {
+    langBtn.setAttribute('aria-expanded', 'true');
+    langMenu.classList.add('open');
+  };
 
-  const setLanguage = (lang) => {
+  const setLanguage = lang => {
     langBtn.setAttribute('data-lang', lang);
-    if (lang === 'es') { langBtn.setAttribute('aria-label', 'Idioma: Español'); langBtn.title = 'Español'; }
-    else { langBtn.setAttribute('aria-label', 'Language: English'); langBtn.title = 'English'; }
-    try { localStorage.setItem('siteLang', lang); } catch { }
+    if (lang === 'es') {
+      langBtn.setAttribute('aria-label', 'Idioma: Español');
+      langBtn.title = 'Español';
+    } else {
+      langBtn.setAttribute('aria-label', 'Language: English');
+      langBtn.title = 'English';
+    }
+    try {
+      localStorage.setItem('siteLang', lang);
+    } catch {}
     window.dispatchEvent(new CustomEvent('localeChange', { detail: { lang } }));
     // Update visual selection inside the popover (if present)
     try {
@@ -74,24 +87,31 @@ if (langBtn && langPopover && langMenu) {
         if (b.getAttribute('data-lang') === lang) b.classList.add('selected');
         else b.classList.remove('selected');
       });
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const selectNextLanguage = () => {
     const current = langBtn.getAttribute('data-lang') || 'es';
     const next = current === 'es' ? 'en' : 'es';
     setLanguage(next);
-    try { if (typeof langBtn.focus === 'function') langBtn.focus(); } catch(e){ }
+    try {
+      if (typeof langBtn.focus === 'function') langBtn.focus();
+    } catch (e) {}
     closeMenu();
     if (navigator.vibrate) navigator.vibrate(20);
   };
 
-  langBtn.addEventListener('click', (e) => {
+  langBtn.addEventListener('click', e => {
     e.stopPropagation();
     if (langIcon) {
-  langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked');
-  clearTimeout(langIcon._langAnimTimeout);
-  langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 380);
+      langIcon.classList.remove('clicked');
+      void langIcon.offsetWidth;
+      langIcon.classList.add('clicked');
+      clearTimeout(langIcon._langAnimTimeout);
+      langIcon._langAnimTimeout = setTimeout(
+        () => langIcon.classList.remove('clicked'),
+        380
+      );
     }
     // On touch devices, clicking the button should immediately toggle language.
     // On non-touch (hover-capable) devices, clicking toggles the popover open/close
@@ -106,52 +126,148 @@ if (langBtn && langPopover && langMenu) {
   });
 
   if (langIcon) {
-    langIcon.addEventListener('animationend', (e) => {
-      if (e.animationName && (e.animationName.indexOf('lang-click-bounce-icon') >= 0 || e.animationName === 'lang-click-bounce-icon')) {
-        langIcon.classList.remove('clicked'); clearTimeout(langIcon._langAnimTimeout);
+    langIcon.addEventListener('animationend', e => {
+      if (
+        e.animationName &&
+        (e.animationName.indexOf('lang-click-bounce-icon') >= 0 ||
+          e.animationName === 'lang-click-bounce-icon')
+      ) {
+        langIcon.classList.remove('clicked');
+        clearTimeout(langIcon._langAnimTimeout);
       }
     });
   }
-  langBtn.addEventListener('animationend', (e) => { if (e.animationName && (e.animationName.indexOf('lang-click-bounce-icon') >= 0 || e.animationName === 'lang-click-bounce-icon')) langBtn.classList.remove('clicked'); });
+  langBtn.addEventListener('animationend', e => {
+    if (
+      e.animationName &&
+      (e.animationName.indexOf('lang-click-bounce-icon') >= 0 ||
+        e.animationName === 'lang-click-bounce-icon')
+    )
+      langBtn.classList.remove('clicked');
+  });
 
-  langBtn.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); const first = langPopover.querySelector('button[data-lang]'); first && first.focus(); openMenu(); }
-    else if (e.key === 'Escape') { closeMenu(); langBtn.focus(); }
-    else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+  langBtn.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') {
       e.preventDefault();
-  if (langIcon) { langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked'); clearTimeout(langIcon._langAnimTimeout); langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 380); }
-      else { langBtn.classList.remove('clicked'); void langBtn.offsetWidth; langBtn.classList.add('clicked'); }
+      const first = langPopover.querySelector('button[data-lang]');
+      first && first.focus();
+      openMenu();
+    } else if (e.key === 'Escape') {
+      closeMenu();
+      langBtn.focus();
+    } else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      if (langIcon) {
+        langIcon.classList.remove('clicked');
+        void langIcon.offsetWidth;
+        langIcon.classList.add('clicked');
+        clearTimeout(langIcon._langAnimTimeout);
+        langIcon._langAnimTimeout = setTimeout(
+          () => langIcon.classList.remove('clicked'),
+          380
+        );
+      } else {
+        langBtn.classList.remove('clicked');
+        void langBtn.offsetWidth;
+        langBtn.classList.add('clicked');
+      }
       // On keyboard: if device is touch (or we detect mobile), toggle language; otherwise open the menu
       if (isTouchDevice && isTouchDevice()) selectNextLanguage();
       else openMenu();
     }
   });
 
-  document.addEventListener('click', (e) => { if (!langMenu.contains(e.target)) closeMenu(); });
+  document.addEventListener('click', e => {
+    if (!langMenu.contains(e.target)) closeMenu();
+  });
 
   langPopover.querySelectorAll('button[data-lang]').forEach(btn => {
-  btn.addEventListener('click', (e) => { e.preventDefault(); const selected = btn.getAttribute('data-lang'); if (langIcon) { langIcon.classList.remove('clicked'); void langIcon.offsetWidth; langIcon.classList.add('clicked'); clearTimeout(langIcon._langAnimTimeout); langIcon._langAnimTimeout = setTimeout(() => langIcon.classList.remove('clicked'), 380); } else { langBtn.classList.remove('clicked'); void langBtn.offsetWidth; langBtn.classList.add('clicked'); } setLanguage(selected); try { if (typeof langBtn.focus === 'function') langBtn.focus(); } catch(e){ } closeMenu(); });
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); const selected = btn.getAttribute('data-lang'); setLanguage(selected); closeMenu(); return; }
-      const items = Array.from(langPopover.querySelectorAll('button[data-lang]'));
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const selected = btn.getAttribute('data-lang');
+      if (langIcon) {
+        langIcon.classList.remove('clicked');
+        void langIcon.offsetWidth;
+        langIcon.classList.add('clicked');
+        clearTimeout(langIcon._langAnimTimeout);
+        langIcon._langAnimTimeout = setTimeout(
+          () => langIcon.classList.remove('clicked'),
+          380
+        );
+      } else {
+        langBtn.classList.remove('clicked');
+        void langBtn.offsetWidth;
+        langBtn.classList.add('clicked');
+      }
+      setLanguage(selected);
+      try {
+        if (typeof langBtn.focus === 'function') langBtn.focus();
+      } catch (e) {}
+      closeMenu();
+    });
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        const selected = btn.getAttribute('data-lang');
+        setLanguage(selected);
+        closeMenu();
+        return;
+      }
+      const items = Array.from(
+        langPopover.querySelectorAll('button[data-lang]')
+      );
       const idx = items.indexOf(btn);
-      if (e.key === 'ArrowDown') { e.preventDefault(); const next = items[(idx + 1) % items.length]; next && next.focus(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); const prev = items[(idx - 1 + items.length) % items.length]; prev && prev.focus(); }
-      else if (e.key === 'Home') { e.preventDefault(); items[0] && items[0].focus(); }
-      else if (e.key === 'End') { e.preventDefault(); items[items.length - 1] && items[items.length - 1].focus(); }
-      else if (e.key === 'Escape') { e.preventDefault(); closeMenu(); langBtn.focus(); }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = items[(idx + 1) % items.length];
+        next && next.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = items[(idx - 1 + items.length) % items.length];
+        prev && prev.focus();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        items[0] && items[0].focus();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        items[items.length - 1] && items[items.length - 1].focus();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMenu();
+        langBtn.focus();
+      }
     });
   });
 
   (function initLang() {
     let initial = 'es';
-    try { const stored = localStorage.getItem('siteLang'); if (stored) initial = stored; else if (langBtn.getAttribute('data-lang')) initial = langBtn.getAttribute('data-lang'); } catch { if (langBtn.getAttribute('data-lang')) initial = langBtn.getAttribute('data-lang'); }
+    try {
+      const stored = localStorage.getItem('siteLang');
+      if (stored) initial = stored;
+      else if (langBtn.getAttribute('data-lang'))
+        initial = langBtn.getAttribute('data-lang');
+    } catch {
+      if (langBtn.getAttribute('data-lang'))
+        initial = langBtn.getAttribute('data-lang');
+    }
     setLanguage(initial);
-    try { closeMenu(); } catch (e) { }
-    try { if (typeof langBtn.blur === 'function') langBtn.blur(); } catch (e) { }
-    try { langIcon && langIcon.classList.remove('clicked'); } catch (e) { }
-    try { langBtn && langBtn.classList.remove('clicked'); } catch (e) { }
-    try { setTimeout(() => { langMenu.dataset.ready = "1"; }, 50); } catch (e) { }
+    try {
+      closeMenu();
+    } catch (e) {}
+    try {
+      if (typeof langBtn.blur === 'function') langBtn.blur();
+    } catch (e) {}
+    try {
+      langIcon && langIcon.classList.remove('clicked');
+    } catch (e) {}
+    try {
+      langBtn && langBtn.classList.remove('clicked');
+    } catch (e) {}
+    try {
+      setTimeout(() => {
+        langMenu.dataset.ready = '1';
+      }, 50);
+    } catch (e) {}
   })();
 }
 
@@ -164,7 +280,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     // Tratamiento especial para el logo AL
     if (href === '#top') {
-
       // Notificar al auto-scroll
       if (window.setManualNavigation) {
         window.setManualNavigation(true);

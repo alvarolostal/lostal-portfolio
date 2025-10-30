@@ -92,3 +92,30 @@ footer {
   font-size: 13px;
   margin: 8px 0;
 }
+
+/* Theme notification (triggered from src/scripts/theme.js) */
+.theme-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  z-index: 10000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.28s ease;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(6px);
+  max-width: 320px;
+  pointer-events: none;
+}
+
+.theme-notification.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}

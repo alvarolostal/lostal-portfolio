@@ -137,7 +137,9 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -179,10 +181,18 @@ nav.scrolled {
 
 /* Click animation: mini bounce on the icon (more visible) */
 @keyframes lang-click-bounce-icon {
-  0% { transform: translateY(0) scale(1); }
-  30% { transform: translateY(-2px) scale(1.02); }
-  60% { transform: translateY(-1px) scale(1.01); }
-  100% { transform: translateY(0) scale(1); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-2px) scale(1.02);
+  }
+  60% {
+    transform: translateY(-1px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Apply animation to the inner icon for a clearer effect */
@@ -215,7 +225,9 @@ nav.scrolled {
   opacity: 0;
   transform: translateY(-6px) scale(0.98);
   pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 60;
 }
 
@@ -267,15 +279,15 @@ nav.scrolled {
    (desktop / non-touch). On touch devices we'll keep popover hidden and let JS
    handle a direct language toggle. This avoids showing the menu on phones/tablets. */
 @media (hover: hover) and (pointer: fine) {
-  .lang-menu[data-ready="1"]:hover .lang-popover,
-  .lang-menu[data-ready="1"]:focus-within .lang-popover {
+  .lang-menu[data-ready='1']:hover .lang-popover,
+  .lang-menu[data-ready='1']:focus-within .lang-popover {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
   }
 
-  .lang-menu[data-ready="1"]:hover .lang-popover::before,
-  .lang-menu[data-ready="1"]:focus-within .lang-popover::before {
+  .lang-menu[data-ready='1']:hover .lang-popover::before,
+  .lang-menu[data-ready='1']:focus-within .lang-popover::before {
     pointer-events: auto;
   }
 }
@@ -292,8 +304,8 @@ nav.scrolled {
   pointer-events: none;
 }
 
-.lang-menu[data-ready="1"]:hover .lang-popover::before,
-.lang-menu[data-ready="1"]:focus-within .lang-popover::before,
+.lang-menu[data-ready='1']:hover .lang-popover::before,
+.lang-menu[data-ready='1']:focus-within .lang-popover::before,
 .lang-menu.open .lang-popover::before {
   pointer-events: auto;
 }
