@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import vivenzaImg from '../assets/projects/vivenza-preview.webp';
+---
+
 <section id="projects">
   <div class="container">
     <div class="section-header fade-in">
@@ -13,13 +18,13 @@
       <article class="project-card fade-in">
         <div class="project-card-wrapper">
           <div class="project-image-container">
-            <img
-              src="/assets/projects/vivenza-preview.webp"
+            <Image
+              src={vivenzaImg}
               alt="Captura de pantalla del rediseño de Vivenza Expo mostrando diseño moderno y responsivo con mejoras en UX/UI"
+              widths={[400, 800]}
+              sizes="(max-width: 600px) 100vw, 400px"
               class="project-image"
               loading="lazy"
-              width="400"
-              height="300"
               decoding="async"
             />
             <!-- Overlay para desktop (hover) -->
