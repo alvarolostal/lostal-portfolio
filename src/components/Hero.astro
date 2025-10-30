@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import alvaroImg from '../assets/alvaro-original.webp';
+import alvaroImg from '../assets/alvaro.webp';
 ---
 
 <section id="hero" class="hero">
@@ -14,7 +14,7 @@ import alvaroImg from '../assets/alvaro-original.webp';
       <Image
         src={alvaroImg}
         alt="Álvaro"
-        widths={[320, 480, 640]}
+        widths={[320, 480, 640, 1024]}
         sizes="180px"
         loading="eager"
         fetchpriority="high"

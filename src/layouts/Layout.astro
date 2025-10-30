@@ -1,21 +1,11 @@
 ---
-import azulejos from '../assets/azulejos.jpg';
 
 const title = (Astro.props && Astro.props.title) || 'Álvaro Lostal - Portfolio';
 const description =
   (Astro.props && Astro.props.description) ||
   'Portfolio profesional de Álvaro Lostal, desarrollador frontend e ingeniero informático.';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-// Resolver la URL final del asset importado en tiempo de build y usarla como
-// fallback para og:image. Esto evita depender de una copia en `public/`.
-// `azulejos` es un ImageMetadata cuando se importa desde `src/`.
-// Usamos su propiedad `src` (ruta pública generada) para construir la URL.
-// Force string coercion to satisfy the URL constructor types in TS.
-const defaultOgImage = new URL(
-  String((azulejos as any).src ?? azulejos),
-  Astro.site
-).href;
+const defaultOgImage = new URL('/assets/og/azulejos.jpg', Astro.site).href;
 const ogImage = (Astro.props && Astro.props.ogImage) || defaultOgImage;
 ---
 
