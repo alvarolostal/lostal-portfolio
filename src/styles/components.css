@@ -47,12 +47,63 @@
   color: var(--text-secondary);
   border: 1px solid var(--border);
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .tag:hover {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   background: rgba(213, 189, 55, 0.05);
+}
+
+.tech-mini-icon {
+  width: 14px;
+  height: 14px;
+  transition: filter 0.3s ease;
+  flex-shrink: 0; /* Evita que el icono se encoja en espacios reducidos */
+  /* Filtro para modo claro - iconos oscuros para contraste */
+  filter: brightness(0) saturate(100%) invert(20%) sepia(8%) saturate(378%) hue-rotate(202deg) brightness(92%) contrast(92%);
+}
+
+/* Responsive para iconos en móviles */
+@media (max-width: 480px) {
+  .tech-mini-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .tag {
+    font-size: 11px;
+    padding: 5px 10px;
+    gap: 5px;
+  }
+}
+
+/* Modo oscuro automático */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .tech-mini-icon {
+    /* Filtro para modo oscuro - iconos claros para contraste */
+    filter: brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%) contrast(90%);
+  }
+}
+
+/* Modo oscuro manual */
+[data-theme='dark'] .tech-mini-icon {
+  /* Filtro para modo oscuro - iconos claros para contraste */
+  filter: brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%) contrast(90%);
+}
+
+/* Modo claro manual */
+[data-theme='light'] .tech-mini-icon {
+  /* Filtro para modo claro - iconos oscuros para contraste */
+  filter: brightness(0) saturate(100%) invert(20%) sepia(8%) saturate(378%) hue-rotate(202deg) brightness(92%) contrast(92%);
+}
+
+/* Estado hover - color del accent */
+.tag:hover .tech-mini-icon {
+  filter: brightness(0) saturate(100%) invert(79%) sepia(46%) saturate(395%) hue-rotate(36deg) brightness(96%) contrast(92%);
 }
 
 /* Footer */
