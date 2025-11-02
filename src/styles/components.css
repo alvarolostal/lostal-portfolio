@@ -84,26 +84,16 @@
 /* Modo oscuro automático */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .tech-mini-icon {
-    /* Filtro para modo oscuro - iconos claros para contraste */
     filter: brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%) contrast(90%);
   }
 }
 
-/* Modo oscuro manual */
 [data-theme='dark'] .tech-mini-icon {
-  /* Filtro para modo oscuro - iconos claros para contraste */
   filter: brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(110%) contrast(90%);
 }
 
-/* Modo claro manual */
 [data-theme='light'] .tech-mini-icon {
-  /* Filtro para modo claro - iconos oscuros para contraste */
   filter: brightness(0) saturate(100%) invert(20%) sepia(8%) saturate(378%) hue-rotate(202deg) brightness(92%) contrast(92%);
-}
-
-/* Estado hover - color del accent */
-.tag:hover .tech-mini-icon {
-  filter: brightness(0) saturate(100%) invert(79%) sepia(46%) saturate(395%) hue-rotate(36deg) brightness(96%) contrast(92%);
 }
 
 /* Footer */
