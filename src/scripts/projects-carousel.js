@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		const nextEl = element.querySelector(".slider-nav__item_next");
 
 		new Swiper(slider, {
-			slidesPerView: 1.4,
-			spaceBetween: 20,
+			slidesPerView: "auto",
+			spaceBetween: 30,
 			speed: 500,
 			centeredSlides: true,
 			initialSlide: 1,
@@ -22,25 +22,50 @@ document.addEventListener("DOMContentLoaded", () => {
 				disabledClass: "disabled" 
 			},
 			breakpoints: {
+				// Móvil pequeño
+				320: {
+					spaceBetween: 16,
+					slidesPerView: 1.2
+				},
+				// Móvil
 				480: {
-					slidesPerView: 1.6,
-					spaceBetween: 20
+					spaceBetween: 18,
+					slidesPerView: 1.4
 				},
-				640: { 
-					slidesPerView: 2,
-					spaceBetween: 25 
+				// Tablet pequeña
+				640: {
+					spaceBetween: 22,
+					slidesPerView: 1.6
 				},
+				// Tablet
 				768: {
-					slidesPerView: 2.4,
-					spaceBetween: 30
+					spaceBetween: 26,
+					slidesPerView: 1.8
 				},
-				1024: { 
-					slidesPerView: 2.8,
-					spaceBetween: 35 
+				// Desktop pequeño
+				1024: {
+					spaceBetween: 30,
+					slidesPerView: 2.2
 				},
+				// Desktop medio
 				1280: {
-					slidesPerView: 3,
-					spaceBetween: 40
+					spaceBetween: 35,
+					slidesPerView: 2.4
+				},
+				// Desktop grande (tu pantalla 2560x1440)
+				1440: {
+					spaceBetween: 40,
+					slidesPerView: 2.5
+				},
+				// Desktop muy grande
+				1920: {
+					spaceBetween: 45,
+					slidesPerView: 2.6
+				},
+				// Pantallas ultra anchas (tu pantalla 2880x1800)
+				2400: {
+					spaceBetween: 50,
+					slidesPerView: 2.8
 				}
 			}
 		});
