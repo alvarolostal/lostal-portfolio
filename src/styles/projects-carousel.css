@@ -52,48 +52,45 @@
 }
 
 .emotions-slider {
-	--color-gray: #818181;
-	--color-gray-dark: #1e1e1e;
-
 	position: relative;
 	overflow: hidden;
-	/* Altura FIJA calculada: card expandida + margen vertical ajustado */
-	height: 622px;
+	/* Altura mínima calculada: card expandida + margen vertical ajustado */
+	min-height: 622px;
 }
 
 @media screen and (min-width: 1920px) {
 	.emotions-slider {
-		height: 742px;
+		min-height: 742px;
 	}
 }
 
 @media screen and (min-width: 1440px) and (max-width: 1919px) {
 	.emotions-slider {
-		height: 680px;
+		min-height: 680px;
 	}
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
 	.emotions-slider {
-		height: 622px;
+		min-height: 622px;
 	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 	.emotions-slider {
-		height: 569px;
+		min-height: 569px;
 	}
 }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
 	.emotions-slider {
-		height: 531px;
+		min-height: 531px;
 	}
 }
 
 @media screen and (max-width: 480px) {
 	.emotions-slider {
-		height: 463px;
+		min-height: 463px;
 	}
 }
 
@@ -183,6 +180,17 @@
 	backdrop-filter: blur(10px);
 	position: relative;
 	z-index: 100;
+	/* Estilos para botón - resetear defaults del navegador */
+	border: none;
+	padding: 0;
+	font: inherit;
+	color: inherit;
+	outline: none;
+}
+
+.slider-nav__item:focus-visible {
+	outline: 2px solid var(--accent-primary);
+	outline-offset: 2px;
 }
 
 .slider-nav__item.disabled {
@@ -239,7 +247,7 @@
 	/* La card debe ocupar el 100% del slide para centrado correcto */
 	width: 100%;
 	max-width: 100%;
-	background: var(--color-gray-dark);
+	background: var(--bg-secondary);
 	border-radius: var(--border-radius);
 	position: relative;
 	overflow: hidden;
@@ -415,7 +423,7 @@
 	font-family: var(--font-poppins);
 	font-size: 14px;
 	line-height: calc(20 / 14);
-	color: var(--color-gray);
+	color: var(--text-secondary);
 }
 
 @media screen and (max-width: 768px) {

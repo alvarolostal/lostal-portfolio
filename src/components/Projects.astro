@@ -23,16 +23,24 @@
 				<!-- Slider Navigation -->
 
 				<div class="emotions-slider__nav slider-nav">
-					<div tabindex="0" class="slider-nav__item slider-nav__item_prev">
-						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<button 
+						class="slider-nav__item slider-nav__item_prev" 
+						aria-label="Proyecto anterior"
+						type="button"
+					>
+						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 							<path d="M14 26L2 14L14 2" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 						</svg>
-					</div>
-					<div tabindex="0" class="slider-nav__item slider-nav__item_next">
-						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+					</button>
+					<button 
+						class="slider-nav__item slider-nav__item_next" 
+						aria-label="Siguiente proyecto"
+						type="button"
+					>
+						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 							<path d="M2 26L14 14L2 2" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 						</svg>
-					</div>
+					</button>
 				</div>
 
 				<!-- Slider Content -->
@@ -431,10 +439,10 @@
 	</div>
 </section>
 
-<!-- Swiper JS -->
+<!-- Swiper JS - Cargado desde CDN -->
 <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-<!-- Initialize Swiper -->
+<!-- Initialize Swiper - El script debe ir después de cargar Swiper -->
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
 	const sliders = document.querySelectorAll(".emotions-slider");
@@ -490,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					slidesPerView: 2.8,
 					spaceBetween: 40
 				},
-				// Desktop grande (tu pantalla 2560x1440)
+				// Desktop grande
 				1440: {
 					slidesPerView: 3.0,
 					spaceBetween: 44
@@ -500,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					slidesPerView: 3.2,
 					spaceBetween: 48
 				},
-				// Pantallas ultra anchas (tu pantalla 2880x1800)
+				// Pantallas ultra anchas
 				2400: {
 					slidesPerView: 3.4,
 					spaceBetween: 52
