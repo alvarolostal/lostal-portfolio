@@ -33,11 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 
-			// Añadir margen de seguridad
-			maxHeight += 40;
+		// Añadir margen de seguridad (más en móvil)
+		const isMobile = window.innerWidth < 768;
+		maxHeight += isMobile ? 60 : 40;
 
-			// Fijar altura del contenedor
-			element.style.minHeight = maxHeight + "px";
+		// Fijar altura del contenedor
+		element.style.minHeight = maxHeight + "px";
 		}
 
 		// Inicializar Swiper
