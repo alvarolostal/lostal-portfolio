@@ -425,10 +425,6 @@
 					</div>
 				</div>
 
-				<!-- Slider Pagination -->
-
-				<div class="emotions-slider__pagination slider-pagination"></div>
-
 			</div>
 		</div>
 	</div>
@@ -450,7 +446,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		const slider = element.querySelector(".swiper");
 		const prevEl = element.querySelector(".slider-nav__item_prev");
 		const nextEl = element.querySelector(".slider-nav__item_next");
-		const pagination = element.querySelector(".slider-pagination");
 
 		list.push(
 			new Swiper(slider, {
@@ -464,14 +459,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				initialSlide: 1,
 				loop: false,
 				navigation: { nextEl, prevEl, disabledClass: "disabled" },
-				pagination: {
-					el: pagination,
-					type: "bullets",
-					modifierClass: "slider-pagination_",
-					bulletClass: "slider-pagination__item",
-					bulletActiveClass: "active",
-					clickable: true
-				},
 				breakpoints: {
 					480: {
 						slidesPerView: 1.3,
