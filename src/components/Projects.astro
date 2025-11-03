@@ -1,233 +1,481 @@
 ---
-import { Image } from 'astro:assets';
-import vivenzaImg from '../assets/projects/vivenza-preview.png';
+// No imports needed for now - using external images
 ---
 
-<section id="projects">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="section-label">Proyectos</div>
-      <h2 class="section-title">Mi Trabajo</h2>
-      <p class="section-description">
-        Estos proyectos web reflejan mi enfoque en el diseño minimalista, una UX
-        cuidada y buenas prácticas de desarrollo.
-      </p>
-    </div>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
-    <div class="projects-grid">
-      <article class="project-card fade-in">
-        <div class="project-card-wrapper">
-          <div class="project-image-container">
-            <Image
-              src={vivenzaImg}
-              alt="Captura de pantalla del rediseño de Vivenza Expo mostrando diseño moderno y responsivo con mejoras en UX/UI"
-              widths={[768, 1024, 1536, 2048]}
-              sizes="(max-width: 768px) 100vw, 1536px"
-              class="project-image"
-              loading="lazy"
-              decoding="async"
-              quality={85}
-            />
-            <!-- Overlay para desktop (hover) -->
-            <div class="project-overlay">
-              <div class="project-links">
-                <a
-                  href="https://vivenza.netlify.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn-primary"
-                  aria-label="Ver proyecto en vivo"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                    ></path>
-                    <polyline points="15,3 21,3 21,9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                  </svg>
-                  Ver Proyecto
-                </a>
-                <a
-                  href="https://vivenzaexpo.es/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn-secondary"
-                  aria-label="Ver sitio original"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12,6 12,12 16,14"></polyline>
-                  </svg>
-                  Original
-                </a>
-              </div>
-            </div>
+<section class="base-template" id="projects">
+	<div class="wrapper base-template__wrapper">
+		<h1 class="base-template__title">
+			Whirl of Emotions in Color and Form
+		</h1>
+		<div class="base-template__text">
+			Dive into the world of abstract art, where every stroke and color tells a unique story.
+			<br>
+			Feel the energy, harmony, and inspiration through captivating works of art.
+		</div>
 
-            <!-- Botones para móvil (siempre visibles) -->
-            <div class="project-mobile-actions">
-              <a
-                href="https://vivenza.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary mobile-btn"
-                aria-label="Ver proyecto en vivo"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  ></path>
-                  <polyline points="15,3 21,3 21,9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                Ver Proyecto
-              </a>
-              <a
-                href="https://vivenzaexpo.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary mobile-btn"
-                aria-label="Ver sitio original"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12,6 12,12 16,14"></polyline>
-                </svg>
-                Original
-              </a>
-            </div>
-          </div>
+		<div class="base-template__content">
+			<div class="emotions-slider">
 
-          <div class="project-content">
-            <div class="project-header">
-              <h3 class="project-title">Rediseño Vivenza Expo</h3>
-              <div class="project-status">
-                <span class="project-type">Rediseño Conceptual</span>
-              </div>
-            </div>
+				<!-- Slider Navigation -->
 
-            <p class="project-description">
-              Rediseño completo de la landing page de Vivenza Expo, aplicando
-              principios de diseño moderno. Proyecto personal enfocado en probar
-              mis capacidades de diseño y desarrollo frontend.
-            </p>
+				<div class="emotions-slider__nav slider-nav">
+					<div tabindex="0" class="slider-nav__item slider-nav__item_prev">
+						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M14 26L2 14L14 2" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+					<div tabindex="0" class="slider-nav__item slider-nav__item_next">
+						<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2 26L14 14L2 2" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
 
-            <div class="project-highlights">
-              <div class="highlights-title">Mejoras implementadas:</div>
-              <ul class="highlights-list">
-                <li>Diseño responsivo y accesible</li>
-                <li>Optimización de performance y carga</li>
-                <li>Jerarquía visual mejorada</li>
-                <li>Experiencia de usuario moderna</li>
-              </ul>
-            </div>
+				<!-- Slider Content -->
 
-            <div class="project-tech">
-              <div class="tech-label">Tecnologías:</div>
-              <div class="tech-tags">
-                <span class="tag">
-                  <img src="/assets/tech-icons/html5.svg" alt="HTML5" class="tech-mini-icon" loading="lazy">
-                  HTML5
-                </span>
-                <span class="tag">
-                  <img src="/assets/tech-icons/css3.svg" alt="CSS3" class="tech-mini-icon" loading="lazy">
-                  CSS3
-                </span>
-                <span class="tag">
-                  <img src="/assets/tech-icons/javascript.svg" alt="JavaScript" class="tech-mini-icon" loading="lazy">
-                  JavaScript
-                </span>
-                <span class="tag">
-                  <img src="/assets/tech-icons/react.svg" alt="Next.js" class="tech-mini-icon" loading="lazy">
-                  Next.js
-                </span>
-              </div>
-            </div>
+				<div class="emotions-slider__slider swiper">
+					<div class="emotions-slider__wrapper swiper-wrapper">
 
-            <!-- Botones de acción para desktop -->
-            <div class="project-actions">
-              <a
-                href="https://vivenza.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary"
-                aria-label="Ver proyecto en vivo"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  ></path>
-                  <polyline points="15,3 21,3 21,9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                Ver Proyecto
-              </a>
-              <a
-                href="https://vivenzaexpo.es/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary"
-                aria-label="Ver sitio original"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12,6 12,12 16,14"></polyline>
-                </svg>
-                Original
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
+						<!-- Slider: Slide 1 -->
 
-    <div class="projects-footer fade-in">
-      <p class="projects-note">
-        Esta sección está en constante evolución. Próximamente añadiré más
-        proyectos que demuestren diferentes aspectos de mi experiencia en
-        desarrollo web.
-      </p>
-    </div>
-  </div>
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$175</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Andrew Kelman
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Winds of Change
+										</h2>
+										<div class="emotions-slider-item__text">
+											Gentle pink and blue hues remind us of moments when everything changes for the better.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 2 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__badge">Popular Now</div>
+
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$270</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Alex Bilyk
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Flames of Passion
+										</h2>
+										<div class="emotions-slider-item__text">
+											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 3 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$225</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Inna Grande
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Oceans of Serenity
+										</h2>
+										<div class="emotions-slider-item__text">
+											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 4 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$175</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Andrew Kelman
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Winds of Change
+										</h2>
+										<div class="emotions-slider-item__text">
+											Gentle pink and blue hues remind us of moments when everything changes for the better.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 5 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__badge">Popular Now</div>
+
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$270</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Alex Bilyk
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Flames of Passion
+										</h2>
+										<div class="emotions-slider-item__text">
+											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 6 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$225</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Inna Grande
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Oceans of Serenity
+										</h2>
+										<div class="emotions-slider-item__text">
+											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 7 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$175</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Andrew Kelman
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Winds of Change
+										</h2>
+										<div class="emotions-slider-item__text">
+											Gentle pink and blue hues remind us of moments when everything changes for the better.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 8 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__badge">Popular Now</div>
+
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$270</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Alex Bilyk
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Flames of Passion
+										</h2>
+										<div class="emotions-slider-item__text">
+											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slider: Slide 9 -->
+
+						<div class="emotions-slider__slide swiper-slide">
+							<div class="emotions-slider__item emotions-slider-item">
+								<div class="emotions-slider-item__image">
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
+								</div>
+
+								<div class="emotions-slider-item__content">
+									<div class="emotions-slider-item__header">
+										<div class="emotions-slider-item__header-inner">
+											<div class="emotions-slider-item__price">$225</div>
+											<div class="emotions-slider-item__author">
+												<div class="emotions-slider-item__author-image">
+													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
+												</div>
+												<div class="emotions-slider-item__author-name">
+													Inna Grande
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__info">
+										<h2 class="emotions-slider-item__title">
+											Oceans of Serenity
+										</h2>
+										<div class="emotions-slider-item__text">
+											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
+										</div>
+									</div>
+
+									<div class="emotions-slider-item__footer">
+										<a class="emotions-slider-item__btn" href="/" onclick="event.preventDefault();">
+											<span class="emotions-slider-item__btn-text">View more</span>
+											<span class="emotions-slider-item__btn-icon"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slider Pagination -->
+
+				<div class="emotions-slider__pagination slider-pagination"></div>
+
+			</div>
+		</div>
+	</div>
 </section>
+
+<!-- Swiper JS -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+	const sliders = document.querySelectorAll(".emotions-slider");
+
+	if (!sliders.length) return;
+
+	const list = [];
+
+	sliders.forEach((element) => {
+		const slider = element.querySelector(".swiper");
+		const prevEl = element.querySelector(".slider-nav__item_prev");
+		const nextEl = element.querySelector(".slider-nav__item_next");
+		const pagination = element.querySelector(".slider-pagination");
+
+		list.push(
+			new Swiper(slider, {
+				slidesPerView: "auto",
+				spaceBetween: 20,
+				speed: 600,
+				observer: true,
+				watchOverflow: true,
+				watchSlidesProgress: true,
+				centeredSlides: true,
+				initialSlide: 1,
+				navigation: { nextEl, prevEl, disabledClass: "disabled" },
+				pagination: {
+					el: pagination,
+					type: "bullets",
+					modifierClass: "slider-pagination_",
+					bulletClass: "slider-pagination__item",
+					bulletActiveClass: "active",
+					clickable: true
+				},
+				breakpoints: {
+					768: { spaceBetween: 40 }
+				}
+			})
+		);
+	});
+});
+</script>
