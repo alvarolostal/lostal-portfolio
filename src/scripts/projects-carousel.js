@@ -8,7 +8,40 @@ document.addEventListener("DOMContentLoaded", () => {
 		const prevEl = element.querySelector(".slider-nav__item_prev");
 		const nextEl = element.querySelector(".slider-nav__item_next");
 
-		new Swiper(slider, {
+		// Función para calcular y fijar la altura máxima
+		function fixContainerHeight() {
+			const slides = element.querySelectorAll(".emotions-slider__slide");
+			let maxHeight = 0;
+
+			// Hacer todas las slides visibles temporalmente para medir
+			slides.forEach((slide) => {
+				const item = slide.querySelector(".emotions-slider-item");
+				if (item) {
+					// Temporalmente expandir header/footer para medir altura máxima
+					const header = item.querySelector(".emotions-slider-item__header");
+					const footer = item.querySelector(".emotions-slider-item__footer");
+					
+					if (header) header.style.maxHeight = "none";
+					if (footer) footer.style.maxHeight = "none";
+					
+					const height = slide.offsetHeight;
+					if (height > maxHeight) maxHeight = height;
+					
+					// Restaurar
+					if (header) header.style.maxHeight = "";
+					if (footer) footer.style.maxHeight = "";
+				}
+			});
+
+			// Añadir margen de seguridad
+			maxHeight += 40;
+
+			// Fijar altura del contenedor
+			element.style.minHeight = maxHeight + "px";
+		}
+
+		// Inicializar Swiper
+		const swiperInstance = new Swiper(slider, {
 			slidesPerView: 1.3,
 			spaceBetween: 24,
 			speed: 500,
@@ -67,7 +100,24 @@ document.addEventListener("DOMContentLoaded", () => {
 					slidesPerView: 3.4,
 					spaceBetween: 52
 				}
+			},
+			on: {
+				init: function() {
+					// Fijar altura después de que Swiper esté listo
+					setTimeout(fixContainerHeight, 100);
+				}
 			}
+		});
+
+		// Recalcular al redimensionar ventana
+		let resizeTimer;
+		window.addEventListener("resize", () => {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(() => {
+				element.style.minHeight = "";
+				setTimeout(fixContainerHeight, 100);
+			}, 250);
 		});
 	});
 });
+
