@@ -381,7 +381,8 @@
 	overflow: hidden;
 }
 
-.carousel-item__image img {
+.carousel-item__image img,
+.carousel-item__image .project-carousel-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -393,6 +394,11 @@
 	flex-direction: column;
 	gap: 24px;
 	padding: 24px 20px;
+}
+
+/* Permitir overflow visible solo en slides activas para hover effects */
+.swiper-slide-active .carousel-item__content {
+	overflow: visible;
 }
 
 @media screen and (min-width: 1920px) {
@@ -441,7 +447,7 @@
 .carousel-item__footer {
 	max-height: 50px;
 	overflow: hidden;
-	transition: max-height 0.28s ease;
+	transition: max-height 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
 }
 
 /* Animación más lenta en móvil */
@@ -499,6 +505,41 @@
 	font-size: 14px;
 	line-height: calc(20 / 14);
 	color: var(--text-secondary);
+}
+
+/* Link "Ver original" */
+.carousel-item__link {
+	font-family: var(--font-primary);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--text-secondary);
+	text-decoration: none;
+	transition: color 0.3s ease;
+	position: relative;
+}
+
+.carousel-item__link::after {
+	content: '→';
+	margin-left: 4px;
+	transition: transform 0.3s ease, margin-left 0.3s ease;
+	display: inline-block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.carousel-item__link:hover {
+		color: var(--accent-primary);
+	}
+	
+	.carousel-item__link:hover::after {
+		transform: translateX(2px);
+		margin-left: 6px;
+	}
+}
+
+@media (hover: none) {
+	.carousel-item__link:active {
+		color: var(--accent-primary);
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -608,6 +649,17 @@
 .projects-carousel__slide:not(.swiper-slide-active)
 	.carousel-item__footer {
 	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* Solo las slides activas tienen overflow visible */
+.swiper-slide-active .carousel-item__header,
+.swiper-slide-active .carousel-item__footer {
+	overflow: visible;
+	opacity: 1;
+	visibility: visible;
 }
 
 @media (hover: hover) and (pointer: fine) {

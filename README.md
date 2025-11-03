@@ -4,6 +4,7 @@
 
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 **Portfolio personal moderno y minimalista** desarrollado con Astro  
@@ -24,14 +25,6 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 💡 **Animaciones fluidas**: Transiciones suaves y efectos visuales  
 🌐 **SEO optimizado**: Metadatos, sitemap y estructura semántica  
 ♿ **Accesible**: Cumple estándares de accesibilidad web
-
-## 🛠️ Stack Tecnológico
-
-| Tecnología / Herramienta | Badge                                                                                                             | Descripción                                             |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Astro                    | ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)                | Framework web moderno, rápido y orientado a componentes |
-| TypeScript               | ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) | Tipado estático para JavaScript                         |
-| CSS3                     | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)                   | Estilos modernos con CSS Grid y Flexbox                 |
 
 ## Secciones
 

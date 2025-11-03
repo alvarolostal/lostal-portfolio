@@ -1,5 +1,6 @@
 ---
-// No imports needed for now - using external images
+import { Image } from 'astro:assets';
+import vivenzaImg from '../assets/projects/vivenza-preview.png';
 ---
 
 <!-- Swiper CSS -->
@@ -49,30 +50,40 @@
 						<div class="projects-carousel__slide swiper-slide">
 							<div class="carousel-item">
 								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
+									<Image
+										src={vivenzaImg}
+										alt="Rediseño Vivenza Expo"
+										widths={[400, 600, 800]}
+										sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 400px"
+										loading="lazy"
+										quality={85}
+										class="project-carousel-image"
+									/>
 								</div>
 
 								<div class="carousel-item__content">
 									<div class="carousel-item__header">
 										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$175</div>
+											<div class="carousel-item__price">
+												<span class="tag">
+													<img src="/assets/tech-icons/react.svg" alt="Next.js" class="tech-mini-icon" loading="lazy">
+													Next.js
+												</span>
+											</div>
 											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
-												</div>
-												<div class="carousel-item__author-name">
-													Andrew Kelman
-												</div>
+												<a class="carousel-item__link" href="https://vivenza.netlify.app/" target="_blank" rel="noopener noreferrer">
+													Ver proyecto
+												</a>
 											</div>
 										</div>
 									</div>
 
 									<div class="carousel-item__info">
 										<h2 class="carousel-item__title">
-											Winds of Change
+											Rediseño Vivenza Expo
 										</h2>
 										<div class="carousel-item__text">
-											Gentle pink and blue hues remind us of moments when everything changes for the better.
+											Rediseño completo de la landing page de Vivenza Expo, aplicando principios de diseño moderno.
 										</div>
 									</div>
 
@@ -90,331 +101,33 @@
 
 						<div class="projects-carousel__slide swiper-slide">
 							<div class="carousel-item">
-								<div class="carousel-item__badge">Popular Now</div>
-
 								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
+									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Creative Hands" />
 								</div>
 
 								<div class="carousel-item__content">
 									<div class="carousel-item__header">
 										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$270</div>
+											<div class="carousel-item__price">
+												<span class="tag">
+													<img src="/assets/tech-icons/react.svg" alt="React" class="tech-mini-icon" loading="lazy">
+													React
+												</span>
+											</div>
 											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
-												</div>
-												<div class="carousel-item__author-name">
-													Alex Bilyk
-												</div>
+												<a class="carousel-item__link" href="https://creative-hands-cjzg.onrender.com/" target="_blank" rel="noopener noreferrer">
+													Ver proyecto
+												</a>
 											</div>
 										</div>
 									</div>
 
 									<div class="carousel-item__info">
 										<h2 class="carousel-item__title">
-											Flames of Passion
+											Creative Hands
 										</h2>
 										<div class="carousel-item__text">
-											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 3 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$225</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
-												</div>
-												<div class="carousel-item__author-name">
-													Inna Grande
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Oceans of Serenity
-										</h2>
-										<div class="carousel-item__text">
-											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 4 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$175</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
-												</div>
-												<div class="carousel-item__author-name">
-													Andrew Kelman
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Winds of Change
-										</h2>
-										<div class="carousel-item__text">
-											Gentle pink and blue hues remind us of moments when everything changes for the better.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 5 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__badge">Popular Now</div>
-
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$270</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
-												</div>
-												<div class="carousel-item__author-name">
-													Alex Bilyk
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Flames of Passion
-										</h2>
-										<div class="carousel-item__text">
-											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 6 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$225</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
-												</div>
-												<div class="carousel-item__author-name">
-													Inna Grande
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Oceans of Serenity
-										</h2>
-										<div class="carousel-item__text">
-											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 7 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-1.jpg" alt="Winds of Change" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$175</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-1.jpg" alt="Andrew Kelman" />
-												</div>
-												<div class="carousel-item__author-name">
-													Andrew Kelman
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Winds of Change
-										</h2>
-										<div class="carousel-item__text">
-											Gentle pink and blue hues remind us of moments when everything changes for the better.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 8 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__badge">Popular Now</div>
-
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-2.jpg" alt="Flames of Passion" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$270</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-2.jpg" alt="Alex Bilyk" />
-												</div>
-												<div class="carousel-item__author-name">
-													Alex Bilyk
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Flames of Passion
-										</h2>
-										<div class="carousel-item__text">
-											This piece represents the fire of inspiration burning within us all. Feel the warmth of emotions in a swirl of red and yellow tones.
-										</div>
-									</div>
-
-									<div class="carousel-item__footer">
-										<a class="carousel-item__btn" href="/" onclick="event.preventDefault();">
-											<span class="carousel-item__btn-text">View more</span>
-											<span class="carousel-item__btn-icon"></span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Slider: Slide 9 -->
-
-						<div class="projects-carousel__slide swiper-slide">
-							<div class="carousel-item">
-								<div class="carousel-item__image">
-									<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/slide-3.jpg" alt="Oceans of Serenity" />
-								</div>
-
-								<div class="carousel-item__content">
-									<div class="carousel-item__header">
-										<div class="carousel-item__header-inner">
-											<div class="carousel-item__price">$225</div>
-											<div class="carousel-item__author">
-												<div class="carousel-item__author-image">
-													<img src="https://bato-web-agency.github.io/bato-shared/img/slider-1/author-3.jpg" alt="Inna Grande" />
-												</div>
-												<div class="carousel-item__author-name">
-													Inna Grande
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="carousel-item__info">
-										<h2 class="carousel-item__title">
-											Oceans of Serenity
-										</h2>
-										<div class="carousel-item__text">
-											Immerse yourself in the depths of calm and harmony. Blue waves of art take you into a world of meditation and inner balance.
+											Plataforma e-commerce full-stack con autenticación JWT y chat en tiempo real mediante Socket.io.
 										</div>
 									</div>
 
