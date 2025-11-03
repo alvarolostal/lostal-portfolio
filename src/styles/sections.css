@@ -182,14 +182,12 @@ section {
   border-radius: 14px;
   border: 1px solid var(--border);
   box-shadow: 0 8px 24px var(--shadow);
-  transition:
-    transform 0.28s ease,
-    box-shadow 0.28s ease;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 56px var(--shadow-lg);
+  box-shadow: 0 16px 48px var(--shadow-lg);
   border-color: var(--accent-primary);
 }
 
