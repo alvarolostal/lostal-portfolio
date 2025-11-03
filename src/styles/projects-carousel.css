@@ -73,24 +73,42 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 550px;
+	min-height: 500px;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 1920px) {
 	.emotions-slider__slide {
 		min-height: 520px;
 	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+	.emotions-slider__slide {
+		min-height: 510px;
+	}
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+	.emotions-slider__slide {
+		min-height: 500px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
 	.emotions-slider__slide {
 		min-height: 480px;
 	}
 }
 
+@media screen and (min-width: 481px) and (max-width: 767px) {
+	.emotions-slider__slide {
+		min-height: 460px;
+	}
+}
+
 @media screen and (max-width: 480px) {
 	.emotions-slider__slide {
-		min-height: 450px;
+		min-height: 440px;
 	}
 }
 
@@ -180,9 +198,9 @@
 .emotions-slider-item {
 	--border-radius: 10px;
 
+	/* La card debe ocupar el 100% del slide para centrado correcto */
 	width: 100%;
-	/* Sistema escalable basado en viewport width */
-	max-width: clamp(280px, 32vw, 520px);
+	max-width: 100%;
 	background: var(--color-gray-dark);
 	border-radius: var(--border-radius);
 	position: relative;
@@ -198,40 +216,9 @@
 	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Ajustes específicos por viewport para optimizar proporciones */
-@media screen and (min-width: 2400px) {
-	.emotions-slider-item {
-		max-width: clamp(480px, 28vw, 600px);
-	}
-}
-
-@media screen and (min-width: 1920px) and (max-width: 2399px) {
-	.emotions-slider-item {
-		max-width: clamp(420px, 30vw, 560px);
-	}
-}
-
-@media screen and (min-width: 1441px) and (max-width: 1919px) {
-	.emotions-slider-item {
-		max-width: clamp(380px, 31vw, 520px);
-	}
-}
-
-@media screen and (min-width: 1281px) and (max-width: 1440px) {
-	.emotions-slider-item {
-		max-width: clamp(360px, 32vw, 480px);
-	}
-}
-
-@media screen and (min-width: 1025px) and (max-width: 1280px) {
-	.emotions-slider-item {
-		max-width: clamp(340px, 34vw, 440px);
-	}
-}
-
+/* Ajustes de escala para slides no activas según viewport */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 	.emotions-slider-item {
-		max-width: clamp(300px, 36vw, 400px);
 		transform: scale(0.90);
 	}
 	
@@ -242,18 +229,11 @@
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
 	.emotions-slider-item {
-		max-width: clamp(280px, 42vw, 340px);
 		transform: scale(0.92);
 	}
 	
 	.swiper-slide-active .emotions-slider-item {
 		transform: scale(1);
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.emotions-slider-item {
-		max-width: min(280px, 75vw);
 	}
 }
 
@@ -298,21 +278,49 @@
 .emotions-slider-item__content {
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
-	padding: 30px 20px;
+	gap: 24px;
+	padding: 24px 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1920px) {
+	.emotions-slider-item__content {
+		gap: 28px;
+		padding: 28px 24px;
+	}
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+	.emotions-slider-item__content {
+		gap: 26px;
+		padding: 26px 22px;
+	}
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+	.emotions-slider-item__content {
+		gap: 24px;
+		padding: 24px 20px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
 	.emotions-slider-item__content {
 		gap: 20px;
-		padding: 20px 16px;
+		padding: 20px 18px;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+	.emotions-slider-item__content {
+		gap: 18px;
+		padding: 18px 16px;
 	}
 }
 
 @media screen and (max-width: 480px) {
 	.emotions-slider-item__content {
 		gap: 16px;
-		padding: 16px 12px;
+		padding: 16px 14px;
 	}
 }
 
@@ -385,6 +393,20 @@
 	margin-bottom: 8px;
 }
 
+@media screen and (min-width: 1920px) {
+	.emotions-slider-item__title {
+		font-size: 22px;
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+	.emotions-slider-item__title {
+		font-size: 21px;
+		margin-bottom: 9px;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.emotions-slider-item__title {
 		font-size: 18px;
@@ -397,6 +419,19 @@
 	font-size: 16px;
 	line-height: 1.5;
 	opacity: 0.7;
+}
+
+@media screen and (min-width: 1920px) {
+	.emotions-slider-item__text {
+		font-size: 17px;
+		line-height: 1.5;
+	}
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+	.emotions-slider-item__text {
+		font-size: 16px;
+	}
 }
 
 @media screen and (max-width: 768px) {
