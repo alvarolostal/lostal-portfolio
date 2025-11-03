@@ -454,14 +454,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		list.push(
 			new Swiper(slider, {
-				slidesPerView: "auto",
-				spaceBetween: 20,
+				slidesPerView: 1.5,
+				spaceBetween: 30,
 				speed: 600,
 				observer: true,
 				watchOverflow: true,
 				watchSlidesProgress: true,
 				centeredSlides: true,
 				initialSlide: 1,
+				loop: false,
 				navigation: { nextEl, prevEl, disabledClass: "disabled" },
 				pagination: {
 					el: pagination,
@@ -472,7 +473,14 @@ document.addEventListener("DOMContentLoaded", () => {
 					clickable: true
 				},
 				breakpoints: {
-					768: { spaceBetween: 40 }
+					640: { 
+						slidesPerView: 2,
+						spaceBetween: 30 
+					},
+					1024: { 
+						slidesPerView: 3,
+						spaceBetween: 40 
+					}
 				}
 			})
 		);

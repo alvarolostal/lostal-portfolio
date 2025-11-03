@@ -22,6 +22,16 @@
 
 	padding-inline: 98px;
 	position: relative;
+	overflow: hidden;
+}
+
+.emotions-slider__slider {
+	overflow: visible !important;
+}
+
+.emotions-slider__wrapper {
+	display: flex;
+	align-items: center;
 }
 
 .emotions-slider__slide {
@@ -32,8 +42,11 @@
 
 @media screen and (max-width: 767.9px) {
 	.emotions-slider {
-		padding: 0;
-		margin-inline: -20px;
+		padding: 0 20px;
+	}
+	
+	.emotions-slider-item {
+		width: 320px;
 	}
 }
 
@@ -145,12 +158,19 @@
 .emotions-slider-item {
 	--border-radius: 10px;
 
-	width: calc(100dvw - 60px);
-	max-width: 400px;
+	width: 400px;
 	background: var(--color-gray-dark);
 	border-radius: var(--border-radius);
 	position: relative;
 	overflow: hidden;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	opacity: 0.5;
+	transform: scale(0.85);
+}
+
+.swiper-slide-active .emotions-slider-item {
+	opacity: 1;
+	transform: scale(1);
 }
 
 .emotions-slider-item__badge {
