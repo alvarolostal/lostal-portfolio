@@ -3,39 +3,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (!sliders.length) return;
 
-	const list = [];
-
 	sliders.forEach((element) => {
-		const [slider, prevEl, nextEl, pagination] = [
-			element.querySelector(".swiper"),
-			element.querySelector(".slider-nav__item_prev"),
-			element.querySelector(".slider-nav__item_next"),
-			element.querySelector(".slider-pagination")
-		];
+		const slider = element.querySelector(".swiper");
+		const prevEl = element.querySelector(".slider-nav__item_prev");
+		const nextEl = element.querySelector(".slider-nav__item_next");
 
-		list.push(
-			new Swiper(slider, {
-				slidesPerView: "auto",
-				spaceBetween: 20,
-				speed: 600,
-				observer: true,
-				watchOverflow: true,
-				watchSlidesProgress: true,
-				centeredSlides: true,
-				initialSlide: 1,
-				navigation: { nextEl, prevEl, disabledClass: "disabled" },
-				pagination: {
-					el: pagination,
-					type: "bullets",
-					modifierClass: "slider-pagination",
-					bulletClass: "slider-pagination__item",
-					bulletActiveClass: "active",
-					clickable: true
+		new Swiper(slider, {
+			slidesPerView: 1.4,
+			spaceBetween: 20,
+			speed: 500,
+			centeredSlides: true,
+			initialSlide: 1,
+			loop: false,
+			grabCursor: true,
+			navigation: { 
+				nextEl, 
+				prevEl, 
+				disabledClass: "disabled" 
+			},
+			breakpoints: {
+				480: {
+					slidesPerView: 1.6,
+					spaceBetween: 20
 				},
-				breakpoints: {
-					768: { spaceBetween: 40 }
+				640: { 
+					slidesPerView: 2,
+					spaceBetween: 25 
+				},
+				768: {
+					slidesPerView: 2.4,
+					spaceBetween: 30
+				},
+				1024: { 
+					slidesPerView: 2.8,
+					spaceBetween: 35 
+				},
+				1280: {
+					slidesPerView: 3,
+					spaceBetween: 40
 				}
-			})
-		);
+			}
+		});
 	});
 });
