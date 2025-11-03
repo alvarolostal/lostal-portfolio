@@ -69,43 +69,43 @@
 .projects-carousel {
 	position: relative;
 	overflow: hidden;
-	/* Altura mínima calculada: card expandida + margen vertical ajustado */
-	min-height: 622px;
+	/* Altura mínima ajustada para cohesión con otras secciones */
+	min-height: 580px;
 }
 
 @media screen and (min-width: 1920px) {
-	.projects-carousel {
-		min-height: 742px;
-	}
-}
-
-@media screen and (min-width: 1440px) and (max-width: 1919px) {
 	.projects-carousel {
 		min-height: 680px;
 	}
 }
 
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+	.projects-carousel {
+		min-height: 630px;
+	}
+}
+
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
 	.projects-carousel {
-		min-height: 622px;
+		min-height: 580px;
 	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 	.projects-carousel {
-		min-height: 569px;
+		min-height: 535px;
 	}
 }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
 	.projects-carousel {
-		min-height: 531px;
+		min-height: 500px;
 	}
 }
 
 @media screen and (max-width: 480px) {
 	.projects-carousel {
-		min-height: 463px;
+		min-height: 450px;
 	}
 }
 
