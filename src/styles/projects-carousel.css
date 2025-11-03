@@ -39,6 +39,7 @@
 .projects-section__content {
 	position: relative;
 	margin: 0;
+	padding: 0;
 }
 
 /**
@@ -49,6 +50,20 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+/* Eliminar padding lateral de la section para carrusel a pantalla completa */
+.projects-section {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+/* En desktop, agregar padding pequeño para mejor estética */
+@media (min-width: 1024px) {
+	.projects-section {
+		padding-left: 24px !important;
+		padding-right: 24px !important;
+	}
 }
 
 .projects-carousel {
@@ -162,7 +177,7 @@
 	translate: 0 -50%;
 	z-index: 100;
 	pointer-events: none;
-	padding: 0 20px;
+	padding: 0;
 }
 
 .slider-nav__item {
@@ -188,6 +203,26 @@
 	outline: none;
 	box-shadow: 0 2px 8px var(--shadow);
 	opacity: 0.85;
+}
+
+/* Margen óptimo para los botones desde el borde */
+.slider-nav__item_prev {
+	margin-left: 20px;
+}
+
+.slider-nav__item_next {
+	margin-right: 20px;
+}
+
+/* En desktop, aumentar el margen para mejor posicionamiento */
+@media (min-width: 1024px) {
+	.slider-nav__item_prev {
+		margin-left: 32px;
+	}
+
+	.slider-nav__item_next {
+		margin-right: 32px;
+	}
 }
 
 .slider-nav__item:focus-visible {
@@ -272,6 +307,13 @@
 	opacity: 0.6;
 	transform: scale(0.88);
 	border: 2px solid transparent;
+}
+
+/* Animación más lenta en móvil para mejor experiencia táctil */
+@media screen and (max-width: 1023px) {
+	.carousel-item {
+		transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+	}
 }
 
 .swiper-slide-active .carousel-item {
@@ -394,6 +436,14 @@
 	max-height: 50px;
 	overflow: hidden;
 	transition: max-height 0.28s ease;
+}
+
+/* Animación más lenta en móvil */
+@media screen and (max-width: 1023px) {
+	.carousel-item__header,
+	.carousel-item__footer {
+		transition: max-height 0.4s ease;
+	}
 }
 
 .carousel-item__header-inner {
