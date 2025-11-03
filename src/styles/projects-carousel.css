@@ -1,22 +1,28 @@
 .projects-section .wrapper {
 	max-width: 1560px;
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0 24px;
 }
 
 .projects-section .wrapper.no-padding {
 	padding: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
 	.projects-section .wrapper {
-		padding: 0 16px;
+		padding: 0 48px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.projects-section .wrapper {
+		padding: 0 28px;
 	}
 }
 
 @media screen and (max-width: 480px) {
 	.projects-section .wrapper {
-		padding: 0 12px;
+		padding: 0 24px;
 	}
 }
 
@@ -69,31 +75,31 @@
 .projects-carousel {
 	position: relative;
 	overflow: hidden;
-	/* Altura mínima ajustada para cohesión con otras secciones */
-	min-height: 580px;
+	/* Altura mínima ajustada: contenido de card + padding vertical equilibrado */
+	min-height: 560px;
 }
 
 @media screen and (min-width: 1920px) {
 	.projects-carousel {
-		min-height: 680px;
+		min-height: 600px;
 	}
 }
 
 @media screen and (min-width: 1440px) and (max-width: 1919px) {
 	.projects-carousel {
-		min-height: 630px;
+		min-height: 580px;
 	}
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
 	.projects-carousel {
-		min-height: 580px;
+		min-height: 560px;
 	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 	.projects-carousel {
-		min-height: 535px;
+		min-height: 530px;
 	}
 }
 
@@ -105,7 +111,7 @@
 
 @media screen and (max-width: 480px) {
 	.projects-carousel {
-		min-height: 450px;
+		min-height: 460px;
 	}
 }
 
