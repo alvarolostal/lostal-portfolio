@@ -1,9 +1,16 @@
-.base-template__wrapper {
+.base-template .wrapper {
 	max-width: 1560px;
+	margin: 0 auto;
+	padding: 0 20px;
 }
 
 .base-template__text {
 	margin-bottom: 60px;
+}
+
+.base-template__content {
+	position: relative;
+	margin: 0 -20px;
 }
 
 /**
