@@ -5,6 +5,16 @@ export default defineConfig({
   site: 'https://lostal.dev',
   output: 'static',
   integrations: [sitemap()],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: 268402689,
+      },
+    },
+    domains: [],
+    remotePatterns: [],
+  },
   build: {
     inlineStylesheets: 'auto',
   },
