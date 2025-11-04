@@ -5,10 +5,16 @@ import 'swiper/css/navigation';
 
 /**
  * Inicializa el carrusel de proyectos usando Swiper
+ * @returns {Object|null} Instancia de Swiper o null si no existe el carrusel
  */
 function initProjectsCarousel() {
   const carousel = document.querySelector('.projects-carousel');
-  if (!carousel) return;
+  if (!carousel) return null;
+
+  // Prevenir múltiples inicializaciones
+  if (carousel.swiperInstance) {
+    return carousel.swiperInstance;
+  }
 
   const slider = carousel.querySelector('.swiper');
   const prevEl = carousel.querySelector('.slider-nav__item_prev');
@@ -81,8 +87,8 @@ function initProjectsCarousel() {
   // Guardar la instancia para acceso externo (navegación por teclado)
   carousel.swiperInstance = swiper;
 
-  // Añadir navegación por teclado para accesibilidad
-  document.addEventListener('keydown', (e) => {
+  // Función nombrada para navegación por teclado (permite eliminarla después)
+  const handleKeyNavigation = (e) => {
     // Solo activar si el carrusel o sus elementos tienen el foco
     const carouselHasFocus =
       carousel.contains(document.activeElement) ||
@@ -90,19 +96,45 @@ function initProjectsCarousel() {
 
     if (!carouselHasFocus) return;
 
-    if (e.key === 'ArrowLeft') {
+    // Soporte para IE/Edge legacy y navegadores modernos
+    if (e.key === 'ArrowLeft' || e.key === 'Left') {
       e.preventDefault();
       swiper.slidePrev();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === 'ArrowRight' || e.key === 'Right') {
       e.preventDefault();
       swiper.slideNext();
     }
-  });
+  };
+
+  // Eliminar listener previo si existe (prevenir duplicados)
+  if (carousel._keyNavigationHandler) {
+    document.removeEventListener('keydown', carousel._keyNavigationHandler);
+  }
+
+  // Guardar referencia y añadir listener
+  carousel._keyNavigationHandler = handleKeyNavigation;
+  document.addEventListener('keydown', handleKeyNavigation);
 
   // Hacer el carrusel focusable para navegación por teclado
   if (!carousel.hasAttribute('tabindex')) {
     carousel.setAttribute('tabindex', '0');
   }
+
+  // Método de limpieza para cuando el componente se desmonta
+  carousel.destroy = () => {
+    // Limpiar event listener de teclado
+    if (carousel._keyNavigationHandler) {
+      document.removeEventListener('keydown', carousel._keyNavigationHandler);
+      carousel._keyNavigationHandler = null;
+    }
+    // Destruir instancia de Swiper (true, true = limpiar completamente)
+    if (carousel.swiperInstance) {
+      carousel.swiperInstance.destroy(true, true);
+      carousel.swiperInstance = null;
+    }
+  };
+
+  return swiper;
 }
 
 // Inicializar cuando el DOM esté listo

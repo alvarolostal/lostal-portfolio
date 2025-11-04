@@ -44,7 +44,6 @@ export default [
       '.astro/',
       '**/*.astro',
       'public/scripts/**', // Archivos generados/minificados por build-scripts
-      'public/assets/**', // Librerías de terceros (swiper, etc.)
     ],
   },
 ];
