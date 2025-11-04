@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import vivenzaImg from '../assets/projects/vivenza-preview.png';
 ---
 
@@ -51,13 +51,13 @@ import vivenzaImg from '../assets/projects/vivenza-preview.png';
           <div class="projects-carousel__slide swiper-slide">
             <div class="carousel-item">
               <div class="carousel-item__image">
-                <Image
+                <Picture
                   src={vivenzaImg}
                   alt="Rediseño Vivenza Expo"
                   widths={[500, 800, 1200]}
                   sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, (max-width: 1440px) 40vw, 500px"
+                  formats={['avif', 'webp']}
                   loading="lazy"
-                  format="avif"
                   quality={92}
                   class="project-carousel-image"
                 />

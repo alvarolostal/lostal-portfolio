@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import alvaroImg from '../assets/alvaro.jpg';
 ---
 
@@ -11,17 +11,17 @@ import alvaroImg from '../assets/alvaro.jpg';
       role="button"
       aria-label="Ver información personal de Álvaro Lostal"
     >
-      <Image
+      <Picture
         src={alvaroImg}
         alt="Álvaro"
         widths={[180, 360, 540]}
         sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, 180px"
+        formats={['avif', 'webp']}
         loading="eager"
         fetchpriority="high"
         decoding="sync"
         class="hero-image interactive-image"
         id="heroImage"
-        format="avif"
         quality={95}
       />
       <div class="profile-indicator" aria-hidden="true">
