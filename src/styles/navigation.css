@@ -127,43 +127,39 @@ nav.scrolled {
 }
 
 .lang-btn {
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-  border-radius: 8px;
-  border: none;
   background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
   -webkit-tap-highlight-color: transparent;
-  color: var(--text-secondary);
 }
 
-.lang-btn i {
-  font-size: 18px;
-  color: inherit;
-  transition: color 0.3s ease;
-}
-
-/* Hover/focus: neutral background like the theme-toggle */
 .lang-btn:hover {
   background: var(--bg-secondary);
   color: var(--accent-primary);
 }
 
-/* Remove ALL focus styles for touch/click interactions */
 .lang-btn:focus {
   outline: none;
-  background: none;
 }
 
-/* Only show focus for keyboard navigation */
 .lang-btn:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
+}
+
+.lang-btn:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Click animation: mini bounce on the icon (more visible) */
@@ -300,12 +296,6 @@ nav.scrolled {
 }
 
 @media (min-width: 768px) {
-  .lang-btn {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-  }
-
   .lang-popover {
     right: 0;
     min-width: 160px;
