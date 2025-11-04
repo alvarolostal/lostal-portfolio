@@ -65,43 +65,57 @@ section.projects-section {
 .projects-carousel {
   position: relative;
   overflow: hidden;
-  min-height: 560px;
+  /* Altura base: asegura espacio suficiente para card expandida + transiciones */
+  min-height: 580px;
   outline: none;
 }
 
+/* Indicador visual cuando el carrusel tiene foco (para navegación por teclado) */
+.projects-carousel:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -4px;
+  border-radius: 8px;
+}
+
+/* Desktop muy grande - Cards más grandes necesitan más altura */
 @media screen and (min-width: 1920px) {
+  .projects-carousel {
+    min-height: 620px;
+  }
+}
+
+/* Desktop grande - Margen proporcional */
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
   .projects-carousel {
     min-height: 600px;
   }
 }
 
-@media screen and (min-width: 1440px) and (max-width: 1919px) {
+/* Desktop medio - Altura estándar con margen seguro */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
   .projects-carousel {
     min-height: 580px;
   }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1439px) {
-  .projects-carousel {
-    min-height: 560px;
-  }
-}
-
+/* Tablet - Contenido más compacto pero con margen */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .projects-carousel {
-    min-height: 530px;
+    min-height: 550px;
   }
 }
 
+/* Móvil grande - Ajuste proporcional */
 @media screen and (min-width: 481px) and (max-width: 767px) {
   .projects-carousel {
-    min-height: 500px;
+    min-height: 520px;
   }
 }
 
+/* Móvil pequeño - Mínimo necesario con margen */
 @media screen and (max-width: 480px) {
   .projects-carousel {
-    min-height: 460px;
+    min-height: 480px;
   }
 }
 
@@ -119,42 +133,43 @@ section.projects-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 500px;
+  /* Altura mínima del slide individual */
+  min-height: 520px;
 }
 
 @media screen and (min-width: 1920px) {
   .projects-carousel__slide {
-    min-height: 520px;
+    min-height: 560px;
   }
 }
 
 @media screen and (min-width: 1440px) and (max-width: 1919px) {
   .projects-carousel__slide {
-    min-height: 510px;
+    min-height: 540px;
   }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
   .projects-carousel__slide {
-    min-height: 500px;
+    min-height: 520px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .projects-carousel__slide {
-    min-height: 480px;
+    min-height: 500px;
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {
   .projects-carousel__slide {
-    min-height: 460px;
+    min-height: 480px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .projects-carousel__slide {
-    min-height: 440px;
+    min-height: 460px;
   }
 }
 
