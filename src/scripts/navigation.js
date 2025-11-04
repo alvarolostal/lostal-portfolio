@@ -78,7 +78,9 @@ if (langBtn && langPopover && langMenu) {
     }
     try {
       localStorage.setItem('siteLang', lang);
-    } catch {}
+    } catch {
+      // localStorage may be unavailable
+    }
     window.dispatchEvent(new CustomEvent('localeChange', { detail: { lang } }));
     // Update visual selection inside the popover (if present)
     try {
@@ -87,7 +89,9 @@ if (langBtn && langPopover && langMenu) {
         if (b.getAttribute('data-lang') === lang) b.classList.add('selected');
         else b.classList.remove('selected');
       });
-    } catch (e) {}
+    } catch {
+      // Element not found
+    }
   };
 
   const selectNextLanguage = () => {
@@ -96,7 +100,9 @@ if (langBtn && langPopover && langMenu) {
     setLanguage(next);
     try {
       if (typeof langBtn.focus === 'function') langBtn.focus();
-    } catch (e) {}
+    } catch {
+      // Focus not available
+    }
     closeMenu();
     if (navigator.vibrate) navigator.vibrate(20);
   };
@@ -113,17 +119,17 @@ if (langBtn && langPopover && langMenu) {
         380
       );
     }
-    // On touch devices, clicking the button should immediately toggle language.
-    // On non-touch (hover-capable) devices, clicking toggles the popover open/close
-    // so the user can hover/click the specific language.
-    if (isTouchDevice && isTouchDevice()) {
-      selectNextLanguage();
-    } else {
-      // Toggle menu open/close for desktop users
-      if (langMenu.classList.contains('open')) closeMenu();
-      else openMenu();
-    }
+    // Siempre cambiar el idioma al hacer clic en el icono
+    selectNextLanguage();
   });
+
+  // En desktop con hover, remover la clase .open cuando el ratón entre
+  // para que el hover tome control completo
+  if (!isTouchDevice || !isTouchDevice()) {
+    langMenu.addEventListener('mouseenter', () => {
+      closeMenu();
+    });
+  }
 
   if (langIcon) {
     langIcon.addEventListener('animationend', e => {
@@ -171,14 +177,9 @@ if (langBtn && langPopover && langMenu) {
         void langBtn.offsetWidth;
         langBtn.classList.add('clicked');
       }
-      // On keyboard: if device is touch (or we detect mobile), toggle language; otherwise open the menu
-      if (isTouchDevice && isTouchDevice()) selectNextLanguage();
-      else openMenu();
+      // Siempre cambiar el idioma al presionar Enter/Space
+      selectNextLanguage();
     }
-  });
-
-  document.addEventListener('click', e => {
-    if (!langMenu.contains(e.target)) closeMenu();
   });
 
   langPopover.querySelectorAll('button[data-lang]').forEach(btn => {
@@ -202,7 +203,9 @@ if (langBtn && langPopover && langMenu) {
       setLanguage(selected);
       try {
         if (typeof langBtn.focus === 'function') langBtn.focus();
-      } catch (e) {}
+      } catch {
+        // Focus not available
+      }
       closeMenu();
     });
     btn.addEventListener('keydown', e => {
@@ -253,21 +256,31 @@ if (langBtn && langPopover && langMenu) {
     setLanguage(initial);
     try {
       closeMenu();
-    } catch (e) {}
+    } catch {
+      // closeMenu not available
+    }
     try {
       if (typeof langBtn.blur === 'function') langBtn.blur();
-    } catch (e) {}
+    } catch {
+      // Blur not available
+    }
     try {
       langIcon && langIcon.classList.remove('clicked');
-    } catch (e) {}
+    } catch {
+      // langIcon not available
+    }
     try {
       langBtn && langBtn.classList.remove('clicked');
-    } catch (e) {}
+    } catch {
+      // langBtn not available
+    }
     try {
       setTimeout(() => {
         langMenu.dataset.ready = '1';
       }, 50);
-    } catch (e) {}
+    } catch {
+      // setTimeout not available
+    }
   })();
 }
 

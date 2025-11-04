@@ -165,18 +165,14 @@ nav.scrolled {
   color: var(--accent-primary);
 }
 
-/* Use focus-visible to show focus styles for keyboard users */
-.lang-btn:focus:not(:focus-visible) {
-  box-shadow: none;
-}
-
-/* Remove the default blue focus ring (common in some browsers) but keep a
-   visible ring for keyboard users via :focus-visible (accessibility). */
+/* Remove the default focus outline and use focus-visible for keyboard users */
 .lang-btn:focus {
   outline: none;
 }
+
 .lang-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 /* Click animation: mini bounce on the icon (more visible) */
@@ -266,28 +262,28 @@ nav.scrolled {
   font-weight: 600;
 }
 
-/* Show on hover or when menu is open (desktop hover / keyboard focus)
-   Only enable hover/focus reveal after JS sets data-ready="1" to avoid
-   accidental open on page load due to programmatic focus. */
+/* Show menu when opened via keyboard navigation (class added by JS) */
 .lang-menu.open .lang-popover {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
 
-/* Only allow the hover/focus reveal on devices that support hover/pointer precision
+.lang-menu.open .lang-popover::before {
+  pointer-events: auto;
+}
+
+/* Only allow the hover reveal on devices that support hover/pointer precision
    (desktop / non-touch). On touch devices we'll keep popover hidden and let JS
-   handle a direct language toggle. This avoids showing the menu on phones/tablets. */
+   handle a direct language toggle. The menu will close when mouse leaves. */
 @media (hover: hover) and (pointer: fine) {
-  .lang-menu[data-ready='1']:hover .lang-popover,
-  .lang-menu[data-ready='1']:focus-within .lang-popover {
+  .lang-menu[data-ready='1']:hover .lang-popover {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
   }
 
-  .lang-menu[data-ready='1']:hover .lang-popover::before,
-  .lang-menu[data-ready='1']:focus-within .lang-popover::before {
+  .lang-menu[data-ready='1']:hover .lang-popover::before {
     pointer-events: auto;
   }
 }
@@ -305,7 +301,6 @@ nav.scrolled {
 }
 
 .lang-menu[data-ready='1']:hover .lang-popover::before,
-.lang-menu[data-ready='1']:focus-within .lang-popover::before,
 .lang-menu.open .lang-popover::before {
   pointer-events: auto;
 }
@@ -359,6 +354,15 @@ nav.scrolled {
 .theme-toggle:hover {
   background: var(--bg-secondary);
   color: var(--accent-primary);
+}
+
+.theme-toggle:focus {
+  outline: none;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 /* Mobile Menu */

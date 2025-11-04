@@ -4,10 +4,10 @@
       <a href="#top" class="logo">AL</a>
 
       <ul class="nav-links">
-        <li><a href="#projects">Proyectos</a></li>
-        <li><a href="#journey">Recorrido</a></li>
-        <li><a href="#skills">Habilidades</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#journey" data-i18n="nav.journey">Recorrido</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -47,10 +47,20 @@
           </ul>
         </div>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Cambiar tema"
+          data-i18n-aria="nav.theme"
+        >
           <i class="fas fa-lightbulb" id="themeIcon"></i>
         </button>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Menú"
+          data-i18n-aria="nav.menu"
+        >
           <div class="hamburger-icon">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -63,10 +73,22 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <ul class="mobile-menu-links">
-      <li><a href="#projects" class="mobile-link">Proyectos</a></li>
-      <li><a href="#journey" class="mobile-link">Recorrido</a></li>
-      <li><a href="#skills" class="mobile-link">Habilidades</a></li>
-      <li><a href="#contact" class="mobile-link">Contacto</a></li>
+      <li>
+        <a href="#projects" class="mobile-link" data-i18n="nav.projects"
+          >Proyectos</a>
+      </li>
+      <li>
+        <a href="#journey" class="mobile-link" data-i18n="nav.journey"
+          >Recorrido</a>
+      </li>
+      <li>
+        <a href="#skills" class="mobile-link" data-i18n="nav.skills"
+          >Habilidades</a>
+      </li>
+      <li>
+        <a href="#contact" class="mobile-link" data-i18n="nav.contact"
+          >Contacto</a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -114,6 +114,9 @@ const ogImage = (Astro.props && Astro.props.ogImage) || defaultOgImage;
     </div>
     <slot />
 
+    <!-- I18n Script -->
+    <script is:inline src="/scripts/i18n.js"></script>
+
     <!-- Deferred loader moved to external file for reliability and easier debugging -->
     <script defer src="/scripts/deferred-loader.js"></script>
 

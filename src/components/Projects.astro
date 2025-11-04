@@ -7,9 +7,9 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
 <section class="projects-section section-alt" id="projects">
   <div class="wrapper">
     <div class="section-header fade-in">
-      <div class="section-label">Proyectos</div>
-      <h2 class="section-title">Mi Trabajo</h2>
-      <p class="section-description">
+      <div class="section-label" data-i18n="projects.label">Proyectos</div>
+      <h2 class="section-title" data-i18n="projects.title">Mi Trabajo</h2>
+      <p class="section-description" data-i18n="projects.description">
         Estos proyectos web reflejan mi enfoque en el diseño minimalista, una UX
         cuidada y buenas prácticas de desarrollo.
       </p>
@@ -22,6 +22,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
         <button
           class="slider-nav__item slider-nav__item_prev"
           aria-label="Proyecto anterior"
+          data-i18n-aria="projects.prev"
           type="button"
         >
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
@@ -29,6 +30,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
         <button
           class="slider-nav__item slider-nav__item_next"
           aria-label="Siguiente proyecto"
+          data-i18n-aria="projects.next"
           type="button"
         >
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
@@ -69,6 +71,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                         href="https://vivenza.netlify.app/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-i18n="projects.view"
                       >
                         Ver proyecto
                       </a>
@@ -77,8 +80,16 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 </div>
 
                 <div class="carousel-item__info">
-                  <h2 class="carousel-item__title">Rediseño Vivenza Expo</h2>
-                  <div class="carousel-item__text">
+                  <h2
+                    class="carousel-item__title"
+                    data-i18n="projects.vivenza.title"
+                  >
+                    Rediseño Vivenza Expo
+                  </h2>
+                  <div
+                    class="carousel-item__text"
+                    data-i18n="projects.vivenza.description"
+                  >
                     Rediseño completo de la landing page de Vivenza Expo,
                     aplicando principios de diseño moderno.
                   </div>
@@ -89,8 +100,12 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                     class="carousel-item__btn"
                     type="button"
                     aria-label="Ver más sobre Rediseño Vivenza Expo"
+                    data-i18n-aria="projects.vivenza.more"
                   >
-                    <span class="carousel-item__btn-text">Ver más</span>
+                    <span
+                      class="carousel-item__btn-text"
+                      data-i18n="projects.more">Ver más</span
+                    >
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -131,6 +146,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                         href="https://creative-hands-cjzg.onrender.com/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-i18n="projects.view"
                       >
                         Ver proyecto
                       </a>
@@ -139,8 +155,16 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 </div>
 
                 <div class="carousel-item__info">
-                  <h2 class="carousel-item__title">Creative Hands</h2>
-                  <div class="carousel-item__text">
+                  <h2
+                    class="carousel-item__title"
+                    data-i18n="projects.creative.title"
+                  >
+                    Creative Hands
+                  </h2>
+                  <div
+                    class="carousel-item__text"
+                    data-i18n="projects.creative.description"
+                  >
                     Plataforma e-commerce full-stack con autenticación JWT y
                     chat en tiempo real mediante Socket.io.
                   </div>
@@ -151,8 +175,12 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                     class="carousel-item__btn"
                     type="button"
                     aria-label="Ver más sobre Creative Hands"
+                    data-i18n-aria="projects.creative.more"
                   >
-                    <span class="carousel-item__btn-text">Ver más</span>
+                    <span
+                      class="carousel-item__btn-text"
+                      data-i18n="projects.more">Ver más</span
+                    >
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                   </button>
                 </div>
