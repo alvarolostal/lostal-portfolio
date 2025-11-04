@@ -34,10 +34,14 @@
   --z-background: 1;
   --z-content: 2;
   --z-hero-image: 3;
-  --z-navigation: 100;
-  --z-carousel-navigation: 150;
+  --z-profile-indicator: 4;
+  --z-mobile-buttons: 5;
+  --z-carousel-navigation: 10; /* Botones del carrusel - debe estar debajo de todo lo fijo */
+  --z-nav-popover: 60; /* Popovers dentro de la navbar */
+  --z-navigation: 100; /* Navbar fija */
   --z-card-overlay: 999;
   --z-floating-contact: 1000;
+  --z-skip-link: 10000; /* Skip link para accesibilidad - siempre en la cima */
 }
 
 /* Optimización para móviles */

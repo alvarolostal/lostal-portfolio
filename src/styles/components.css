@@ -149,7 +149,7 @@ footer {
   border-radius: 8px;
   border: 1px solid var(--border);
   font-size: 14px;
-  z-index: 10000;
+  z-index: var(--z-skip-link);
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.28s ease;

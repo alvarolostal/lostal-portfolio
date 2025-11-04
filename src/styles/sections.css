@@ -522,7 +522,7 @@ section {
   right: 16px;
   display: none;
   gap: 8px;
-  z-index: 2;
+  z-index: var(--z-mobile-buttons);
 }
 
 .mobile-btn {

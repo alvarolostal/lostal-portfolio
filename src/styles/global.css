@@ -30,7 +30,7 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
-  z-index: 10000;
+  z-index: var(--z-skip-link);
   transition: top 0.3s ease;
   border: 2px solid var(--accent-dark);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

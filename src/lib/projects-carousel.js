@@ -88,7 +88,7 @@ function initProjectsCarousel() {
   carousel.swiperInstance = swiper;
 
   // Función nombrada para navegación por teclado (permite eliminarla después)
-  const handleKeyNavigation = (e) => {
+  const handleKeyNavigation = e => {
     // Solo activar si el carrusel o sus elementos tienen el foco
     const carouselHasFocus =
       carousel.contains(document.activeElement) ||

@@ -227,7 +227,7 @@ nav.scrolled {
   transition:
     opacity 0.28s ease,
     transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 60;
+  z-index: var(--z-nav-popover);
 }
 
 .lang-item {
