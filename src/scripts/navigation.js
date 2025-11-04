@@ -116,7 +116,7 @@ if (langBtn && langPopover && langMenu) {
       clearTimeout(langIcon._langAnimTimeout);
       langIcon._langAnimTimeout = setTimeout(
         () => langIcon.classList.remove('clicked'),
-        380
+        580
       );
     }
     // Siempre cambiar el idioma al hacer clic en el icono
@@ -170,7 +170,7 @@ if (langBtn && langPopover && langMenu) {
         clearTimeout(langIcon._langAnimTimeout);
         langIcon._langAnimTimeout = setTimeout(
           () => langIcon.classList.remove('clicked'),
-          380
+          580
         );
       } else {
         langBtn.classList.remove('clicked');
@@ -193,7 +193,7 @@ if (langBtn && langPopover && langMenu) {
         clearTimeout(langIcon._langAnimTimeout);
         langIcon._langAnimTimeout = setTimeout(
           () => langIcon.classList.remove('clicked'),
-          380
+          580
         );
       } else {
         langBtn.classList.remove('clicked');
