@@ -39,18 +39,16 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
         <div class="projects-carousel__wrapper swiper-wrapper">
           <div class="projects-carousel__slide swiper-slide">
             <div class="carousel-item">
-              <div class="carousel-item__image">
-                <Picture
-                  src={vivenzaImg}
-                  alt="Rediseño Vivenza Expo"
-                  widths={[500, 800, 1200]}
-                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, (max-width: 1440px) 40vw, 500px"
-                  formats={['avif', 'webp']}
-                  loading="lazy"
-                  quality={92}
-                  class="project-carousel-image"
-                />
-              </div>
+              <Picture
+                src={vivenzaImg}
+                alt="Rediseño Vivenza Expo"
+                widths={[500, 800, 1200]}
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, (max-width: 1440px) 40vw, 500px"
+                formats={['avif', 'webp']}
+                loading="lazy"
+                quality={92}
+                class="carousel-item__image"
+              />
               <div class="carousel-item__content">
                 <div class="carousel-item__header">
                   <div class="carousel-item__header-inner">
@@ -102,18 +100,16 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
 
           <div class="projects-carousel__slide swiper-slide">
             <div class="carousel-item">
-              <div class="carousel-item__image">
-                <Picture
-                  src={creativeHandsImg}
-                  alt="Creative Hands"
-                  widths={[500, 800, 1200]}
-                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, (max-width: 1440px) 40vw, 500px"
-                  formats={['avif', 'webp']}
-                  loading="lazy"
-                  quality={92}
-                  class="project-carousel-image"
-                />
-              </div>
+              <Picture
+                src={creativeHandsImg}
+                alt="Creative Hands"
+                widths={[500, 800, 1200]}
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, (max-width: 1440px) 40vw, 500px"
+                formats={['avif', 'webp']}
+                loading="lazy"
+                quality={92}
+                class="carousel-item__image"
+              />
 
               <div class="carousel-item__content">
                 <div class="carousel-item__header">
@@ -172,74 +168,118 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
 <script is:inline src="/assets/swiper/swiper-bundle.min.js"></script>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.querySelector('.projects-carousel');
-    if (!carousel) return;
+  (function initProjectsCarousel() {
+    // Verificar que Swiper está disponible antes de inicializar
+    if (typeof Swiper === 'undefined') {
+      // Reintentar después de 50ms si Swiper no está listo
+      setTimeout(initProjectsCarousel, 50);
+      return;
+    }
 
-    const slider = carousel.querySelector('.swiper');
-    const prevEl = carousel.querySelector('.slider-nav__item_prev');
-    const nextEl = carousel.querySelector('.slider-nav__item_next');
+    // Función para inicializar el carrusel
+    function setupCarousel() {
+      const carousel = document.querySelector('.projects-carousel');
+      if (!carousel) return;
 
-    new Swiper(slider, {
-      slidesPerView: 1.3,
-      spaceBetween: 24,
-      speed: 500,
-      centeredSlides: true,
-      initialSlide: 0,
-      loop: false,
-      grabCursor: true,
-      navigation: {
-        nextEl,
-        prevEl,
-        disabledClass: 'disabled',
-      },
-      breakpoints: {
-        // Móvil pequeño
-        375: {
-          slidesPerView: 1.4,
-          spaceBetween: 20,
+      const slider = carousel.querySelector('.swiper');
+      const prevEl = carousel.querySelector('.slider-nav__item_prev');
+      const nextEl = carousel.querySelector('.slider-nav__item_next');
+
+      // Crear instancia de Swiper
+      const swiper = new Swiper(slider, {
+        slidesPerView: 1.3,
+        spaceBetween: 24,
+        speed: 500,
+        centeredSlides: true,
+        initialSlide: 0,
+        loop: false,
+        grabCursor: true,
+        navigation: {
+          nextEl,
+          prevEl,
+          disabledClass: 'disabled',
         },
-        // Móvil grande
-        480: {
-          slidesPerView: 1.5,
-          spaceBetween: 24,
+        breakpoints: {
+          // Móvil pequeño
+          375: {
+            slidesPerView: 1.4,
+            spaceBetween: 20,
+          },
+          // Móvil grande
+          480: {
+            slidesPerView: 1.5,
+            spaceBetween: 24,
+          },
+          // Tablet pequeña
+          640: {
+            slidesPerView: 2.0,
+            spaceBetween: 28,
+          },
+          // Tablet
+          768: {
+            slidesPerView: 2.2,
+            spaceBetween: 32,
+          },
+          // Desktop pequeño
+          1024: {
+            slidesPerView: 2.6,
+            spaceBetween: 36,
+          },
+          // Desktop medio
+          1280: {
+            slidesPerView: 2.8,
+            spaceBetween: 40,
+          },
+          // Desktop grande
+          1440: {
+            slidesPerView: 3.0,
+            spaceBetween: 44,
+          },
+          // Desktop muy grande
+          1920: {
+            slidesPerView: 3.2,
+            spaceBetween: 48,
+          },
+          // Pantallas ultra anchas
+          2400: {
+            slidesPerView: 3.4,
+            spaceBetween: 52,
+          },
         },
-        // Tablet pequeña
-        640: {
-          slidesPerView: 2.0,
-          spaceBetween: 28,
-        },
-        // Tablet
-        768: {
-          slidesPerView: 2.2,
-          spaceBetween: 32,
-        },
-        // Desktop pequeño
-        1024: {
-          slidesPerView: 2.6,
-          spaceBetween: 36,
-        },
-        // Desktop medio
-        1280: {
-          slidesPerView: 2.8,
-          spaceBetween: 40,
-        },
-        // Desktop grande
-        1440: {
-          slidesPerView: 3.0,
-          spaceBetween: 44,
-        },
-        // Desktop muy grande
-        1920: {
-          slidesPerView: 3.2,
-          spaceBetween: 48,
-        },
-        // Pantallas ultra anchas
-        2400: {
-          slidesPerView: 3.4,
-          spaceBetween: 52,
-        },
-      },
-    });
-  });
+      });
+
+      // Guardar la instancia para acceso externo (navegación por teclado)
+      carousel.swiperInstance = swiper;
+
+      // Añadir navegación por teclado para accesibilidad
+      document.addEventListener('keydown', e => {
+        // Solo activar si el carrusel o sus elementos tienen el foco
+        const carouselHasFocus =
+          carousel.contains(document.activeElement) ||
+          document.activeElement === carousel;
+
+        if (!carouselHasFocus) return;
+
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          swiper.slidePrev();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          swiper.slideNext();
+        }
+      });
+
+      // Hacer el carrusel focusable para navegación por teclado
+      if (!carousel.hasAttribute('tabindex')) {
+        carousel.setAttribute('tabindex', '0');
+      }
+    }
+
+    // Inicializar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupCarousel);
+    } else {
+      setupCarousel();
+    }
+  })();
 </script>
