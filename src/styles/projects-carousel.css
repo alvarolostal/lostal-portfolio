@@ -4,10 +4,6 @@
   padding: 0 24px;
 }
 
-.projects-section .wrapper.no-padding {
-  padding: 0;
-}
-
 @media screen and (min-width: 768px) {
   .projects-section .wrapper {
     padding: 0 48px;
@@ -48,34 +44,27 @@
   padding: 0;
 }
 
-/**
- * Slider Instance
- */
-
 .swiper {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
-/* Eliminar padding lateral de la section para carrusel a pantalla completa */
-.projects-section {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+section.projects-section {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/* En desktop, agregar padding pequeño para mejor estética */
 @media (min-width: 1024px) {
-  .projects-section {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+  section.projects-section {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 
 .projects-carousel {
   position: relative;
   overflow: hidden;
-  /* Altura mínima ajustada: contenido de card + padding vertical equilibrado */
   min-height: 560px;
 }
 
@@ -168,10 +157,6 @@
   }
 }
 
-/**
- * Slider Navigation
- */
-
 .slider-nav {
   display: flex;
   justify-content: space-between;
@@ -181,7 +166,7 @@
   top: 50%;
   left: 0;
   translate: 0 -50%;
-  z-index: 100;
+  z-index: var(--z-carousel-navigation);
   pointer-events: none;
   padding: 0;
 }
@@ -201,8 +186,6 @@
   border-radius: 50%;
   backdrop-filter: blur(10px);
   position: relative;
-  z-index: 100;
-  /* Estilos para botón - resetear defaults del navegador */
   padding: 0;
   font: inherit;
   color: inherit;
@@ -211,7 +194,6 @@
   opacity: 0.85;
 }
 
-/* Margen óptimo para los botones desde el borde */
 .slider-nav__item_prev {
   margin-left: 20px;
 }
@@ -220,7 +202,6 @@
   margin-right: 20px;
 }
 
-/* En desktop, aumentar el margen para mejor posicionamiento */
 @media (min-width: 1024px) {
   .slider-nav__item_prev {
     margin-left: 32px;
@@ -280,29 +261,14 @@
   }
 }
 
-/**
- * Slider Item
- */
-
 .swiper-slide {
   width: auto;
   height: auto;
 }
 
-@keyframes btn-arrow-move {
-  0% {
-    translate: 0;
-  }
-
-  100% {
-    translate: 100% -100%;
-  }
-}
-
 .carousel-item {
   --border-radius: 16px;
 
-  /* La card debe ocupar el 100% del slide para centrado correcto */
   width: 100%;
   max-width: 100%;
   background: var(--bg-secondary);
@@ -319,7 +285,6 @@
   border: 2px solid transparent;
 }
 
-/* Animación más lenta en móvil para mejor experiencia táctil */
 @media screen and (max-width: 1023px) {
   .carousel-item {
     transition:
@@ -333,11 +298,9 @@
 .swiper-slide-active .carousel-item {
   opacity: 1;
   transform: scale(1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   border-color: var(--accent-primary);
 }
 
-/* Ajustes de escala para slides no activas según viewport */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .carousel-item {
     transform: scale(0.9);
@@ -358,32 +321,6 @@
   }
 }
 
-.carousel-item__badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px 4px 5px;
-  background: #00000066;
-  border-bottom-right-radius: var(--border-radius);
-  font-size: 14px;
-  line-height: calc(24 / 14);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-}
-
-.carousel-item__badge::before {
-  content: '';
-  flex-shrink: 0;
-  display: block;
-  aspect-ratio: 1;
-  width: 18px;
-  background: url('https://bato-web-agency.github.io/bato-shared/img/slider-1/icon-star.svg')
-    center center no-repeat;
-  background-size: 100%;
-}
-
 .carousel-item__image {
   aspect-ratio: 400 / 270;
   overflow: hidden;
@@ -402,11 +339,6 @@
   flex-direction: column;
   gap: 24px;
   padding: 24px 20px;
-}
-
-/* Permitir overflow visible solo en slides activas para hover effects */
-.swiper-slide-active .carousel-item__content {
-  overflow: visible;
 }
 
 @media screen and (min-width: 1920px) {
@@ -461,7 +393,6 @@
     visibility 0.28s ease;
 }
 
-/* Animación más lenta en móvil */
 @media screen and (max-width: 1023px) {
   .carousel-item__header,
   .carousel-item__footer {
@@ -518,7 +449,6 @@
   color: var(--text-secondary);
 }
 
-/* Link "Ver original" */
 .carousel-item__link {
   font-family: var(--font-primary);
   font-size: 13px;
@@ -616,46 +546,66 @@
   }
 }
 
+/* Botón "Ver más" - Adaptado al diseño de la página */
 .carousel-item__btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 14px;
   font-weight: 500;
-  font-size: 18px;
-  color: #fff;
   text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.carousel-item__btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.carousel-item__btn i {
+  font-size: 12px;
+  transition: transform 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {
   .carousel-item__btn {
-    font-size: 16px;
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .carousel-item__btn i {
+    font-size: 11px;
   }
 }
 
-.carousel-item__btn-icon {
-  flex-shrink: 0;
-  display: block;
-  aspect-ratio: 1;
-  width: 24px;
-  position: relative;
-  overflow: hidden;
+@media (hover: hover) and (pointer: fine) {
+  .carousel-item__btn:hover {
+    background: var(--accent-primary);
+    color: #000;
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(213, 189, 55, 0.3);
+  }
+
+  .carousel-item__btn:hover i {
+    transform: translateX(3px);
+  }
 }
 
-.carousel-item__btn-icon::before,
-.carousel-item__btn-icon::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: url('https://bato-web-agency.github.io/bato-shared/img/slider-1/icon-btn-arrow.svg')
-    center center no-repeat;
-  background-size: 100%;
-}
-
-.carousel-item__btn-icon::after {
-  position: absolute;
-  top: 100%;
-  right: 100%;
+@media (hover: none) {
+  .carousel-item__btn:active {
+    background: var(--accent-primary);
+    color: #000;
+    border-color: var(--accent-primary);
+  }
 }
 
 .projects-carousel__slide:not(.swiper-slide-active) .carousel-item__header,
@@ -666,24 +616,9 @@
   visibility: hidden;
 }
 
-/* Solo las slides activas tienen overflow visible */
 .swiper-slide-active .carousel-item__header,
 .swiper-slide-active .carousel-item__footer {
   overflow: visible;
   opacity: 1;
   visibility: visible;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .carousel-item__btn:hover .carousel-item__btn-icon::before,
-  .carousel-item__btn:hover .carousel-item__btn-icon::after {
-    animation: btn-arrow-move 0.4s ease forwards;
-  }
-}
-
-@media (hover: none) {
-  .carousel-item__btn:active .carousel-item__btn-icon::before,
-  .carousel-item__btn:active .carousel-item__btn-icon::after {
-    animation: btn-arrow-move 0.4s ease forwards;
-  }
 }

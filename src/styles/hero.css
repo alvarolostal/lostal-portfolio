@@ -28,12 +28,12 @@
   opacity: 0.03;
   animation: pulse 8s ease-in-out infinite;
   pointer-events: none;
-  z-index: var(--z-index-background);
+  z-index: var(--z-background);
 }
 
 .hero-content {
   position: relative;
-  z-index: var(--z-index-content);
+  z-index: var(--z-content);
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -53,7 +53,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
-  z-index: var(--z-index-hero-image);
+  z-index: var(--z-hero-image);
 }
 
 /* Interactividad sutil de la imagen */
@@ -535,7 +535,7 @@
     0 8px 25px rgba(0, 0, 0, 0.08),
     0 0 1px rgba(0, 0, 0, 0.1);
   padding: 32px;
-  z-index: var(--z-index-card);
+  z-index: var(--z-floating-contact);
   opacity: 0;
   visibility: hidden;
   transform: scale(0.85) translateX(20px) translateY(-10px);
@@ -665,7 +665,7 @@
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: var(--z-index-card-overlay);
+  z-index: var(--z-card-overlay);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;

@@ -29,6 +29,15 @@
 
   /* Optimización: usar transform en lugar de multiple color changes donde sea posible */
   --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index hierarchy - Sistema unificado */
+  --z-background: 1;
+  --z-content: 2;
+  --z-hero-image: 3;
+  --z-navigation: 100;
+  --z-carousel-navigation: 150;
+  --z-card-overlay: 999;
+  --z-floating-contact: 1000;
 }
 
 /* Optimización para móviles */

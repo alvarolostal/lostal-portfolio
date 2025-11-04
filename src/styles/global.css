@@ -224,13 +224,3 @@ body,
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Jerarquía de z-index global para evitar conflictos */
-:root {
-  --z-index-background: 1;
-  --z-index-content: 2;
-  --z-index-hero-image: 3;
-  --z-index-navigation: 100;
-  --z-index-card-overlay: 999;
-  --z-index-card: 1000;
-}
