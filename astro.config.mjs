@@ -12,8 +12,6 @@ export default defineConfig({
         limitInputPixels: 268402689,
       },
     },
-    domains: [],
-    remotePatterns: [],
   },
   build: {
     inlineStylesheets: 'auto',
