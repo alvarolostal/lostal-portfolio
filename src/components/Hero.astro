@@ -142,12 +142,12 @@ import alvaroImg from '../assets/alvaro.jpg';
       // Limpiar eventos existentes
       this.removeAllEvents();
 
-      // Desktop: hover events
+      // Desktop: hover events solo en la imagen
       if (!this.isMobile) {
         this.showCardBound = () => this.showCard();
         this.hideCardBound = () => this.hideCard();
 
-        // Usar el wrapper para un área más grande de interacción
+        // Solo el wrapper controla la apertura/cierre
         this.heroImageWrapper.addEventListener(
           'mouseenter',
           this.showCardBound
@@ -156,8 +156,7 @@ import alvaroImg from '../assets/alvaro.jpg';
           'mouseleave',
           this.hideCardBound
         );
-        this.aboutCard.addEventListener('mouseenter', this.showCardBound);
-        this.aboutCard.addEventListener('mouseleave', this.hideCardBound);
+        // Remover eventos de hover en la card para evitar que se mantenga abierta
       } else {
         // Mobile: touch events en el wrapper para mayor área táctil
         this.toggleCardBound = e => {
@@ -201,14 +200,12 @@ import alvaroImg from '../assets/alvaro.jpg';
           'mouseenter',
           this.showCardBound
         );
-        this.aboutCard.removeEventListener('mouseenter', this.showCardBound);
       }
       if (this.hideCardBound) {
         this.heroImageWrapper.removeEventListener(
           'mouseleave',
           this.hideCardBound
         );
-        this.aboutCard.removeEventListener('mouseleave', this.hideCardBound);
       }
       if (this.toggleCardBound) {
         this.heroImageWrapper.removeEventListener(
