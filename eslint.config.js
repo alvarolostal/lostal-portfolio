@@ -38,6 +38,13 @@ export default [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '.astro/', '**/*.astro'],
+    ignores: [
+      'dist/',
+      'node_modules/',
+      '.astro/',
+      '**/*.astro',
+      'public/scripts/**', // Archivos generados/minificados por build-scripts
+      'public/assets/**', // Librerías de terceros (swiper, etc.)
+    ],
   },
 ];
