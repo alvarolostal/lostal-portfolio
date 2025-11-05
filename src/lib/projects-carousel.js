@@ -181,14 +181,18 @@ function initProjectModal() {
   const closeModal = () => {
     modal.classList.remove('is-open');
 
-    // Restaurar scroll del body
-    document.body.classList.remove('modal-open');
-    document.body.style.top = '';
-    window.scrollTo(0, scrollPosition);
-
     // Limpiar contenido después de la animación
     setTimeout(() => {
       modalContent.innerHTML = '';
+      
+      // Restaurar scroll del body después de que termine la animación del modal
+      document.body.classList.remove('modal-open');
+      document.body.style.top = '';
+      
+      // Usar requestAnimationFrame para una restauración más suave
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollPosition);
+      });
     }, 300);
   };
 
