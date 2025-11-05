@@ -147,6 +147,20 @@
 .hero-image-wrapper {
   position: relative;
   display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 24px; /* Coincidir con la imagen para área táctil clara */
+  outline: none; /* Removemos outline por defecto, lo manejamos con focus-visible */
+}
+
+.hero-image-wrapper:hover {
+  transform: translateY(-2px);
+}
+
+/* Mejor indicador de foco para accesibilidad */
+.hero-image-wrapper:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
 }
 
 .profile-indicator {
@@ -224,24 +238,6 @@
   50% {
     transform: scale(1.1) translateY(-2px);
   }
-}
-
-/* Cursor pointer en toda el área interactiva */
-.hero-image-wrapper {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  border-radius: 24px; /* Coincidir con la imagen para área táctil clara */
-  outline: none; /* Removemos outline por defecto, lo manejamos con focus-visible */
-}
-
-.hero-image-wrapper:hover {
-  transform: translateY(-2px);
-}
-
-/* Mejor indicador de foco para accesibilidad */
-.hero-image-wrapper:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 4px;
 }
 
 /* Ocultar indicador cuando la tarjeta está visible */
@@ -342,18 +338,6 @@
   background: var(--accent-primary) !important;
   color: #000 !important; /* Texto negro igual que en modo claro */
   border-color: transparent !important;
-}
-
-@keyframes pulse-tap {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
 }
 
 .hero-subtitle {
@@ -748,27 +732,4 @@
   .about-card.show {
     transform: scale(1) translateX(0) translateY(0) rotate(0deg);
   }
-}
-
-/* Variables CSS para colores RGB dinámicos */
-:root {
-  --bg-primary-rgb: 255, 255, 255;
-  --text-primary-rgb: 29, 29, 31;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg-primary-rgb: 0, 0, 0;
-    --text-primary-rgb: 245, 245, 247;
-  }
-}
-
-[data-theme='dark'] {
-  --bg-primary-rgb: 0, 0, 0;
-  --text-primary-rgb: 245, 245, 247;
-}
-
-[data-theme='light'] {
-  --bg-primary-rgb: 255, 255, 255;
-  --text-primary-rgb: 29, 29, 31;
 }
