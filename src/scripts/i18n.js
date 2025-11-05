@@ -16,7 +16,7 @@ const translations = {
       'Ingeniero Informático especializado en Desarrollo Web Frontend.',
     'hero.description2': 'Me inspiran el diseño y la simplicidad.',
     'hero.cta.contact': 'Contactar',
-    'hero.cta.portfolio': 'Ver portfolio',
+    'hero.cta.portfolio': 'Ver portafolio',
 
     // About Card
     'about.title': 'Sobre mí',

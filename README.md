@@ -1,4 +1,4 @@
-# 🗃️ Portfolio de Álvaro Lostal
+# 🗃️ Portafolio de Álvaro Lostal
 
 <div align="center">
 
@@ -7,10 +7,10 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-**Portfolio personal moderno y minimalista** desarrollado con Astro  
+**Portafolio personal moderno y minimalista** desarrollado con Astro  
 _Mostrando mi experiencia como Ingeniero Informático especializado en Desarrollo Web_
 
-[🌐 Ver Portfolio](https://lostal.dev)
+[🌐 Ver Portafolio](https://lostal.dev)
 
 </div>
 
@@ -19,7 +19,7 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 ## Características
 
 🖥️ **Diseño elegante**: Interfaz minimalista y moderna  
-**Portfolio personal moderno y minimalista** desarrollado con Astro  
+**Portafolio personal moderno y minimalista** desarrollado con Astro  
 📱 **Responsivo**: Adaptado a todos los dispositivos  
 🌓 **Tema inteligente**: Adaptación automática al tema del sistema y toggle manual  
 💡 **Animaciones fluidas**: Transiciones suaves y efectos visuales  
@@ -37,7 +37,7 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 ## Estructura
 
 ```
-📁 lostal-portfolio/
+📁 lostal-portafolio/
 ├── 📁 public/           # Archivos estáticos
 │   ├── robots.txt
 │   ├── favicon.ico
@@ -58,7 +58,7 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 **Álvaro Lostal**  
 _Ingeniero Informático | Frontend Developer_
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-lostal.dev-d5bd37?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
+[![Portafolio](https://img.shields.io/badge/Portafolio-lostal.dev-d5bd37?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-alvarolostal-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alvarolostal)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Álvaro%20Lostal-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/alvarolostal)
 

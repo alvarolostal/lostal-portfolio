@@ -14,7 +14,9 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: calc(100dvh - var(--nav-height, 80px) - env(safe-area-inset-bottom, 0px));
+    height: calc(
+      100dvh - var(--nav-height, 80px) - env(safe-area-inset-bottom, 0px)
+    );
     box-sizing: border-box;
     padding: calc(var(--nav-height, 80px) + 20px) 24px 20px;
   }
