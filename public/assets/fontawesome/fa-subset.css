@@ -20,6 +20,9 @@
 .fa-moon:before{content:"\f186"}
 .fa-github:before{content:"\f09b"}
 .fa-linkedin:before{content:"\f0e1"}
+.fa-laptop-code:before{content:"\f5fc"}
+.fa-server:before{content:"\f233"}
+.fa-tools:before{content:"\f7d9"}
 
 /* Font faces */
 @font-face{font-family:"Font Awesome 7 Free";font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fontawesome/fa-solid-900.woff2) format("woff2")}
