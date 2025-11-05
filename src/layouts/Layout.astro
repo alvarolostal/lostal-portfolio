@@ -26,6 +26,19 @@ const ogImage = (Astro.props && Astro.props.ogImage) || defaultOgImage;
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    
+    <!-- Google Analytics 4 - Optimizado para rendimiento -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-0Q34SCCETB"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0Q34SCCETB', {
+        'send_page_view': true,
+        'anonymize_ip': true
+      });
+    </script>
 
     <!-- Preload Geist fonts (WOFF2) -->
     <link
