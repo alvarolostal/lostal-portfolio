@@ -149,17 +149,12 @@ function initProjectModal() {
 
   if (!modal || !modalContent) return;
 
-  let scrollPosition = 0;
-
   // Función para abrir el modal
   const openModal = projectId => {
     const template = document.getElementById(`${projectId}-template`);
     if (!template) return;
 
-    // Guardar la posición actual del scroll
-    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-    // Clonar el contenido del template
+    // Clonar el contenido del template y colocarlo en el modal
     const content = template.content.cloneNode(true);
     modalContent.innerHTML = '';
     modalContent.appendChild(content);
@@ -169,9 +164,9 @@ function initProjectModal() {
       window.i18n.applyTranslations(window.i18n.currentLang);
     }
 
-    // Bloquear el scroll del body
-    document.body.classList.add('modal-open');
-    document.body.style.top = `-${scrollPosition}px`;
+    // Bloquear el scroll del body de forma simple (igual que el About card)
+    // Evitamos cambiar position/top para no provocar saltos en la página.
+    document.body.style.overflow = 'hidden';
 
     // Abrir el modal con animación
     modal.classList.add('is-open');
@@ -179,21 +174,14 @@ function initProjectModal() {
 
   // Función para cerrar el modal
   const closeModal = () => {
+    // Cerrar inmediatamente la ventana
     modal.classList.remove('is-open');
 
-    // Limpiar contenido después de la animación
-    setTimeout(() => {
-      modalContent.innerHTML = '';
-      
-      // Restaurar scroll del body después de que termine la animación del modal
-      document.body.classList.remove('modal-open');
-      document.body.style.top = '';
-      
-      // Usar requestAnimationFrame para una restauración más suave
-      requestAnimationFrame(() => {
-        window.scrollTo(0, scrollPosition);
-      });
-    }, 300);
+    // Restaurar el scroll del body de inmediato (sin retrasos ni animaciones)
+    document.body.style.overflow = '';
+
+    // Limpiar contenido del modal (no esperamos timeouts)
+    modalContent.innerHTML = '';
   };
 
   // Event listeners para abrir el modal
