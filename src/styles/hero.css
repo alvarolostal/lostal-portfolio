@@ -2,8 +2,7 @@
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height para móviles */
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,8 +14,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    /* En móvil: altura exacta del viewport dinámico sin padding extra inferior */
-    min-height: 100dvh;
+    height: calc(100dvh - var(--nav-height, 80px) - env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
     padding: calc(var(--nav-height, 80px) + 20px) 24px 20px;
   }
 }
@@ -149,8 +148,8 @@
   display: inline-block;
   cursor: pointer;
   transition: transform 0.2s ease;
-  border-radius: 24px; /* Coincidir con la imagen para área táctil clara */
-  outline: none; /* Removemos outline por defecto, lo manejamos con focus-visible */
+  border-radius: 24px;
+  outline: none;
 }
 
 .hero-image-wrapper:hover {
@@ -269,7 +268,7 @@
   }
 
   .profile-indicator__text {
-    display: inline-block; /* Mostrar el texto en móvil también */
+    display: inline-block;
     font-weight: 600;
   }
 
