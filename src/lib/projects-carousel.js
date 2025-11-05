@@ -164,24 +164,30 @@ function initProjectModal() {
       window.i18n.applyTranslations(window.i18n.currentLang);
     }
 
-    // Bloquear el scroll del body de forma simple (igual que el About card)
-    // Evitamos cambiar position/top para no provocar saltos en la página.
-    document.body.style.overflow = 'hidden';
+  // Bloquear el scroll del body de forma simple (igual que el About card)
+  // Evitamos cambiar position/top para no provocar saltos en la página.
+  document.body.style.overflow = 'hidden';
 
-    // Abrir el modal con animación
-    modal.classList.add('is-open');
+  // Mostrar overlay con transición (para que el blur se anime junto al modal)
+  if (overlay) overlay.classList.add('show');
+
+  // Abrir el modal con animación
+  modal.classList.add('is-open');
   };
 
   // Función para cerrar el modal
   const closeModal = () => {
-    // Cerrar inmediatamente la ventana
-    modal.classList.remove('is-open');
+  // Cerrar inmediatamente la ventana
+  modal.classList.remove('is-open');
 
-    // Restaurar el scroll del body de inmediato (sin retrasos ni animaciones)
-    document.body.style.overflow = '';
+  // Ocultar overlay inmediatamente (la transición de opacity hará el fade)
+  if (overlay) overlay.classList.remove('show');
 
-    // Limpiar contenido del modal (no esperamos timeouts)
-    modalContent.innerHTML = '';
+  // Restaurar el scroll del body de inmediato (sin retrasos ni animaciones)
+  document.body.style.overflow = '';
+
+  // Limpiar contenido del modal (no esperamos timeouts)
+  modalContent.innerHTML = '';
   };
 
   // Event listeners para abrir el modal
