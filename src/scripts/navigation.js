@@ -109,9 +109,6 @@ if (langBtn && langPopover && langMenu) {
 
   langBtn.addEventListener('click', e => {
     e.stopPropagation();
-    if (isTouchDevice()) {
-      langBtn.blur();
-    }
     if (langIcon) {
       langIcon.classList.remove('clicked');
       void langIcon.offsetWidth;
