@@ -23,6 +23,8 @@
 .fa-laptop-code:before{content:"\f5fc"}
 .fa-server:before{content:"\f233"}
 .fa-tools:before{content:"\f7d9"}
+.fa-external-link-alt:before{content:"\f35d"}
+.fa-link:before{content:"\f0c1"}
 
 /* Font faces */
 @font-face{font-family:"Font Awesome 7 Free";font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fontawesome/fa-solid-900.woff2) format("woff2")}

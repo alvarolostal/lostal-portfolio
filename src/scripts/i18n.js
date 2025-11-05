@@ -33,16 +33,45 @@ const translations = {
       'Estos proyectos web reflejan mi enfoque en el diseño minimalista, una UX cuidada y buenas prácticas de desarrollo.',
     'projects.prev': 'Proyecto anterior',
     'projects.next': 'Siguiente proyecto',
-    'projects.view': 'Ver proyecto',
+    'projects.view': 'Preview',
     'projects.more': 'Ver más',
     'projects.vivenza.title': 'Rediseño Vivenza Expo',
+    'projects.vivenza.subtitle': 'Rediseño Conceptual',
     'projects.vivenza.description':
       'Rediseño completo de la landing page de Vivenza Expo, aplicando principios de diseño moderno.',
     'projects.vivenza.more': 'Ver más sobre Rediseño Vivenza Expo',
+    'projects.vivenza.improvements': 'Mejoras implementadas:',
+    'projects.vivenza.tech': 'Tecnologías:',
+    'projects.vivenza.links': 'Enlaces:',
+    'projects.vivenza.improvement1': 'Diseño responsivo y accesible',
+    'projects.vivenza.improvement2': 'Optimización de performance y carga',
+    'projects.vivenza.improvement3': 'Jerarquía visual mejorada',
+    'projects.vivenza.improvement4': 'Experiencia de usuario moderna',
+    'projects.vivenza.preview': 'Preview',
+    'projects.vivenza.original': 'Original',
     'projects.creative.title': 'Creative Hands',
+    'projects.creative.subtitle': 'Plataforma E-commerce de Artesanía',
     'projects.creative.description':
       'Tienda PWA con autenticación JWT y chat en tiempo real (Socket.io).',
     'projects.creative.more': 'Ver más sobre Creative Hands',
+    'projects.creative.features': 'Funcionalidades implementadas:',
+    'projects.creative.tech': 'Tecnologías:',
+    'projects.creative.links': 'Enlaces:',
+    'projects.creative.feature1':
+      'Autenticación segura con JWT y cookies httpOnly',
+    'projects.creative.feature2':
+      'Panel de administración con CRUD completo de productos/categorías',
+    'projects.creative.feature3':
+      'Chat en tiempo real con Socket.io (múltiples conversaciones simultáneas)',
+    'projects.creative.feature4':
+      'Subida de imágenes optimizadas a Cloudinary CDN',
+    'projects.creative.feature5':
+      'Sistema de valoraciones y reseñas de productos',
+    'projects.creative.feature6':
+      'Diseño responsivo con tema claro/oscuro automático',
+    'projects.creative.preview': 'Preview',
+    'projects.creative.repository': 'Repositorio',
+    'projects.modal.close': 'Cerrar modal',
 
     // Journey
     'journey.label': 'Recorrido',
@@ -124,16 +153,43 @@ const translations = {
       'These web projects reflect my focus on minimalist design, careful UX and good development practices.',
     'projects.prev': 'Previous project',
     'projects.next': 'Next project',
-    'projects.view': 'View project',
+    'projects.view': 'Preview',
     'projects.more': 'View more',
     'projects.vivenza.title': 'Vivenza Expo Redesign',
+    'projects.vivenza.subtitle': 'Conceptual Redesign',
     'projects.vivenza.description':
       'Complete redesign of the Vivenza Expo landing page, applying modern design principles.',
     'projects.vivenza.more': 'View more about Vivenza Expo Redesign',
+    'projects.vivenza.improvements': 'Implemented improvements:',
+    'projects.vivenza.tech': 'Technologies:',
+    'projects.vivenza.links': 'Links:',
+    'projects.vivenza.improvement1': 'Responsive and accessible design',
+    'projects.vivenza.improvement2': 'Performance and load optimization',
+    'projects.vivenza.improvement3': 'Improved visual hierarchy',
+    'projects.vivenza.improvement4': 'Modern user experience',
+    'projects.vivenza.preview': 'Preview',
+    'projects.vivenza.original': 'Original',
     'projects.creative.title': 'Creative Hands',
+    'projects.creative.subtitle': 'Handcraft E-commerce Platform',
     'projects.creative.description':
       'PWA store with JWT authentication and real-time chat (Socket.io).',
     'projects.creative.more': 'View more about Creative Hands',
+    'projects.creative.features': 'Implemented features:',
+    'projects.creative.tech': 'Technologies:',
+    'projects.creative.links': 'Links:',
+    'projects.creative.feature1':
+      'Secure authentication with JWT and httpOnly cookies',
+    'projects.creative.feature2':
+      'Admin panel with complete CRUD for products/categories',
+    'projects.creative.feature3':
+      'Real-time chat with Socket.io (multiple simultaneous conversations)',
+    'projects.creative.feature4': 'Optimized image upload to Cloudinary CDN',
+    'projects.creative.feature5': 'Product ratings and reviews system',
+    'projects.creative.feature6':
+      'Responsive design with automatic light/dark theme',
+    'projects.creative.preview': 'Preview',
+    'projects.creative.repository': 'Repository',
+    'projects.modal.close': 'Close modal',
 
     // Journey
     'journey.label': 'Journey',

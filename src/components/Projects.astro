@@ -71,9 +71,9 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                         href="https://vivenza.netlify.app/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-i18n="projects.view"
                       >
-                        Ver proyecto
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-i18n="projects.view">Preview</span>
                       </a>
                     </div>
                   </div>
@@ -147,9 +147,9 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                         href="https://creative-hands-cjzg.onrender.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-i18n="projects.view"
                       >
-                        Ver proyecto
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-i18n="projects.view">Preview</span>
                       </a>
                     </div>
                   </div>
@@ -202,6 +202,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
         class="project-modal__close"
         type="button"
         aria-label="Cerrar modal"
+        data-i18n-aria="projects.modal.close"
       >
         <i class="fas fa-times"></i>
       </button>
@@ -215,25 +216,44 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
 <!-- Templates para el contenido de cada proyecto -->
 <template id="vivenza-template">
   <div class="modal-project">
-    <h3 class="modal-project__title">Rediseño Vivenza Expo</h3>
-    <h4 class="modal-project__subtitle">Rediseño Conceptual</h4>
-    <p class="modal-project__description">
+    <h3 class="modal-project__title" data-i18n="projects.vivenza.title">
+      Rediseño Vivenza Expo
+    </h3>
+    <h4 class="modal-project__subtitle" data-i18n="projects.vivenza.subtitle">
+      Rediseño Conceptual
+    </h4>
+    <p
+      class="modal-project__description"
+      data-i18n="projects.vivenza.description"
+    >
       Rediseño completo de la landing page de Vivenza Expo, aplicando
       principios de diseño moderno.
     </p>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Mejoras implementadas:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.vivenza.improvements">
+        Mejoras implementadas:
+      </h5>
       <ul class="modal-list">
-        <li>Diseño responsivo y accesible</li>
-        <li>Optimización de performance y carga</li>
-        <li>Jerarquía visual mejorada</li>
-        <li>Experiencia de usuario moderna</li>
+        <li data-i18n="projects.vivenza.improvement1">
+          Diseño responsivo y accesible
+        </li>
+        <li data-i18n="projects.vivenza.improvement2">
+          Optimización de performance y carga
+        </li>
+        <li data-i18n="projects.vivenza.improvement3">
+          Jerarquía visual mejorada
+        </li>
+        <li data-i18n="projects.vivenza.improvement4">
+          Experiencia de usuario moderna
+        </li>
       </ul>
     </div>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Tecnologías:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.vivenza.tech">
+        Tecnologías:
+      </h5>
       <div class="modal-tags">
         <span class="tag">
           <img
@@ -275,7 +295,9 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
     </div>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Enlaces:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.vivenza.links">
+        Enlaces:
+      </h5>
       <div class="modal-links">
         <a
           href="https://vivenza.netlify.app/"
@@ -284,7 +306,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
           class="modal-link"
         >
           <i class="fas fa-external-link-alt"></i>
-          Ver Proyecto
+          <span data-i18n="projects.vivenza.preview">Preview</span>
         </a>
         <a
           href="https://vivenzaexpo.es/"
@@ -293,7 +315,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
           class="modal-link"
         >
           <i class="fas fa-link"></i>
-          Original
+          <span data-i18n="projects.vivenza.original">Original</span>
         </a>
       </div>
     </div>
@@ -302,33 +324,50 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
 
 <template id="creative-template">
   <div class="modal-project">
-    <h3 class="modal-project__title">Creative Hands</h3>
-    <h4 class="modal-project__subtitle">
+    <h3 class="modal-project__title" data-i18n="projects.creative.title">
+      Creative Hands
+    </h3>
+    <h4 class="modal-project__subtitle" data-i18n="projects.creative.subtitle">
       Plataforma E-commerce de Artesanía
     </h4>
-    <p class="modal-project__description">
+    <p
+      class="modal-project__description"
+      data-i18n="projects.creative.description"
+    >
       Tienda PWA con autenticación JWT y chat en tiempo real (Socket.io).
     </p>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Funcionalidades implementadas:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.creative.features">
+        Funcionalidades implementadas:
+      </h5>
       <ul class="modal-list">
-        <li>Autenticación segura con JWT y cookies httpOnly</li>
-        <li>
+        <li data-i18n="projects.creative.feature1">
+          Autenticación segura con JWT y cookies httpOnly
+        </li>
+        <li data-i18n="projects.creative.feature2">
           Panel de administración con CRUD completo de productos/categorías
         </li>
-        <li>
+        <li data-i18n="projects.creative.feature3">
           Chat en tiempo real con Socket.io (múltiples conversaciones
           simultáneas)
         </li>
-        <li>Subida de imágenes optimizadas a Cloudinary CDN</li>
-        <li>Sistema de valoraciones y reseñas de productos</li>
-        <li>Diseño responsivo con tema claro/oscuro automático</li>
+        <li data-i18n="projects.creative.feature4">
+          Subida de imágenes optimizadas a Cloudinary CDN
+        </li>
+        <li data-i18n="projects.creative.feature5">
+          Sistema de valoraciones y reseñas de productos
+        </li>
+        <li data-i18n="projects.creative.feature6">
+          Diseño responsivo con tema claro/oscuro automático
+        </li>
       </ul>
     </div>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Tecnologías:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.creative.tech">
+        Tecnologías:
+      </h5>
       <div class="modal-tags">
         <span class="tag">
           <img
@@ -337,7 +376,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
             class="tech-mini-icon"
             loading="lazy"
           />
-          React 18
+          React
         </span>
         <span class="tag">
           <img
@@ -379,7 +418,9 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
     </div>
 
     <div class="modal-section">
-      <h5 class="modal-section__title">Enlaces:</h5>
+      <h5 class="modal-section__title" data-i18n="projects.creative.links">
+        Enlaces:
+      </h5>
       <div class="modal-links">
         <a
           href="https://creative-hands-cjzg.onrender.com"
@@ -388,7 +429,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
           class="modal-link"
         >
           <i class="fas fa-external-link-alt"></i>
-          Ver Proyecto
+          <span data-i18n="projects.creative.preview">Preview</span>
         </a>
         <a
           href="https://github.com/alvarolostal/creative-hands"
@@ -397,7 +438,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
           class="modal-link"
         >
           <i class="fab fa-github"></i>
-          Repositorio
+          <span data-i18n="projects.creative.repository">Repositorio</span>
         </a>
       </div>
     </div>

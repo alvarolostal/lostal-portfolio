@@ -159,6 +159,11 @@ function initProjectModal() {
     modalContent.innerHTML = '';
     modalContent.appendChild(content);
 
+    // Aplicar traducciones al contenido del modal
+    if (window.i18n) {
+      window.i18n.applyTranslations(window.i18n.currentLang);
+    }
+
     // Abrir el modal con animación
     modal.classList.add('is-open');
     document.body.style.overflow = 'hidden'; // Prevenir scroll del body
