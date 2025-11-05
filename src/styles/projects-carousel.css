@@ -660,7 +660,10 @@ body.modal-open {
   transition: opacity 0.35s ease, visibility 0s linear 0.35s;
 }
 
-.project-modal__overlay.show {
+/* Mostrar y animar el overlay cuando el modal tenga la clase is-open.
+   Esto evita tocar el DOM con JS adicional; basta con que el modal
+   reciba/remueva `.is-open` (ya lo hace el código existente). */
+.project-modal.is-open .project-modal__overlay {
   opacity: 1;
   visibility: visible;
   transition-delay: 0s;

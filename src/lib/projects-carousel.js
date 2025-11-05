@@ -168,10 +168,8 @@ function initProjectModal() {
   // Evitamos cambiar position/top para no provocar saltos en la página.
   document.body.style.overflow = 'hidden';
 
-  // Mostrar overlay con transición (para que el blur se anime junto al modal)
-  if (overlay) overlay.classList.add('show');
-
-  // Abrir el modal con animación
+  // Abrir el modal con animación. La animación del overlay está manejada
+  // por CSS cuando `.project-modal` recibe la clase `.is-open`.
   modal.classList.add('is-open');
   };
 
@@ -179,9 +177,6 @@ function initProjectModal() {
   const closeModal = () => {
   // Cerrar inmediatamente la ventana
   modal.classList.remove('is-open');
-
-  // Ocultar overlay inmediatamente (la transición de opacity hará el fade)
-  if (overlay) overlay.classList.remove('show');
 
   // Restaurar el scroll del body de inmediato (sin retrasos ni animaciones)
   document.body.style.overflow = '';
