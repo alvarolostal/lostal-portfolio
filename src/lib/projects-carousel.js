@@ -137,9 +137,76 @@ function initProjectsCarousel() {
   return swiper;
 }
 
+/**
+ * Inicializa la funcionalidad del modal de detalles de proyectos
+ */
+function initProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const modalContent = document.getElementById('modalContent');
+  const closeButton = modal?.querySelector('.project-modal__close');
+  const overlay = modal?.querySelector('.project-modal__overlay');
+  const buttons = document.querySelectorAll('[data-project]');
+
+  if (!modal || !modalContent) return;
+
+  // Función para abrir el modal
+  const openModal = projectId => {
+    const template = document.getElementById(`${projectId}-template`);
+    if (!template) return;
+
+    // Clonar el contenido del template
+    const content = template.content.cloneNode(true);
+    modalContent.innerHTML = '';
+    modalContent.appendChild(content);
+
+    // Abrir el modal con animación
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+  };
+
+  // Función para cerrar el modal
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = ''; // Restaurar scroll del body
+
+    // Limpiar contenido después de la animación
+    setTimeout(() => {
+      modalContent.innerHTML = '';
+    }, 300);
+  };
+
+  // Event listeners para abrir el modal
+  buttons.forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const projectId = button.getAttribute('data-project');
+      openModal(projectId);
+    });
+  });
+
+  // Event listener para cerrar con el botón X
+  closeButton?.addEventListener('click', closeModal);
+
+  // Event listener para cerrar con el overlay
+  overlay?.addEventListener('click', closeModal);
+
+  // Event listener para cerrar con la tecla Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+}
+
 // Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initProjectsCarousel);
+  document.addEventListener('DOMContentLoaded', () => {
+    initProjectsCarousel();
+    initProjectModal();
+  });
 } else {
   initProjectsCarousel();
+  initProjectModal();
 }

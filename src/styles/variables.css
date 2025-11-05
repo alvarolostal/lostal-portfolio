@@ -41,6 +41,7 @@
   --z-navigation: 100; /* Navbar fija */
   --z-card-overlay: 999;
   --z-floating-contact: 1000;
+  --z-modal: 2000; /* Modal de proyectos */
   --z-skip-link: 10000; /* Skip link para accesibilidad - siempre en la cima */
 
   /* Altura de la navbar para cálculos de espaciado */
