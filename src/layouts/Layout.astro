@@ -54,15 +54,15 @@ const ogImage = (Astro.props && Astro.props.ogImage) || defaultOgImage;
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Álvaro Lostal - Portfolio" />
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome Subset -->
     <link
       rel="preload"
-      href="/assets/fontawesome/all.min.css"
+      href="/assets/fontawesome/fa-subset.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
-      <link rel="stylesheet" href="/assets/fontawesome/all.min.css" />
+      <link rel="stylesheet" href="/assets/fontawesome/fa-subset.css" />
     </noscript>
 
     <!-- Inline theme setter (very small) -->
