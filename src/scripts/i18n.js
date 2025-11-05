@@ -132,7 +132,7 @@ const translations = {
     'projects.vivenza.more': 'View more about Vivenza Expo Redesign',
     'projects.creative.title': 'Creative Hands',
     'projects.creative.description':
-      'PWA e-commerce for handcrafted products with JWT authentication, real-time chat, and an admin dashboard.',
+      'PWA store with JWT authentication and real-time chat (Socket.io).',
     'projects.creative.more': 'View more about Creative Hands',
 
     // Journey
