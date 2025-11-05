@@ -41,7 +41,7 @@ const translations = {
     'projects.vivenza.more': 'Ver más sobre Rediseño Vivenza Expo',
     'projects.creative.title': 'Creative Hands',
     'projects.creative.description':
-      'Plataforma e-commerce full-stack con autenticación JWT y chat en tiempo real mediante Socket.io.',
+      'Tienda PWA con autenticación JWT y chat en tiempo real (Socket.io).',
     'projects.creative.more': 'Ver más sobre Creative Hands',
 
     // Journey
@@ -132,7 +132,7 @@ const translations = {
     'projects.vivenza.more': 'View more about Vivenza Expo Redesign',
     'projects.creative.title': 'Creative Hands',
     'projects.creative.description':
-      'Full-stack e-commerce platform with JWT authentication and real-time chat via Socket.io.',
+      'PWA e-commerce for handcrafted products with JWT authentication, real-time chat, and an admin dashboard.',
     'projects.creative.more': 'View more about Creative Hands',
 
     // Journey
