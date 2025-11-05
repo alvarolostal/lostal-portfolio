@@ -15,15 +15,15 @@ import alvaroImg from '../assets/alvaro.jpg';
       <Picture
         src={alvaroImg}
         alt="Álvaro"
-        widths={[180, 360, 540]}
-        sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, 180px"
+        widths={[174, 200, 360]}
+        sizes="(max-width: 768px) 174px, 180px"
         formats={['avif', 'webp']}
         loading="eager"
         fetchpriority="high"
-        decoding="sync"
+        decoding="async"
         class="hero-image interactive-image"
         id="heroImage"
-        quality={95}
+        quality={85}
       />
       <div class="profile-indicator" aria-hidden="true">
         <span class="profile-indicator__text" data-i18n="about.title"
@@ -239,64 +239,62 @@ import alvaroImg from '../assets/alvaro.jpg';
     calculateCardPosition() {
       if (!this.heroImage || !this.aboutCard) return;
 
-      // Usar requestAnimationFrame para agrupar lecturas de DOM
+      // Fase 1: SOLO lecturas del DOM (batch read)
+      const imageRect = this.heroImage.getBoundingClientRect();
+      const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      // Cache header height to avoid repeated DOM queries
+      if (!this.cachedHeaderHeight) {
+        const header =
+          document.querySelector('nav') || document.querySelector('header');
+        this.cachedHeaderHeight = header ? header.offsetHeight : 80;
+      }
+      const minTopMargin = this.cachedHeaderHeight + 20;
+
+      // Fase 2: Cálculos puros (sin DOM)
+      let cardX, cardY;
+
+      if (this.isMobile || viewport.width <= 768) {
+        // En móvil: centrado perfecto con dimensiones cacheadas
+        const cardWidth = 360; // Usar dimensión fija para evitar reflows
+        const cardHeight = 400;
+
+        // Centrar horizontalmente con márgenes seguros
+        const margins = 20;
+        const availableWidth = viewport.width - margins * 2;
+        const finalWidth = Math.min(cardWidth, availableWidth);
+
+        cardX = (viewport.width - finalWidth) / 2;
+
+        // Centrar verticalmente considerando el header
+        const availableHeight = viewport.height - minTopMargin - margins;
+        const finalHeight = Math.min(cardHeight, availableHeight);
+
+        cardY = minTopMargin + (availableHeight - finalHeight) / 2;
+      } else {
+        // En desktop, posicionar a la derecha de la imagen
+        const cardWidth = 400; // Usar dimensión fija
+        const desiredX = imageRect.right + 40;
+        const maxX = viewport.width - cardWidth - 30;
+
+        cardX = Math.min(desiredX, maxX);
+
+        // Calcular Y para que no toque el header
+        const desiredY = imageRect.top;
+        cardY = Math.max(minTopMargin, desiredY);
+
+        // Asegurar que no se salga por abajo
+        const maxY = viewport.height - 400 - 30; // Usar altura fija
+        cardY = Math.min(cardY, maxY);
+      }
+
+      // Fase 3: SOLO escrituras del DOM en siguiente frame (batch write)
       requestAnimationFrame(() => {
-        // Batch DOM reads to prevent multiple reflows
-        const imageRect = this.heroImage.getBoundingClientRect();
-        const viewport = {
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-
-        // Cache header height to avoid repeated DOM queries
-        if (!this.cachedHeaderHeight) {
-          const header =
-            document.querySelector('nav') || document.querySelector('header');
-          this.cachedHeaderHeight = header ? header.offsetHeight : 80;
-        }
-        const minTopMargin = this.cachedHeaderHeight + 20;
-
-        let cardX, cardY;
-
-        if (this.isMobile || viewport.width <= 768) {
-          // En móvil: centrado perfecto con dimensiones cacheadas
-          const cardWidth = 360; // Usar dimensión fija para evitar reflows
-          const cardHeight = 400;
-
-          // Centrar horizontalmente con márgenes seguros
-          const margins = 20;
-          const availableWidth = viewport.width - margins * 2;
-          const finalWidth = Math.min(cardWidth, availableWidth);
-
-          cardX = (viewport.width - finalWidth) / 2;
-
-          // Centrar verticalmente considerando el header
-          const availableHeight = viewport.height - minTopMargin - margins;
-          const finalHeight = Math.min(cardHeight, availableHeight);
-
-          cardY = minTopMargin + (availableHeight - finalHeight) / 2;
-        } else {
-          // En desktop, posicionar a la derecha de la imagen
-          const cardWidth = 400; // Usar dimensión fija
-          const desiredX = imageRect.right + 40;
-          const maxX = viewport.width - cardWidth - 30;
-
-          cardX = Math.min(desiredX, maxX);
-
-          // Calcular Y para que no toque el header
-          const desiredY = imageRect.top;
-          cardY = Math.max(minTopMargin, desiredY);
-
-          // Asegurar que no se salga por abajo
-          const maxY = viewport.height - 400 - 30; // Usar altura fija
-          cardY = Math.min(cardY, maxY);
-        }
-
-        // Batch DOM writes
-        requestAnimationFrame(() => {
-          this.aboutCard.style.left = `${Math.round(cardX)}px`;
-          this.aboutCard.style.top = `${Math.round(cardY)}px`;
-        });
+        this.aboutCard.style.left = `${Math.round(cardX)}px`;
+        this.aboutCard.style.top = `${Math.round(cardY)}px`;
       });
     }
 

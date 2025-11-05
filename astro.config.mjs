@@ -14,6 +14,23 @@ export default defineConfig({
     },
   },
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always', // Inline pequeños CSS para reducir render-blocking
+    assets: '_astro',
+  },
+  vite: {
+    build: {
+      cssCodeSplit: true, // Split CSS por página
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name]-[hash][extname]',
+          manualChunks(id) {
+            // Agrupar swiper en chunk separado para lazy load
+            if (id.includes('swiper')) {
+              return 'swiper';
+            }
+          },
+        },
+      },
+    },
   },
 });

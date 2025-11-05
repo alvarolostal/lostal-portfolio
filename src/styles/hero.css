@@ -494,30 +494,6 @@
   }
 }
 
-/* ===== RESPONSIVE HERO SPACING ===== */
-
-/* Ajustar padding del hero en móviles para centrado consistente entre navegadores */
-@media (max-width: 768px) and (orientation: portrait) {
-  .hero {
-    padding: 80px 24px 60px;
-    min-height: 100vh;
-    min-height: 100dvh; /* Usar dynamic viewport height si está disponible */
-  }
-}
-
-@media (max-width: 480px) and (orientation: portrait) {
-  .hero {
-    padding: 70px 24px 50px;
-  }
-}
-
-/* Para dispositivos muy pequeños o con altura limitada */
-@media (max-width: 480px) and (max-height: 700px) and (orientation: portrait) {
-  .hero {
-    padding: 60px 24px 40px;
-  }
-}
-
 /* ===== CARD FLOTANTE ===== */
 
 /* About Card - Estilo Apple/macOS */
