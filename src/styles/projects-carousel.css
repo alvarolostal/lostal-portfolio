@@ -637,6 +637,14 @@ section.projects-section {
   pointer-events: auto;
 }
 
+/* Clase para bloquear el scroll del body */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .project-modal__overlay {
   position: absolute;
   top: 0;
@@ -735,6 +743,9 @@ section.projects-section {
   max-height: 85vh;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  /* Asegurar que el scroll funcione correctamente en móviles */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .project-modal__content::-webkit-scrollbar {
@@ -757,12 +768,14 @@ section.projects-section {
 @media screen and (max-width: 768px) {
   .project-modal__content {
     padding: 32px 24px;
+    max-height: 80vh;
   }
 }
 
 @media screen and (max-width: 480px) {
   .project-modal__content {
     padding: 28px 20px;
+    max-height: 75vh;
   }
 }
 

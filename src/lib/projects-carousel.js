@@ -149,10 +149,15 @@ function initProjectModal() {
 
   if (!modal || !modalContent) return;
 
+  let scrollPosition = 0;
+
   // Función para abrir el modal
   const openModal = projectId => {
     const template = document.getElementById(`${projectId}-template`);
     if (!template) return;
+
+    // Guardar la posición actual del scroll
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
     // Clonar el contenido del template
     const content = template.content.cloneNode(true);
@@ -164,15 +169,22 @@ function initProjectModal() {
       window.i18n.applyTranslations(window.i18n.currentLang);
     }
 
+    // Bloquear el scroll del body
+    document.body.classList.add('modal-open');
+    document.body.style.top = `-${scrollPosition}px`;
+
     // Abrir el modal con animación
     modal.classList.add('is-open');
-    document.body.style.overflow = 'hidden'; // Prevenir scroll del body
   };
 
   // Función para cerrar el modal
   const closeModal = () => {
     modal.classList.remove('is-open');
-    document.body.style.overflow = ''; // Restaurar scroll del body
+
+    // Restaurar scroll del body
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPosition);
 
     // Limpiar contenido después de la animación
     setTimeout(() => {
