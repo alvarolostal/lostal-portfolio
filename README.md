@@ -59,7 +59,7 @@ _Mostrando mi experiencia como Ingeniero Informático especializado en Desarroll
 _Ingeniero Informático | Frontend Developer_
 
 [![Portafolio](https://img.shields.io/badge/Portafolio-lostal.dev-d5bd37?style=for-the-badge&logo=astro&logoColor=white)](https://lostal.dev)
-[![GitHub](https://img.shields.io/badge/GitHub-alvarolostal-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alvarolostal)
+[![GitHub](https://img.shields.io/badge/GitHub-lostal-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lostal)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Álvaro%20Lostal-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/alvarolostal)
 
 </div>
