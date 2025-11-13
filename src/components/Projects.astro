@@ -55,26 +55,24 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 <div class="carousel-item__header">
                   <div class="carousel-item__header-inner">
                     <div class="carousel-item__price">
-                      <span class="tag">
-                        <img
-                          src="/assets/tech-icons/nextjs.svg"
-                          alt="Next.js"
-                          class="tech-mini-icon"
-                          loading="lazy"
-                        />
-                        Next.js
-                      </span>
-                    </div>
-                    <div class="carousel-item__author">
-                      <a
-                        class="carousel-item__link"
-                        href="https://vivenza.netlify.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i class="fas fa-external-link-alt"></i>
-                        <span data-i18n="projects.view">Preview</span>
-                      </a>
+                      <div class="carousel-item__tech modal-tags">
+                        <span class="tag">
+                          <img src="/assets/tech-icons/html5.svg" alt="HTML5" class="tech-mini-icon" loading="lazy" />
+                          HTML5
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/css3.svg" alt="CSS3" class="tech-mini-icon" loading="lazy" />
+                          CSS3
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/javascript.svg" alt="JavaScript" class="tech-mini-icon" loading="lazy" />
+                          JavaScript
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/nextjs.svg" alt="Next.js" class="tech-mini-icon" loading="lazy" />
+                          Next.js
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -96,19 +94,16 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 </div>
 
                 <div class="carousel-item__footer">
-                  <button
-                    class="carousel-item__btn"
-                    type="button"
-                    aria-label="Ver más sobre Rediseño Vivenza Expo"
-                    data-i18n-aria="projects.vivenza.more"
-                    data-project="vivenza"
-                  >
-                    <span
-                      class="carousel-item__btn-text"
-                      data-i18n="projects.more">Ver más</span
-                    >
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                  </button>
+                  <div class="carousel-item__actions">
+                    <a class="carousel-item__action" href="https://vivenza.netlify.app/" target="_blank" rel="noopener noreferrer">
+                      <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                      <span data-i18n="projects.view">Preview</span>
+                    </a>
+                    <a class="carousel-item__action" href="https://vivenzaexpo.es/" target="_blank" rel="noopener noreferrer">
+                      <i class="fas fa-link" aria-hidden="true"></i>
+                      <span data-i18n="projects.vivenza.original">Original</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,26 +126,28 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 <div class="carousel-item__header">
                   <div class="carousel-item__header-inner">
                     <div class="carousel-item__price">
-                      <span class="tag">
-                        <img
-                          src="/assets/tech-icons/react.svg"
-                          alt="React"
-                          class="tech-mini-icon"
-                          loading="lazy"
-                        />
-                        React
-                      </span>
-                    </div>
-                    <div class="carousel-item__author">
-                      <a
-                        class="carousel-item__link"
-                        href="https://creative-hands-cjzg.onrender.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i class="fas fa-external-link-alt"></i>
-                        <span data-i18n="projects.view">Preview</span>
-                      </a>
+                      <div class="carousel-item__tech modal-tags">
+                        <span class="tag">
+                          <img src="/assets/tech-icons/react.svg" alt="React" class="tech-mini-icon" loading="lazy" />
+                          React
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/nodejs.svg" alt="Node.js" class="tech-mini-icon" loading="lazy" />
+                          Node.js
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/mongodb.svg" alt="MongoDB" class="tech-mini-icon" loading="lazy" />
+                          MongoDB
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/socketio.svg" alt="Socket.io" class="tech-mini-icon" loading="lazy" />
+                          Socket.io
+                        </span>
+                        <span class="tag">
+                          <img src="/assets/tech-icons/tailwind.svg" alt="Tailwind" class="tech-mini-icon" loading="lazy" />
+                          Tailwind
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -172,19 +169,12 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
                 </div>
 
                 <div class="carousel-item__footer">
-                  <button
-                    class="carousel-item__btn"
-                    type="button"
-                    aria-label="Ver más sobre Creative Hands"
-                    data-i18n-aria="projects.creative.more"
-                    data-project="creative"
-                  >
-                    <span
-                      class="carousel-item__btn-text"
-                      data-i18n="projects.more">Ver más</span
-                    >
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                  </button>
+                  <div class="carousel-item__actions">
+                    <a class="carousel-item__action" href="https://creative-hands-cjzg.onrender.com" target="_blank" rel="noopener noreferrer">
+                      <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                      <span data-i18n="projects.creative.preview">Preview</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -194,256 +184,7 @@ import creativeHandsImg from '../assets/projects/creative-hands-preview.png';
     </div>
   </div>
 
-  <!-- Modal flotante para detalles de proyectos -->
-  <div class="project-modal" id="projectModal">
-    <div class="project-modal__overlay"></div>
-    <div class="project-modal__container">
-      <button
-        class="project-modal__close"
-        type="button"
-        aria-label="Cerrar modal"
-        data-i18n-aria="projects.modal.close"
-      >
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="project-modal__content" id="modalContent">
-        <!-- Contenido dinámico del proyecto -->
-      </div>
-    </div>
-  </div>
 </section>
-
-<!-- Templates para el contenido de cada proyecto -->
-<template id="vivenza-template">
-  <div class="modal-project">
-    <h3 class="modal-project__title" data-i18n="projects.vivenza.title">
-      Rediseño Vivenza Expo
-    </h3>
-    <h4 class="modal-project__subtitle" data-i18n="projects.vivenza.subtitle">
-      Rediseño Conceptual
-    </h4>
-    <p
-      class="modal-project__description"
-      data-i18n="projects.vivenza.description"
-    >
-      Rediseño completo de la landing page de Vivenza Expo, aplicando
-      principios de diseño moderno.
-    </p>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.vivenza.improvements">
-        Mejoras implementadas:
-      </h5>
-      <ul class="modal-list">
-        <li data-i18n="projects.vivenza.improvement1">
-          Diseño responsivo y accesible
-        </li>
-        <li data-i18n="projects.vivenza.improvement2">
-          Optimización de performance y carga
-        </li>
-        <li data-i18n="projects.vivenza.improvement3">
-          Jerarquía visual mejorada
-        </li>
-        <li data-i18n="projects.vivenza.improvement4">
-          Experiencia de usuario moderna
-        </li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.vivenza.tech">
-        Tecnologías:
-      </h5>
-      <div class="modal-tags">
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/html5.svg"
-            alt="HTML5"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          HTML5
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/css3.svg"
-            alt="CSS3"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          CSS3
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/javascript.svg"
-            alt="JavaScript"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          JavaScript
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/nextjs.svg"
-            alt="Next.js"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          Next.js
-        </span>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.vivenza.links">
-        Enlaces:
-      </h5>
-      <div class="modal-links">
-        <a
-          href="https://vivenza.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="modal-link"
-        >
-          <i class="fas fa-external-link-alt"></i>
-          <span data-i18n="projects.vivenza.preview">Preview</span>
-        </a>
-        <a
-          href="https://vivenzaexpo.es/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="modal-link"
-        >
-          <i class="fas fa-link"></i>
-          <span data-i18n="projects.vivenza.original">Original</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</template>
-
-<template id="creative-template">
-  <div class="modal-project">
-    <h3 class="modal-project__title" data-i18n="projects.creative.title">
-      Creative Hands
-    </h3>
-    <h4 class="modal-project__subtitle" data-i18n="projects.creative.subtitle">
-      Plataforma E-commerce de Artesanía
-    </h4>
-    <p
-      class="modal-project__description"
-      data-i18n="projects.creative.description"
-    >
-      Tienda PWA con autenticación JWT y chat en tiempo real (Socket.io).
-    </p>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.creative.features">
-        Funcionalidades implementadas:
-      </h5>
-      <ul class="modal-list">
-        <li data-i18n="projects.creative.feature1">
-          Autenticación segura con JWT y cookies httpOnly
-        </li>
-        <li data-i18n="projects.creative.feature2">
-          Panel de administración con CRUD completo de productos/categorías
-        </li>
-        <li data-i18n="projects.creative.feature3">
-          Chat en tiempo real con Socket.io (múltiples conversaciones
-          simultáneas)
-        </li>
-        <li data-i18n="projects.creative.feature4">
-          Subida de imágenes optimizadas a Cloudinary CDN
-        </li>
-        <li data-i18n="projects.creative.feature5">
-          Sistema de valoraciones y reseñas de productos
-        </li>
-        <li data-i18n="projects.creative.feature6">
-          Diseño responsivo con tema claro/oscuro automático
-        </li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.creative.tech">
-        Tecnologías:
-      </h5>
-      <div class="modal-tags">
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/react.svg"
-            alt="React"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          React
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/nodejs.svg"
-            alt="Node.js"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          Node.js
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/mongodb.svg"
-            alt="MongoDB"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          MongoDB
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/socketio.svg"
-            alt="Socket.io"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          Socket.io
-        </span>
-        <span class="tag">
-          <img
-            src="/assets/tech-icons/tailwind.svg"
-            alt="Tailwind"
-            class="tech-mini-icon"
-            loading="lazy"
-          />
-          TailwindCSS
-        </span>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h5 class="modal-section__title" data-i18n="projects.creative.links">
-        Enlaces:
-      </h5>
-      <div class="modal-links">
-        <a
-          href="https://creative-hands-cjzg.onrender.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="modal-link"
-        >
-          <i class="fas fa-external-link-alt"></i>
-          <span data-i18n="projects.creative.preview">Preview</span>
-        </a>
-        <a
-          href="https://github.com/lostal/creative-hands"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="modal-link"
-        >
-          <i class="fab fa-github"></i>
-          <span data-i18n="projects.creative.repository">Repositorio</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</template>
 
 <script>
   import '../lib/projects-carousel.js';

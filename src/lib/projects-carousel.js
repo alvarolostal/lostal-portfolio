@@ -137,86 +137,11 @@ function initProjectsCarousel() {
   return swiper;
 }
 
-/**
- * Inicializa la funcionalidad del modal de detalles de proyectos
- */
-function initProjectModal() {
-  const modal = document.getElementById('projectModal');
-  const modalContent = document.getElementById('modalContent');
-  const closeButton = modal?.querySelector('.project-modal__close');
-  const overlay = modal?.querySelector('.project-modal__overlay');
-  const buttons = document.querySelectorAll('[data-project]');
-
-  if (!modal || !modalContent) return;
-
-  // Función para abrir el modal
-  const openModal = projectId => {
-    const template = document.getElementById(`${projectId}-template`);
-    if (!template) return;
-
-    // Clonar el contenido del template y colocarlo en el modal
-    const content = template.content.cloneNode(true);
-    modalContent.innerHTML = '';
-    modalContent.appendChild(content);
-
-    // Aplicar traducciones al contenido del modal
-    if (window.i18n) {
-      window.i18n.applyTranslations(window.i18n.currentLang);
-    }
-
-  // Bloquear el scroll del body de forma simple (igual que el About card)
-  // Evitamos cambiar position/top para no provocar saltos en la página.
-  document.body.style.overflow = 'hidden';
-
-  // Abrir el modal con animación. La animación del overlay está manejada
-  // por CSS cuando `.project-modal` recibe la clase `.is-open`.
-  modal.classList.add('is-open');
-  };
-
-  // Función para cerrar el modal
-  const closeModal = () => {
-  // Cerrar inmediatamente la ventana
-  modal.classList.remove('is-open');
-
-  // Restaurar el scroll del body de inmediato (sin retrasos ni animaciones)
-  document.body.style.overflow = '';
-
-  // Limpiar contenido del modal (no esperamos timeouts)
-  modalContent.innerHTML = '';
-  };
-
-  // Event listeners para abrir el modal
-  buttons.forEach(button => {
-    button.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const projectId = button.getAttribute('data-project');
-      openModal(projectId);
-    });
-  });
-
-  // Event listener para cerrar con el botón X
-  closeButton?.addEventListener('click', closeModal);
-
-  // Event listener para cerrar con el overlay
-  overlay?.addEventListener('click', closeModal);
-
-  // Event listener para cerrar con la tecla Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
-}
-
 // Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initProjectsCarousel();
-    initProjectModal();
   });
 } else {
   initProjectsCarousel();
-  initProjectModal();
 }
