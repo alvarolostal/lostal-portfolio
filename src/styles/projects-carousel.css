@@ -653,7 +653,9 @@ section.projects-section {
   transition: all 0.22s ease;
 }
 
-.carousel-item__action i { font-size: 14px; }
+.carousel-item__action i {
+  font-size: 14px;
+}
 
 @media (hover: hover) and (pointer: fine) {
   .carousel-item__action:hover {
