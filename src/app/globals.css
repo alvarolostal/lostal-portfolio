@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-acid: #c4ab2f;
+  --color-ink: #050505;
+  --color-paper: #f2f2f2;
+
+  --font-sans: var(--font-space-grotesk), sans-serif;
+  --font-serif: var(--font-playfair-display), serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --cursor-none: none;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* --- BASE SETTINGS --- */
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  overflow-x: hidden;
+  cursor: none; /* Ocultamos cursor por defecto para usar el custom */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --- CUSTOM CURSOR --- */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-acid); /* ACTUALIZADO */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* Efecto de inversión de color */
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+/* Estado hover del cursor */
+body.hovering #cursor {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+}
+
+/* --- TYPOGRAPHY UTILS --- */
+.outline-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: transparent;
+  transition: all 0.3s ease;
+}
+.outline-text:hover {
+  -webkit-text-stroke: 1px var(--color-acid); /* ACTUALIZADO */
+  color: var(--color-acid); /* ACTUALIZADO */
+}
+
+/* --- MARQUEE (ARREGLADO) --- */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2rem;
+}
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  gap: 2rem;
+  min-width: 100%;
+  animation: scroll 20s linear infinite;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 2rem));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* --- PROJECT HOVER REVEAL --- */
+.project-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.project-item:hover {
+  padding-left: 2vw;
+  background-color: var(--color-acid); /* ACTUALIZADO */
+  color: var(--color-ink);
+}
+.project-item:hover .project-meta {
+  color: var(--color-ink);
+}
+
+/* Imagen flotante de proyecto */
+#project-preview {
+  position: fixed;
+  pointer-events: none;
+  width: 300px;
+  height: 200px;
+  z-index: 50;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-acid); /* ACTUALIZADO */
+}
+
+/* --- UTILITIES --- */
+.fluid-type {
+  font-size: clamp(3rem, 8vw, 10rem);
+  line-height: 0.9;
+}
+
+/* Ruido de fondo sutil */
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 90;
+}
+
+/* Scrollbar hide */
+::-webkit-scrollbar {
+  display: none;
 }
