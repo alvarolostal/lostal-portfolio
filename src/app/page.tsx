@@ -141,9 +141,9 @@ export default function Home() {
       {/* Footer / Contact (RE-DISEÑADO) */}
       <section id="contact" className="min-h-[80vh] flex flex-col justify-between px-6 md:px-20 pt-32 pb-10 bg-paper text-ink mt-20 relative overflow-hidden">
         {/* Abstract decoration */}
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent opacity-20"></div>
+        <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-black to-transparent opacity-20"></div>
 
-        <div className="flex-grow flex flex-col justify-center items-center text-center">
+        <div className="grow flex flex-col justify-center items-center text-center">
                 
             {/* Intro Text */}
             <div className="max-w-xl">

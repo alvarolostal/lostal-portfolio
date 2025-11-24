@@ -13,6 +13,10 @@
 }
 
 /* --- BASE SETTINGS --- */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-ink);
   color: var(--color-paper);

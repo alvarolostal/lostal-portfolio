@@ -9,6 +9,7 @@ import Cursor from "@/components/Cursor";
 import Noise from "@/components/Noise";
 import ProjectPreview from "@/components/ProjectPreview";
 import Navbar from "@/components/Navbar";
+import ScrollObserver from "@/components/ScrollObserver";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair-display",
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Noise />
         <ProjectPreview />
         <Navbar />
+        <ScrollObserver />
         {children}
       </body>
     </html>

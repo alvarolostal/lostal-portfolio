@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-between items-center z-50 mix-blend-difference text-white">
+    <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-between items-center z-50 text-white backdrop-blur-md bg-ink/50 border-b border-white/5">
       <Link href="#" className="text-2xl font-bold font-sans hoverable tracking-tighter">
         AL
       </Link>
