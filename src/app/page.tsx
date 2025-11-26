@@ -1,11 +1,13 @@
 import Marquee from "@/components/Marquee";
 import Link from "next/link";
+import FloatingContact from "@/components/FloatingContact";
 
 export default function Home() {
   return (
+    <>
     <main>
       {/* Hero Section: RE-DISEÑADO CON FOTO CENTRAL Y TEXTO ORIGINAL */}
-      <section className="min-h-screen flex flex-col justify-center items-center px-6 md:px-10 pt-32 pb-20 relative text-center">
+      <section id="hero" className="min-h-screen flex flex-col justify-center items-center px-6 md:px-10 pt-32 pb-20 relative text-center">
         
         {/* Intro Text */}
         <div className="relative z-10">
@@ -38,7 +40,7 @@ export default function Home() {
           <Link href="#contact" className="hoverable text-ink bg-acid px-8 py-3 rounded-full font-mono font-bold tracking-wide transition-all duration-300 hover:bg-paper">
             Contactar
           </Link>
-          <Link href="#work" className="hoverable text-paper border border-paper/30 px-8 py-3 rounded-full font-mono transition-all duration-300 hover:bg-paper hover:text-ink">
+          <Link href="#projects" className="hoverable text-paper border border-paper/30 px-8 py-3 rounded-full font-mono transition-all duration-300 hover:bg-paper hover:text-ink">
             Ver portafolio
           </Link>
         </div>
@@ -51,7 +53,7 @@ export default function Home() {
       <Marquee />
 
       {/* Projects: The Hover Reveal List (ACTUALIZADO) */}
-      <section id="work" className="py-32 px-6 md:px-20 max-w-[1800px] mx-auto">
+      <section id="projects" className="py-32 px-6 md:px-20 max-w-[1800px] mx-auto">
         <div className="flex flex-col md:flex-row items-start justify-between mb-20">
           <h2 className="text-5xl md:text-7xl font-serif italic text-acid">Proyectos</h2>
           <p className="font-mono text-sm mt-6 md:mt-0 text-gray-400 max-w-xs text-right">
@@ -139,39 +141,57 @@ export default function Home() {
       </section>
 
       {/* Footer / Contact (RE-DISEÑADO) */}
-      <section id="contact" className="min-h-[80vh] flex flex-col justify-between px-6 md:px-20 pt-32 pb-10 bg-paper text-ink mt-20 relative overflow-hidden">
+      <section id="contact" className="section-alt min-h-[80vh] flex flex-col justify-between px-6 md:px-20 pt-32 pb-10 bg-paper text-ink mt-20 relative overflow-hidden">
         {/* Abstract decoration */}
         <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-black to-transparent opacity-20"></div>
 
-        <div className="grow flex flex-col justify-center items-center text-center">
+        <div className="grow flex flex-col justify-center items-center text-center contact-content">
                 
             {/* Intro Text */}
-            <div className="max-w-xl">
-                <span className="font-mono text-sm tracking-widest text-black/50 mb-4 block">CONTACTO</span>
-                <h2 className="text-6xl md:text-8xl font-sans font-bold leading-none mb-6">
+            <div className="max-w-xl section-header fade-in">
+                <span className="font-mono text-sm tracking-widest text-black/50 mb-4 block section-label" data-i18n="contact.label">CONTACTO</span>
+                <h2 className="text-6xl md:text-8xl font-sans font-bold leading-none mb-6 section-title" data-i18n="contact.title">
                     Cone<span className="font-serif italic">cte</span>mos
                 </h2>
-                <p className="font-sans text-xl leading-relaxed text-black/70">
+                <p className="font-sans text-xl leading-relaxed text-black/70 section-description" data-i18n="contact.description">
                     ¿Tienes algo en mente? Ponte en contacto conmigo.
                 </p>
             </div>
             
             {/* Links (Jerarquía Equilibrada) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 w-full max-w-5xl">
-                {/* Email */}
-                <a href="mailto:alvarolostal04@gmail.com" className="block text-lg md:text-xl font-mono p-8 bg-ink text-paper hover:bg-acid hover:text-ink transition-all duration-300 rounded-lg hoverable group break-all">
-                    alvarolostal04@gmail.com
-                    <span className="block text-sm opacity-70 group-hover:opacity-100 mt-2">EMAIL ↗</span>
+            <div className="flex justify-center gap-[14px] mt-8 flex-wrap fade-in" id="main-contact-links">
+                <a
+                  href="mailto:alvarolostal04@gmail.com"
+                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
+                  title="Email"
+                  data-contact="email"
+                >
+                  <i className="fas fa-envelope"></i>
                 </a>
-                {/* LinkedIn */}
-                <a href="https://www.linkedin.com/in/alvarolostal/" target="_blank" rel="noopener noreferrer" className="block text-lg md:text-xl font-mono p-8 bg-ink text-paper hover:bg-acid hover:text-ink transition-all duration-300 rounded-lg hoverable group">
-                    alvarolostal
-                    <span className="block text-sm opacity-70 group-hover:opacity-100 mt-2">LINKEDIN ↗</span>
+
+                <a
+                  href="https://github.com/lostal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
+                  title="GitHub"
+                  data-contact="github"
+                >
+                  <i className="fab fa-github"></i>
                 </a>
-                {/* GitHub */}
-                <a href="https://github.com/lostal" target="_blank" rel="noopener noreferrer" className="block text-lg md:text-xl font-mono p-8 bg-ink text-paper hover:bg-acid hover:text-ink transition-all duration-300 rounded-lg hoverable group">
-                    lostal
-                    <span className="block text-sm opacity-70 group-hover:opacity-100 mt-2">GITHUB ↗</span>
+
+                <a
+                  href="https://linkedin.com/in/alvarolostal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
+                  title="LinkedIn"
+                  data-contact="linkedin"
+                >
+                  <i className="fab fa-linkedin"></i>
                 </a>
             </div>
 
@@ -195,5 +215,7 @@ export default function Home() {
         </div>
       </section>
     </main>
+    <FloatingContact />
+  </>
   );
 }

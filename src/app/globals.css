@@ -2,6 +2,7 @@
 
 @theme {
   --color-acid: #c4ab2f;
+  --color-gold: #d5bd37;
   --color-ink: #050505;
   --color-paper: #f2f2f2;
 
@@ -135,4 +136,22 @@ body.hovering #cursor {
 /* Scrollbar hide */
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* --- FLOATING CONTACT ANIMATIONS --- */
+@keyframes slide-up {
+  from { bottom: -100px; opacity: 0; }
+  to { bottom: -37px; opacity: 1; }
+}
+@keyframes slide-down {
+  from { bottom: -37px; opacity: 1; }
+  to { bottom: -100px; opacity: 0; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
