@@ -165,7 +165,7 @@ export default function Home() {
             <div className="flex justify-center gap-[14px] mt-8 flex-wrap fade-in" id="main-contact-links">
                 <a
                   href="mailto:alvarolostal04@gmail.com"
-                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  className="hoverable flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
                   hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
                   title="Email"
                   data-contact="email"
@@ -177,7 +177,7 @@ export default function Home() {
                   href="https://github.com/lostal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  className="hoverable flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
                   hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
                   title="GitHub"
                   data-contact="github"
@@ -189,7 +189,7 @@ export default function Home() {
                   href="https://linkedin.com/in/alvarolostal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
+                  className="hoverable flex items-center justify-center w-12 h-12 bg-[#f5f5f7] dark:bg-[#1d1d1f] rounded-full text-[#1d1d1f] dark:text-[#f5f5f7] text-xl border border-[#d2d2d7] dark:border-[#424245] transition-all duration-300
                   hover:bg-gold hover:text-black hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(213,189,55,0.3)] hover:border-gold"
                   title="LinkedIn"
                   data-contact="linkedin"
