@@ -16,6 +16,7 @@
 /* --- BASE SETTINGS --- */
 html {
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
   color: var(--color-paper);
   overflow-x: hidden;
   cursor: none; /* Ocultamos cursor por defecto para usar el custom */
+  overscroll-behavior-y: none;
 }
 
 /* --- CUSTOM CURSOR --- */
@@ -140,12 +142,24 @@ body.hovering #cursor {
 
 /* --- FLOATING CONTACT ANIMATIONS --- */
 @keyframes slide-up {
-  from { bottom: -100px; opacity: 0; }
-  to { bottom: -37px; opacity: 1; }
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: -37px;
+    opacity: 1;
+  }
 }
 @keyframes slide-down {
-  from { bottom: -37px; opacity: 1; }
-  to { bottom: -100px; opacity: 0; }
+  from {
+    bottom: -37px;
+    opacity: 1;
+  }
+  to {
+    bottom: -100px;
+    opacity: 0;
+  }
 }
 
 .animate-slide-up {

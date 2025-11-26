@@ -17,14 +17,14 @@ export default function ScrollObserver() {
       });
     }, observerOptions);
 
-    const sections = document.querySelectorAll("section");
-    sections.forEach((sec) => {
-      sec.classList.add("transition-all", "duration-1000", "ease-out", "opacity-0", "translate-y-10");
-      observer.observe(sec);
+    const targets = document.querySelectorAll("section:not(#contact), .fade-in");
+    targets.forEach((el) => {
+      el.classList.add("transition-all", "duration-1000", "ease-out", "opacity-0", "translate-y-10");
+      observer.observe(el);
     });
 
     return () => {
-      sections.forEach((sec) => observer.unobserve(sec));
+      targets.forEach((el) => observer.unobserve(el));
     };
   }, []);
 

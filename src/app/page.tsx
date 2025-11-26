@@ -1,4 +1,5 @@
 import Marquee from "@/components/Marquee";
+import Image from "next/image";
 import Link from "next/link";
 import FloatingContact from "@/components/FloatingContact";
 
@@ -18,11 +19,13 @@ export default function Home() {
 
         {/* Central Image Placeholder */}
         <div className="my-12 relative z-10 hoverable">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="https://placehold.co/200x200/c4ab2f/050505?text=AL" 
+          <Image 
+            src="/alvaro.jpg" 
             alt="Retrato de Álvaro Lostal" 
+            width={224}
+            height={224}
             className="w-48 h-48 md:w-56 md:h-56 rounded-2xl object-cover border-4 border-paper shadow-2xl shadow-acid/20 transition-all duration-300 hover:scale-105 hover:shadow-acid/40"
+            priority
           />
         </div>
 
@@ -200,17 +203,16 @@ export default function Home() {
         {/* Footer (al final de la sección) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-end border-t border-black/10 pt-10 mt-20">
             <div className="font-mono text-sm">
-                <a href="https://www.linkedin.com/in/alvarolostal/" className="block hover:underline">LINKEDIN ↗</a>
-                <a href="https://github.com/lostal" className="block hover:underline">GITHUB ↗</a>
+                {/* Links removed as requested */}
             </div>
             
             <div className="font-serif italic text-2xl text-center md:text-left">
-                &quot;Code is poetry,<br />Design is attitude.&quot;
+                &quot;Buscar la belleza de lo simple<br />y distinguir lo simple de la simpleza.&quot;
             </div>
 
             <div className="text-right font-mono text-xs">
-                © 2025 ÁLVARO LOSTAL<br />
-                HECHO A MANO CON AMOR & ODIO
+                © 2025 Álvaro Lostal.<br />
+                Hecho con ❤️ en Santander, España.
             </div>
         </div>
       </section>

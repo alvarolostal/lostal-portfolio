@@ -87,7 +87,7 @@ export default function FloatingContact() {
   return (
     <div
       id="floating-contact"
-      className={`fixed left-1/2 -translate-x-1/2 z-[1000] transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+      className={`fixed left-1/2 -translate-x-1/2 z-1000 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
         ${isVisible 
           ? "opacity-100 visible pointer-events-auto bottom-[-37px]" 
           : "opacity-0 invisible bottom-[-100px] pointer-events-none"}
