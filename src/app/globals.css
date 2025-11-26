@@ -27,6 +27,16 @@ body {
   overscroll-behavior-y: none;
 }
 
+/* Enforce no cursor on interactive elements to keep custom cursor visible */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  cursor: none !important;
+}
+
 /* --- CUSTOM CURSOR --- */
 #cursor {
   position: fixed;

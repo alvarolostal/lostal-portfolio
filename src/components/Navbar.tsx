@@ -34,19 +34,19 @@ export default function Navbar() {
         showGlass ? "backdrop-blur-md bg-ink/50" : "mix-blend-difference"
       }`}
     >
-      <Link href="#" className="text-2xl font-bold font-sans hoverable tracking-tighter">
+      <Link href="#hero" className="text-2xl font-bold font-sans hoverable tracking-tighter">
         AL
       </Link>
 
       <div className="hidden md:flex gap-12 font-mono text-sm">
-        <Link href="#work" className="hoverable hover:text-acid transition-colors">
+        <Link href="#projects" className="hoverable hover:text-acid transition-colors">
           Proyectos
-        </Link>
-        <Link href="#recorrido" className="hoverable hover:text-acid transition-colors">
-          Recorrido
         </Link>
         <Link href="#habilidades" className="hoverable hover:text-acid transition-colors">
           Habilidades
+        </Link>
+        <Link href="#recorrido" className="hoverable hover:text-acid transition-colors">
+          Recorrido
         </Link>
         <Link href="#contact" className="hoverable hover:text-acid transition-colors">
           Contacto

@@ -53,7 +53,7 @@ export default function Home() {
       </section>
 
       {/* Infinite Skills Marquee */}
-      <Marquee />
+
 
       {/* Projects: The Hover Reveal List (ACTUALIZADO) */}
       <section id="projects" className="py-32 px-6 md:px-20 max-w-[1800px] mx-auto">
@@ -86,6 +86,9 @@ export default function Home() {
           {/* Proyecto 3 (Eliminado por ahora para ceñirse al texto) */}
         </div>
       </section>
+
+      {/* Infinite Skills Marquee */}
+      <Marquee />
 
       {/* About & Timeline Mixed (ACTUALIZADO CON TEXTO ORIGINAL) */}
       <section id="recorrido" className="py-20 px-6 md:px-20 grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
@@ -142,6 +145,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
 
       {/* Footer / Contact (RE-DISEÑADO) */}
       <section id="contact" className="section-alt min-h-[80vh] flex flex-col justify-between px-6 md:px-20 pt-32 pb-10 bg-paper text-ink mt-20 relative overflow-hidden">
